@@ -34,5 +34,5 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-
+# credentials.yml を管理対象から外す
 /config/credentials.yml.enc
