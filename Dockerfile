@@ -8,6 +8,7 @@ apt-get update && apt-get install -y yarn && apt-get install -y npm
 # Node.jsをインストール
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash - && \
 apt-get install nodejs
+RUN apt-get install -y cron
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
