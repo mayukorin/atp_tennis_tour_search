@@ -10,10 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_15_030031) do
+ActiveRecord::Schema.define(version: 2021_08_15_065647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "batch_schedules", force: :cascade do |t|
+    t.date "today"
+    t.bigint "tournament_year_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tournament_year_id"], name: "index_batch_schedules_on_tournament_year_id"
+  end
+
+  create_table "tournament_years", force: :cascade do |t|
+    t.integer "year"
+    t.date "first_day"
+    t.date "last_day"
+    t.bigint "tournament_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tournament_id"], name: "index_tournament_years_on_tournament_id"
+  end
 
   create_table "tournaments", force: :cascade do |t|
     t.string "name"
@@ -21,4 +39,6 @@ ActiveRecord::Schema.define(version: 2021_08_15_030031) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "batch_schedules", "tournament_years"
+  add_foreign_key "tournament_years", "tournaments"
 end
