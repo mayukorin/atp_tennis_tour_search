@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  year: 1
+  first_day: 2021-08-15
+  lat_day: 2021-08-15
+  tournament: one
+
+two:
+  year: 1
+  first_day: 2021-08-15
+  lat_day: 2021-08-15
+  tournament: two
