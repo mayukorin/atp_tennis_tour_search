@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# coding: utf-8
+
+Tournament.create(:name => '全豪オープン')
+Tournament.create(:name => '全仏オープン')
+Tournament.create(:name => 'ウィンブルドン')
+Tournament.create(:name => '全米オープン')
