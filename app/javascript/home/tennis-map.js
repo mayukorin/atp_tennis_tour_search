@@ -26,7 +26,7 @@ $(function () {
                 var main_players = ``;
                 for(var id in res[key]["main_players"]) {
                     var player = res[key]["main_players"][id]["name"];
-                    if (res[key]["main_players"][id]["flag"] == 0) {
+                    if (res[key]["main_players"][id]["win_flag"] == 1) {
                         main_players += `<span>${player}</span> `;
                     } else {
                         main_players += `<span style=\"color: #EEEEEE;\">${player} </span> `;

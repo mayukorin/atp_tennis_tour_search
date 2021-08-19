@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_18_125633) do
+ActiveRecord::Schema.define(version: 2021_08_19_072936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 2021_08_18_125633) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tournament_year_and_players", force: :cascade do |t|
+    t.boolean "win_flag"
+    t.bigint "player_id", null: false
+    t.bigint "tournament_year_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["player_id"], name: "index_tournament_year_and_players_on_player_id"
+    t.index ["tournament_year_id"], name: "index_tournament_year_and_players_on_tournament_year_id"
   end
 
   create_table "tournament_years", force: :cascade do |t|
@@ -51,6 +61,8 @@ ActiveRecord::Schema.define(version: 2021_08_18_125633) do
   end
 
   add_foreign_key "batch_schedules", "tournament_years"
+  add_foreign_key "tournament_year_and_players", "players"
+  add_foreign_key "tournament_year_and_players", "tournament_years"
   add_foreign_key "tournament_years", "players"
   add_foreign_key "tournament_years", "tournaments"
 end

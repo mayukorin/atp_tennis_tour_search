@@ -13,9 +13,11 @@ Tournament.create(:name => 'ウィンブルドン', :abbreviation => 'LO', :city
 Tournament.create(:name => '全米オープン', :abbreviation => 'NY', :city => 'ニューヨーク')
 
 joko = Player.create(:name => 'ジョコビッチ')
+nishi = Player.create(:name => '錦織圭')
 
 tournament = Tournament.find_by(name: '全豪オープン')
 me = tournament.tournament_years.create(:year => 2021, :first_day => '2021-02-08', :last_day => '2021-02-21', :now_flag => 't')
+
 
 tournament = Tournament.find_by(name: '全仏オープン')
 pa = tournament.tournament_years.create(:year => 2021, :first_day => '2021-05-30', :last_day => '2021-06-13', :now_flag => 't')
@@ -27,9 +29,10 @@ tournament = Tournament.find_by(name: '全米オープン')
 ny = tournament.tournament_years.create(:year => 2021, :first_day => '2021-08-30', :last_day => '2021-09-12', :now_flag => 't')
 
 joko.tournament_years << me
-joko.tournament_years << ny
+# joko.tournament_years << ny
 joko.tournament_years << pa
 joko.tournament_years << lo
+
 
 TournamentYear.all.each do |tournament_year| 
     start_day = tournament_year.first_day
@@ -38,4 +41,9 @@ TournamentYear.all.each do |tournament_year|
     (start_day..end_day).each do |day|
         tournament_year.batch_schedules.create(:today => day)
     end
+    tp1 = tournament_year.tournament_year_and_players.create(:win_flag => 't')
+    tp2 = tournament_year.tournament_year_and_players.create(:win_flag => 'f')
+    joko.tournament_year_and_players << tp1
+    nishi.tournament_year_and_players << tp2
+
 end
