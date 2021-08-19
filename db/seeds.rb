@@ -7,22 +7,29 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 # coding: utf-8
 
-Tournament.create(:name => '全豪オープン')
-Tournament.create(:name => '全仏オープン')
-Tournament.create(:name => 'ウィンブルドン')
-Tournament.create(:name => '全米オープン')
+Tournament.create(:name => '全豪オープン', :abbreviation => 'ME', :city => 'メルボルン')
+Tournament.create(:name => '全仏オープン', :abbreviation => 'PA', :city => 'パリ')
+Tournament.create(:name => 'ウィンブルドン', :abbreviation => 'LO', :city => 'ロンドン')
+Tournament.create(:name => '全米オープン', :abbreviation => 'NY', :city => 'ニューヨーク')
+
+joko = Player.create(:name => 'ジョコビッチ')
 
 tournament = Tournament.find_by(name: '全豪オープン')
-tournament.tournament_years.create(:year => 2021, :first_day => '2021-02-08', :last_day => '2021-02-21')
+me = tournament.tournament_years.create(:year => 2021, :first_day => '2021-02-08', :last_day => '2021-02-21', :now_flag => 't')
 
 tournament = Tournament.find_by(name: '全仏オープン')
-tournament.tournament_years.create(:year => 2021, :first_day => '2021-05-30', :last_day => '2021-06-13')
+pa = tournament.tournament_years.create(:year => 2021, :first_day => '2021-05-30', :last_day => '2021-06-13', :now_flag => 't')
 
 tournament = Tournament.find_by(name: 'ウィンブルドン')
-tournament.tournament_years.create(:year => 2021, :first_day => '2021-06-28', :last_day => '2021-07-11')
+lo = tournament.tournament_years.create(:year => 2021, :first_day => '2021-06-28', :last_day => '2021-07-11', :now_flag => 't')
 
 tournament = Tournament.find_by(name: '全米オープン')
-tournament.tournament_years.create(:year => 2021, :first_day => '2021-08-30', :last_day => '2021-09-12')
+ny = tournament.tournament_years.create(:year => 2021, :first_day => '2021-08-30', :last_day => '2021-09-12', :now_flag => 't')
+
+joko.tournament_years << me
+joko.tournament_years << ny
+joko.tournament_years << pa
+joko.tournament_years << lo
 
 TournamentYear.all.each do |tournament_year| 
     start_day = tournament_year.first_day
