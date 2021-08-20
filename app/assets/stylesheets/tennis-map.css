@@ -19,3 +19,24 @@
     font-family: 'M PLUS Rounded 1c', sans-serif;
     color: red;
 }
+
+.favorite {
+    width: 80%;
+    margin: auto;
+}
+.favorite .head {
+    padding: 0.25em 0.5em;
+    color: #494949;
+    background: transparent;
+    border-left: solid 5px #009966;
+}
+/*
+.favorite_player_game {
+    display: flex;
+    gap: 6px 20px;
+}
+*/
+
+.game_card {
+    background-color: white;
+}

@@ -57,7 +57,7 @@ $(function () {
         contents.set("ME", contentForME);
         contents.set("NY", contentForNY);
         */
-        $(".container").mapael({
+        $(".map_container").mapael({
             map : {
                 name : "world_countries",
                 defaultArea: {
