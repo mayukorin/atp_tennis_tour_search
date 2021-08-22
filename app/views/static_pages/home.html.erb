@@ -12,24 +12,76 @@
 <div class="favorite">
     <h4 class="head">お気に入り選手の直近の試合</h4>
     <ul>
+      <% @favorite_player_info.each do |match| %>
+        <li>
+          <%= match["name"] %>
+          <div class="container">
+            <div class="row mt-3">
+              <% match["matches"].each_with_index do |ma, cnt| %>
+                <% if cnt == 0 %>
+                  <div class="game_card col-12 col-md-5 bg-white mb-3 p-2">
+                <% else %>
+                  <div class="game_card col-12 col-md-5 bg-white mb-3 p-2 offset-md-1">
+                <% end %>
+                  <div class="small"><%= ma.day %></div>
+                  <div class="small"><%= ma.tournament_year.tournament.name %></div>
+                  <div>
+                      <% if  ma.win_player.nil? %>
+                        <%= ma.player1.name %> vs <%= ma.player2.name %>
+                      <% else %>
+                        <% if ma.win_player.name == ma.player1.name %>
+                          <%= ma.player1.name %> vs <span style="color: #EEEEEE;"><%= ma.player2.name %></span>
+                        <% else %>
+                          <span style="color: #EEEEEE;"><%= ma.player1.name %></span> vs <%= ma.player2.name %>
+                        <% end %>
+                      <% end %>
+                  </div>
+                  <%= link_to "詳細(google検索結果)", "https://www.google.com/search?q=#{ma.player1.name}+#{ma.player2.name}" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
+
+    <ul>
       <li>
         錦織圭
         <div class="container">
             <!--<div class="row justify-content-between">-->
               <div class="row mt-3">
                 <div class="game_card col-12 col-md-5 bg-white mb-3 p-2">
-                    全米オープン 2020/08/25 11:00~<br>
+                    <div class="small">2020/08/25 11:00~</div>
+                    <div class="small mb-2">ウェスト・サザンティアオープン</div>
                     錦織圭 vs パフリュチェンコワ<br>
+                    <a href="https://www.google.com/search?q=錦織圭+ジョコビッチ">詳細(google検索結果）</a>
                 </div>
                 <div class="game_card col-12 col-md-5 offset-md-1 bg-white mb-3 p-2">
-                    全米オープン 11:00~<br>
-                    錦織圭<br>
-                    パフリュチェンコワ<br>
+                    <div class="small">2020/08/25 11:00~</div>
+                    <div class="small mb-2">ウェスト・サザンティアオープン</div>
+                    <div>錦織圭 vs パフリュチェンコワ</div>
                 </div>
             </div>
         </div>
       </li>
       <li>ジョコビッチ</li>
+      <div class="container">
+      <!--<div class="row justify-content-between">-->
+        <div class="row mt-3">
+          <div class="game_card col-12 col-md-5 bg-white mb-3 p-2">
+              <div class="small">2020/08/25 11:00~</div>
+              <div class="small mb-2">ウェスト・サザンティアオープン</div>
+              錦織圭 vs パフリュチェンコワ<br>
+              <a href="https://www.google.com/search?q=錦織圭+ジョコビッチ">詳細(google検索結果）</a>
+          </div>
+          <div class="game_card col-12 col-md-5 offset-md-1 bg-white mb-3 p-2">
+              <div class="small">2020/08/25 11:00~</div>
+              <div class="small mb-2">ウェスト・サザンティアオープン</div>
+              <div>錦織圭 vs パフリュチェンコワ</div>
+          </div>
+      </div>
     </ul>
 </div>
 <div class="map_container">

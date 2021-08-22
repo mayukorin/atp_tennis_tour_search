@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_19_072936) do
+ActiveRecord::Schema.define(version: 2021_08_22_053502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,20 @@ ActiveRecord::Schema.define(version: 2021_08_19_072936) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tournament_year_id"], name: "index_batch_schedules_on_tournament_year_id"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.datetime "day"
+    t.bigint "tournament_year_id", null: false
+    t.bigint "player1_id"
+    t.bigint "player2_id"
+    t.bigint "win_player_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["player1_id"], name: "index_matches_on_player1_id"
+    t.index ["player2_id"], name: "index_matches_on_player2_id"
+    t.index ["tournament_year_id"], name: "index_matches_on_tournament_year_id"
+    t.index ["win_player_id"], name: "index_matches_on_win_player_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -47,8 +61,8 @@ ActiveRecord::Schema.define(version: 2021_08_19_072936) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "now_flag"
-    t.bigint "player_id"
-    t.index ["player_id"], name: "index_tournament_years_on_player_id"
+    t.bigint "champion_id"
+    t.index ["champion_id"], name: "index_tournament_years_on_champion_id"
     t.index ["tournament_id"], name: "index_tournament_years_on_tournament_id"
   end
 
@@ -61,8 +75,12 @@ ActiveRecord::Schema.define(version: 2021_08_19_072936) do
   end
 
   add_foreign_key "batch_schedules", "tournament_years"
+  add_foreign_key "matches", "players", column: "player1_id"
+  add_foreign_key "matches", "players", column: "player2_id"
+  add_foreign_key "matches", "players", column: "win_player_id"
+  add_foreign_key "matches", "tournament_years"
   add_foreign_key "tournament_year_and_players", "players"
   add_foreign_key "tournament_year_and_players", "tournament_years"
-  add_foreign_key "tournament_years", "players"
+  add_foreign_key "tournament_years", "players", column: "champion_id"
   add_foreign_key "tournament_years", "tournaments"
 end

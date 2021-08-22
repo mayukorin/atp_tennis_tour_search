@@ -1,6 +1,23 @@
 class StaticPagesController < ApplicationController
   def home
-    @msg = "worldd"
+    '''
+    nishi = Player.find(4)
+    nish_matches = Match.where(player1: nishi).or(Match.where(player2: nishi)).order(day: :desc).limit(2)
+    nishi_info = {}
+    nishi_info["name"] = nishi.name
+    nishi_info["matches"] = nish_matches
+    @favorite_player_info = {}
+    @favorite_player_info[nishi.name] = nishi_info
+    puts @favorite_player_info
+    '''
+    nishi = Player.find(2)
+    nish_matches = Match.where(player1: nishi).or(Match.where(player2: nishi)).order(day: :desc).limit(2)
+    nishi_info = {}
+    nishi_info["name"] = nishi.name
+    nishi_info["matches"] = nish_matches
+    @favorite_player_info = []
+    @favorite_player_info.push(nishi_info)
+
   end
 
   def get_tournament_info
@@ -9,11 +26,11 @@ class StaticPagesController < ApplicationController
     tournaments.each do |tournamentYear|
       tournament_info = {}
       # puts tournamentYear.tournament.name
-      if tournamentYear.player.nil? then
+      if tournamentYear.champion.nil? then
         tournament_info["now_flag"] = 1
       else 
         tournament_info["now_flag"] = 0
-        tournament_info["champion"] = tournamentYear.player.name
+        tournament_info["champion"] = tournamentYear.champion.name
       end
       tournament_info["name"] = tournamentYear.tournament.name + "(" + tournamentYear.first_day.strftime("%Y") + ")"
       tournament_info["city"] = tournamentYear.tournament.city

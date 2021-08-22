@@ -28,10 +28,10 @@ lo = tournament.tournament_years.create(:year => 2021, :first_day => '2021-06-28
 tournament = Tournament.find_by(name: '全米オープン')
 ny = tournament.tournament_years.create(:year => 2021, :first_day => '2021-08-30', :last_day => '2021-09-12', :now_flag => 't')
 
-joko.tournament_years << me
+joko.my_champion_tournament_years << me
 # joko.tournament_years << ny
-joko.tournament_years << pa
-joko.tournament_years << lo
+joko.my_champion_tournament_years << pa
+joko.my_champion_tournament_years << lo
 
 
 TournamentYear.all.each do |tournament_year| 
@@ -47,3 +47,23 @@ TournamentYear.all.each do |tournament_year|
     nishi.tournament_year_and_players << tp2
 
 end
+
+match1 = me.matches.create(:day => '2021-02-08')
+match2 = me.matches.create(:day => '2021-02-10')
+
+joko.player1_mathes << match1
+nishi.player2_mathes << match1
+
+joko.player1_mathes << match2
+nishi.player2_mathes << match2
+
+match3 = ny.matches.create(:day => '2021-08-31')
+match4 = ny.matches.create(:day => '2021-09-01')
+
+joko.player1_mathes << match3
+nishi.player2_mathes << match3
+
+joko.player1_mathes << match4
+nishi.player2_mathes << match4
+
+nishi.win_mathes << match3
