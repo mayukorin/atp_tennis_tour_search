@@ -6,6 +6,7 @@ $(function () {
         dataType: "json"
     }).done(function(res){
         console.log(res);
+        /*
         let contents = new Map();
         for(var key in res) {
             var contentAndColor = new Map();
@@ -40,6 +41,7 @@ $(function () {
             contentAndColor.set("content", content);
             contents.set(key, contentAndColor);
         }
+        */
         /*
         let contentForME =  "<div>"+
                             "<div>全豪オープン</div>"+
@@ -57,6 +59,7 @@ $(function () {
         contents.set("ME", contentForME);
         contents.set("NY", contentForNY);
         */
+       /*
         $(".map_container").mapael({
             map : {
                 name : "world_countries",
@@ -107,6 +110,7 @@ $(function () {
                 }
             }
         });
+        */
 
     }).fail(function() {
         alert(error);

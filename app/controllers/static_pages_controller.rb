@@ -10,6 +10,7 @@ class StaticPagesController < ApplicationController
     @favorite_player_info[nishi.name] = nishi_info
     puts @favorite_player_info
     '''
+    '''
     nishi = Player.find(2)
     nish_matches = Match.where(player1: nishi).or(Match.where(player2: nishi)).order(day: :desc).limit(2)
     nishi_info = {}
@@ -17,10 +18,12 @@ class StaticPagesController < ApplicationController
     nishi_info["matches"] = nish_matches
     @favorite_player_info = []
     @favorite_player_info.push(nishi_info)
-
+    '''
+    @favorite_players = Player.all
   end
 
   def get_tournament_info
+    '''
     tournaments_info = {}
     tournaments = TournamentYear.where(now_flag: true)
     tournaments.each do |tournamentYear|
@@ -54,5 +57,8 @@ class StaticPagesController < ApplicationController
     puts "okkk"
     puts tournaments_info
     render json: tournaments_info
+    '''
+    tournament_this_years = TournamentYear.where(now_flag: true)
+    render json: tournament_this_years, each_serializer: TournamentYearForMapSerializer
   end
 end

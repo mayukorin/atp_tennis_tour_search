@@ -67,3 +67,27 @@ joko.player1_mathes << match4
 nishi.player2_mathes << match4
 
 nishi.win_mathes << match3
+
+player_matches1 = match1.player_matches.create(:win_flag => 't')
+joko.player_matches << player_matches1
+
+player_matches2 = match1.player_matches.create(:win_flag => 'f')
+nishi.player_matches << player_matches2
+
+player_matches3 = match2.player_matches.create(:win_flag => 't')
+joko.player_matches << player_matches3
+
+player_matches4 = match2.player_matches.create(:win_flag => 'f')
+nishi.player_matches << player_matches4
+
+player_matches5 = match3.player_matches.create(:win_flag => 't')
+joko.player_matches << player_matches5
+
+player_matches6 = match3.player_matches.create(:win_flag => 'f')
+nishi.player_matches << player_matches6
+
+player_matches7 = match4.player_matches.create(:win_flag => 'f')
+joko.player_matches << player_matches7
+
+player_matches8 = match4.player_matches.create(:win_flag => 't')
+nishi.player_matches << player_matches8
