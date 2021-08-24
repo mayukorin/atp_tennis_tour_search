@@ -13,9 +13,11 @@ Tournament.create(:name => 'ウィンブルドン', :abbreviation => 'LO', :city
 Tournament.create(:name => '全米オープン', :abbreviation => 'NY', :city => 'ニューヨーク')
 
 joko = Player.create(:name => 'ジョコビッチ')
+nishi = Player.create(:name => '錦織圭')
 
 tournament = Tournament.find_by(name: '全豪オープン')
 me = tournament.tournament_years.create(:year => 2021, :first_day => '2021-02-08', :last_day => '2021-02-21', :now_flag => 't')
+
 
 tournament = Tournament.find_by(name: '全仏オープン')
 pa = tournament.tournament_years.create(:year => 2021, :first_day => '2021-05-30', :last_day => '2021-06-13', :now_flag => 't')
@@ -26,10 +28,11 @@ lo = tournament.tournament_years.create(:year => 2021, :first_day => '2021-06-28
 tournament = Tournament.find_by(name: '全米オープン')
 ny = tournament.tournament_years.create(:year => 2021, :first_day => '2021-08-30', :last_day => '2021-09-12', :now_flag => 't')
 
-joko.tournament_years << me
-joko.tournament_years << ny
-joko.tournament_years << pa
-joko.tournament_years << lo
+joko.my_champion_tournament_years << me
+# joko.tournament_years << ny
+joko.my_champion_tournament_years << pa
+joko.my_champion_tournament_years << lo
+
 
 TournamentYear.all.each do |tournament_year| 
     start_day = tournament_year.first_day
@@ -38,4 +41,53 @@ TournamentYear.all.each do |tournament_year|
     (start_day..end_day).each do |day|
         tournament_year.batch_schedules.create(:today => day)
     end
+    tp1 = tournament_year.tournament_year_and_players.create(:win_flag => 't')
+    tp2 = tournament_year.tournament_year_and_players.create(:win_flag => 'f')
+    joko.tournament_year_and_players << tp1
+    nishi.tournament_year_and_players << tp2
+
 end
+
+match1 = me.matches.create(:day => '2021-02-08')
+match2 = me.matches.create(:day => '2021-02-10')
+
+joko.player1_mathes << match1
+nishi.player2_mathes << match1
+
+joko.player1_mathes << match2
+nishi.player2_mathes << match2
+
+match3 = ny.matches.create(:day => '2021-08-31')
+match4 = ny.matches.create(:day => '2021-09-01')
+
+joko.player1_mathes << match3
+nishi.player2_mathes << match3
+
+joko.player1_mathes << match4
+nishi.player2_mathes << match4
+
+nishi.win_mathes << match3
+
+player_matches1 = match1.player_matches.create(:win_flag => 't')
+joko.player_matches << player_matches1
+
+player_matches2 = match1.player_matches.create(:win_flag => 'f')
+nishi.player_matches << player_matches2
+
+player_matches3 = match2.player_matches.create(:win_flag => 't')
+joko.player_matches << player_matches3
+
+player_matches4 = match2.player_matches.create(:win_flag => 'f')
+nishi.player_matches << player_matches4
+
+player_matches5 = match3.player_matches.create(:win_flag => 't')
+joko.player_matches << player_matches5
+
+player_matches6 = match3.player_matches.create(:win_flag => 'f')
+nishi.player_matches << player_matches6
+
+player_matches7 = match4.player_matches.create(:win_flag => 'f')
+joko.player_matches << player_matches7
+
+player_matches8 = match4.player_matches.create(:win_flag => 't')
+nishi.player_matches << player_matches8

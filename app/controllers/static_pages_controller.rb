@@ -1,21 +1,12 @@
 class StaticPagesController < ApplicationController
   def home
-    @msg = "worldd"
+    @favorite_players = Player.all
   end
 
   def get_tournament_info
-    tournaments_info = {}
-    tournaments = TournamentYear.where(now_flag: true)
-    tournaments.each do |tournamentYear|
-      tournament_info = {}
-      tournament_info["now_flag"] = 0
-      tournament_info["name"] = tournamentYear.tournament.name + "(" + tournamentYear.first_day.strftime("%Y") + ")"
-      tournament_info["city"] = tournamentYear.tournament.city
-      puts tournamentYear.first_day.class
-      tournament_info["period"] = tournamentYear.first_day.strftime("%m/%d") + " ~ " + tournamentYear.last_day.strftime("%m/%d")
-      tournament_info["champion"] = tournamentYear.player.name
-      tournaments_info[tournamentYear.tournament.abbreviation] = tournament_info
-    end
-    render json: tournaments_info
+    
+    tournament_this_years = TournamentYear.where(now_flag: true)
+    render json: tournament_this_years, each_serializer: TournamentYearForMapSerializer, include: ['champion', 'tournament', 'tournament_year_and_players', 'tournament_year_and_players.player']
+    
   end
 end

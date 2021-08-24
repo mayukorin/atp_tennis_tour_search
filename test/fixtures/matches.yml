@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day: 2021-08-22
+  tournament_year: one
+
+two:
+  day: 2021-08-22
+  tournament_year: two

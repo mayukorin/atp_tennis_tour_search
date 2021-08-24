@@ -9,7 +9,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mapael/2.2.0/js/maps/world_countries.js"></script>
     <%= javascript_pack_tag 'home/application' %>
 <% end %>
-Hell, <%= @msg %>
-<div class="container">
-    <div class="map">Alteranative content</div>
+<div class="favorite">
+    <div class="text-success text-center head m-3">お気に入り選手の直近の試合</div>
+    <ul>
+      <% @favorite_players.each do |favorite_player| %>
+        <li>
+          <%= favorite_player.name %>
+          <div class="container">
+            <div class="row mt-3">
+              <% favorite_player.matches.limit(2).each_with_index do |match, match_cnt| %>
+                  <%= render partial: 'layouts/match', locals: {match_cnt: match_cnt, match: match} %>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+</div>
+<div class="map_container">
+    <div class="text-success text-center head m-3">地図で確認</div>
+    <div id="now_tournament_info" class="text-center lead">
+    </div>
+    <br>
+    <div class="map"></div>
 </div>
