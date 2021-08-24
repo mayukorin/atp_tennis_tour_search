@@ -10,43 +10,15 @@
     <%= javascript_pack_tag 'home/application' %>
 <% end %>
 <div class="favorite">
-    <h4 class="head">お気に入り選手の直近の試合</h4>
+    <div class="text-success text-center head m-3">お気に入り選手の直近の試合</div>
     <ul>
       <% @favorite_players.each do |favorite_player| %>
         <li>
           <%= favorite_player.name %>
           <div class="container">
             <div class="row mt-3">
-              <% favorite_player.matches.each_with_index do |match, match_cnt| %>
-                <% if match_cnt == 2 %>
-                  <% break %>
-                <% else %>
-                  <% if match_cnt == 0%>
-                    <div class="game_card col-12 col-md-5 bg-white mb-3 p-2">
-                  <% else %>
-                    <div class="game_card col-12 col-md-5 bg-white mb-3 p-2 offset-md-1">
-                  <% end %>
-                    <div class="small"><%= match.day %></div>
-                    <div class="small"><%= match.tournament_year.tournament.name %></div>
-                    <div>
-                      <% match.player_matches.each_with_index do |player_match, player_cnt| %>
-                        <% if player_cnt == 0 %>
-                          <% if player_match.win_flag %>
-                            <%= player_match.player.name %> vs
-                          <% else %>
-                            <span style="color: #EEEEEE;"><%= player_match.player.name %></span> vs
-                          <% end %>
-                        <% else %>
-                          <% if player_match.win_flag %>
-                            <%= player_match.player.name %>
-                          <% else %>
-                            <span style="color: #EEEEEE;"><%= player_match.player.name %></span>
-                          <% end %>
-                        <% end %>
-                      <% end %>
-                    </div>
-                  </div>
-                <% end %>
+              <% favorite_player.matches.limit(2).each_with_index do |match, match_cnt| %>
+                  <%= render partial: 'layouts/match', locals: {match_cnt: match_cnt, match: match} %>
               <% end %>
             </div>
           </div>
@@ -55,5 +27,9 @@
     </ul>
 </div>
 <div class="map_container">
-    <div class="map">Alteranative content</div>
+    <div class="text-success text-center head m-3">地図で確認</div>
+    <div id="now_tournament_info" class="text-center lead">
+    </div>
+    <br>
+    <div class="map"></div>
 </div>

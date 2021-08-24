@@ -1,0 +1,25 @@
+<% if match_cnt == 0%>
+    <div class="game_card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2 offset-lg-1">
+<% else %>
+    <div class="game_card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2 offset-md-1">
+<% end %>
+<div class="small"><%= match.day %></div>
+<div class="small"><%= match.tournament_year.tournament.name %></div>
+<div>
+    <% match.player_matches.each_with_index do |player_match, player_cnt| %>
+    <% if player_cnt == 0 %>
+        <% if player_match.win_flag %>
+        <%= player_match.player.name %> vs
+        <% else %>
+        <span style="color: #EEEEEE;"><%= player_match.player.name %></span> vs
+        <% end %>
+    <% else %>
+        <% if player_match.win_flag %>
+        <%= player_match.player.name %>
+        <% else %>
+        <span style="color: #EEEEEE;"><%= player_match.player.name %></span>
+        <% end %>
+    <% end %>
+    <% end %>
+</div>
+</div>
