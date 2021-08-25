@@ -43,7 +43,7 @@ $(function () {
             contents.set(response[key]["tournament"]["abbreviation"], contentAndColor);
         }
         if (now_tournaments_name != "") {
-            $("#now_tournament_info").html(`現在 <span class="text-danger">${now_tournaments_name} </span>が開催中です`);
+            $("#now_tournament_info").html(`<div class="text-body">現在 <span class="text-danger">${now_tournaments_name} </span>が開催中です</div>`);
         } else {
             $("#now_tournament_info").html("現在開催中の大会はありません");
         }

@@ -59,6 +59,8 @@ nishi.player2_mathes << match2
 
 match3 = ny.matches.create(:day => '2021-08-31')
 match4 = ny.matches.create(:day => '2021-09-01')
+match5 = ny.matches.create(:day => '2021-09-03')
+match6 = ny.matches.create(:day => '2021-09-05')
 
 joko.player1_mathes << match3
 nishi.player2_mathes << match3
@@ -67,6 +69,12 @@ joko.player1_mathes << match4
 nishi.player2_mathes << match4
 
 nishi.win_mathes << match3
+
+joko.player1_mathes << match5
+nishi.player2_mathes << match5
+
+joko.player1_mathes << match6
+nishi.player2_mathes << match6
 
 player_matches1 = match1.player_matches.create(:win_flag => 't')
 joko.player_matches << player_matches1
@@ -91,3 +99,15 @@ joko.player_matches << player_matches7
 
 player_matches8 = match4.player_matches.create(:win_flag => 't')
 nishi.player_matches << player_matches8
+
+player_matches9 = match5.player_matches.create(:win_flag => 'f')
+joko.player_matches << player_matches9
+
+player_matches10 = match5.player_matches.create(:win_flag => 't')
+nishi.player_matches << player_matches10
+
+player_matches11 = match6.player_matches.create(:win_flag => 'f')
+joko.player_matches << player_matches11
+
+player_matches12 = match6.player_matches.create(:win_flag => 't')
+nishi.player_matches << player_matches12
