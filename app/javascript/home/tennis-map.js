@@ -17,7 +17,7 @@ $(function () {
                            `<div>${tournament_name}</div>`+
                            `<div>開催都市 : ${city_name}</div>`+
                            `<div>開催期間 : ${period}</div>`;
-
+            contentAndColor.set("id", response[key]["id"])
             if (response[key]["champion"] != null) {
                 var champion_name = response[key]["champion"]["name"];
                 content += `<div>優勝者 : ${champion_name}`+
@@ -43,7 +43,7 @@ $(function () {
             contents.set(response[key]["tournament"]["abbreviation"], contentAndColor);
         }
         if (now_tournaments_name != "") {
-            $("#now_tournament_info").html(`現在 <span class="text-danger">${now_tournaments_name} </span>が開催中です`);
+            $("#now_tournament_info").html(`<div class="text-body">現在 <span class="text-danger">${now_tournaments_name} </span>が開催中です</div>`);
         } else {
             $("#now_tournament_info").html("現在開催中の大会はありません");
         }
@@ -69,7 +69,7 @@ $(function () {
                     latitude: 40.717079,
                     longitude: -74.00116,
                     tooltip: {content: contents.get("NY").get("content")},
-                    href: "/",
+                    href: `/tournament_years/${contents.get("NY").get("id")}`,
                     size: 10,
                     attrs: {
                         fill: contents.get("NY").get("plotColor")
@@ -79,7 +79,7 @@ $(function () {
                     latitude: -37.814,
                     longitude: 144.96332,
                     tooltip: {content: contents.get("ME").get("content")},
-                    href: "/",
+                    href: `/tournament_years/${contents.get("ME").get("id")}`,
                     size: 10,
                 }, 
                 'pa': {

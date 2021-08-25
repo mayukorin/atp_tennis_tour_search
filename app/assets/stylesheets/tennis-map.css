@@ -41,3 +41,8 @@
 .game_card {
     background-color: white;
 }
+
+.tournament_year_photo {
+    max-width: 100%;
+    height: auto
+}
