@@ -51,30 +51,12 @@ end
 match1 = me.matches.create(:day => '2021-02-08')
 match2 = me.matches.create(:day => '2021-02-10')
 
-joko.player1_mathes << match1
-nishi.player2_mathes << match1
-
-joko.player1_mathes << match2
-nishi.player2_mathes << match2
 
 match3 = ny.matches.create(:day => '2021-08-31')
 match4 = ny.matches.create(:day => '2021-09-01')
 match5 = ny.matches.create(:day => '2021-09-03')
 match6 = ny.matches.create(:day => '2021-09-05')
 
-joko.player1_mathes << match3
-nishi.player2_mathes << match3
-
-joko.player1_mathes << match4
-nishi.player2_mathes << match4
-
-nishi.win_mathes << match3
-
-joko.player1_mathes << match5
-nishi.player2_mathes << match5
-
-joko.player1_mathes << match6
-nishi.player2_mathes << match6
 
 player_matches1 = match1.player_matches.create(:win_flag => 't')
 joko.player_matches << player_matches1
