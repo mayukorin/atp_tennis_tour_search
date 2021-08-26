@@ -1,8 +1,6 @@
-<li>
+<li class="text-body">
     <%= player.name %>
-    <div class="container">
-        <div class="row mt-3 justify-content-center">
-            <%= render player.matches.limit(2) %>
-        </div>
+    <div class="row mt-3 justify-content-center">
+        <%= render player.matches.limit(2) %>
     </div>
 </li>
