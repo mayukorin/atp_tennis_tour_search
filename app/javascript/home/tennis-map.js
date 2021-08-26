@@ -27,7 +27,7 @@ $(function () {
                 var main_players = ``;
                 for(var id in response[key]["tournament_year_and_players"]) {
                     var player_name = response[key]["tournament_year_and_players"][id]["player"]["name"];
-                    if (response[key]["tournament_year_and_players"][id]["win_flag"]) {
+                    if (response[key]["tournament_year_and_players"][id]["remain_flag"]) {
                         main_players += `<span>${player_name}</span> `;
                     } else {
                         main_players += `<span style=\"color: #EEEEEE;\">${player_name} </span> `;
