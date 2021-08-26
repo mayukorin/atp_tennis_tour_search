@@ -12,16 +12,7 @@
 <div class="favorite text-body">
     <div class="text-success text-center head m-3">お気に入り選手の直近の試合</div>
     <ul>
-      <% @favorite_players.each do |favorite_player| %>
-        <li>
-          <%= favorite_player.name %>
-          <div class="container">
-            <div class="row mt-3 justify-content-center">
-              <%= render favorite_player.matches.limit(2) %>
-            </div>
-          </div>
-        </li>
-      <% end %>
+      <%= render partial:"players/player", collection: @favorite_players%>
     </ul>
 </div>
 <div class="map_container text-body">
