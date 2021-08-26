@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_101846) do
+ActiveRecord::Schema.define(version: 2021_08_26_112132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_08_26_101846) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "now_flag"
     t.bigint "champion_id"
+    t.integer "api_id"
     t.index ["champion_id"], name: "index_tournament_years_on_champion_id"
     t.index ["tournament_id"], name: "index_tournament_years_on_tournament_id"
   end
