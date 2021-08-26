@@ -1,0 +1,5 @@
+<% if tournament_year_and_player.win_flag %>
+    <span class="mr-3 text-body"><%= tournament_year_and_player.player.name %></span>
+<% else %>
+    <span class="mr-3 text-body" style="color: #EEEEEE;"><%= tournament_year_and_player.player.name %></span>
+<% end %>
