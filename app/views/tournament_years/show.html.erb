@@ -15,11 +15,9 @@
 
     <div class="text-success heading m-5 text-center">出場選手一覧</div>
     <%= render @tournament_year.tournament_year_and_players %>
-    
+
     <div class="text-success heading m-5 text-center">試合一覧</div>
     <div class="row text-body justify-content-center">
-        <% @tournament_year.matches.each_with_index do |match, match_cnt| %>
-            <%= render partial: 'layouts/match', locals: {match_cnt: match_cnt, match: match} %>
-        <% end %>
+        <%= render @tournament_year.matches %>
     </div>
 </div>

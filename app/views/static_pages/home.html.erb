@@ -17,9 +17,7 @@
           <%= favorite_player.name %>
           <div class="container">
             <div class="row mt-3 justify-content-center">
-              <% favorite_player.matches.limit(2).each_with_index do |match, match_cnt| %>
-                  <%= render partial: 'layouts/match', locals: {match_cnt: match_cnt, match: match} %>
-              <% end %>
+              <%= render favorite_player.matches.limit(2) %>
             </div>
           </div>
         </li>
