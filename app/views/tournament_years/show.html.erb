@@ -1,33 +1,23 @@
-<div class="container">
-    <div class="text-success head mb-3 text-center"><%= @tournament_year.tournament.name%></div>
-    <div class="container">
-
-        <!--<div class="row mt-3 justify-content-center">-->
-        <div class="row mt-3 justify-content-center">
-            <div class="tournament_year_photo mr-3 col-12 col-lg-6">
-                <%= image_tag("ny.jpg", class: "img-fluid") %>
-            </div>
-        </div>
-        <div class="row mt-3 justify-content-center">
-            <div class="text-body col-12 col-lg-6">
-                開催都市 : <%= @tournament_year.tournament.city %><br>
-                開催期間 : 2020/08/12 ~ 2020/0820<br>
-                <a href="#">公式サイトへ</a>
-            </div>
-        </div>
+<div class="text-success heading m-5 text-center"><%= @tournament_year.tournament.name%></div>
+<div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+        <%= image_tag("ny.jpg", class: "img-fluid") %>
     </div>
-    <div class="text-success head m-5 text-center">出場選手一覧</div>
-    <% @tournament_year.tournament_year_and_players.each do |tournament_year_and_player| %>
-        <% if tournament_year_and_player.win_flag %>
-            <span class="mr-3 text-body"><%= tournament_year_and_player.player.name %></span>
-        <% else %>
-            <span class="mr-3 text-body" style="color: #EEEEEE;"><%= tournament_year_and_player.player.name %></span>
-        <% end %>
-    <% end %>
-    <div class="text-success head m-5 text-center">試合一覧</div>
-    <div class="row mt-3  text-body justify-content-center">
-        <% @tournament_year.matches.each_with_index do |match, match_cnt| %>
-            <%= render partial: 'layouts/match', locals: {match_cnt: match_cnt, match: match} %>
-        <% end %>
+</div>
+<div class="row mt-3 justify-content-center">
+    <div class="text-body col-12 col-lg-6">
+        開催都市 : <%= @tournament_year.tournament.city %><br>
+        開催期間 : 2020/08/12 ~ 2020/0820<br>
+        <a href="#">公式サイトへ</a>
+    </div>
+</div>
+<div>
+    <div class="text-success heading m-5 text-center">出場選手一覧</div>
+    <%= render @tournament_year.tournament_year_and_players %>
+</div>
+<div>
+    <div class="text-success heading m-5 text-center">試合一覧</div>
+    <div class="row text-body justify-content-center">
+        <%= render @tournament_year.matches %>
     </div>
 </div>

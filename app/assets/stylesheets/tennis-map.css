@@ -28,7 +28,7 @@
     border-left: solid 5px #009966;
 }
 */
-.head{
+.heading {
     font-size:xx-large;
 }
 /*
@@ -40,9 +40,4 @@
 
 .game_card {
     background-color: white;
-}
-
-.tournament_year_photo {
-    max-width: 100%;
-    height: auto
 }

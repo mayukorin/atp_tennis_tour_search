@@ -27,7 +27,7 @@ $(function () {
                 var main_players = ``;
                 for(var id in response[key]["tournament_year_and_players"]) {
                     var player_name = response[key]["tournament_year_and_players"][id]["player"]["name"];
-                    if (response[key]["tournament_year_and_players"][id]["win_flag"]) {
+                    if (response[key]["tournament_year_and_players"][id]["remain_flag"]) {
                         main_players += `<span>${player_name}</span> `;
                     } else {
                         main_players += `<span style=\"color: #EEEEEE;\">${player_name} </span> `;
@@ -43,12 +43,12 @@ $(function () {
             contents.set(response[key]["tournament"]["abbreviation"], contentAndColor);
         }
         if (now_tournaments_name != "") {
-            $("#now_tournament_info").html(`<div class="text-body">現在 <span class="text-danger">${now_tournaments_name} </span>が開催中です</div>`);
+            $("#now-tournament-info").html(`現在 <span class="text-danger">${now_tournaments_name} </span>が開催中です`);
         } else {
-            $("#now_tournament_info").html("現在開催中の大会はありません");
+            $("#now-tournament-info").html(`現在開催中の大会はありません`);
         }
         
-        $(".map_container").mapael({
+        $(".map-container").mapael({
             map : {
                 name : "world_countries",
                 defaultArea: {
