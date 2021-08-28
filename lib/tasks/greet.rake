@@ -8,7 +8,6 @@ namespace :greet do
     desc "Helloを出力する．バッチ処理のテスト"
     task say_hello: :environment do
         puts "Hello!"
-        result = Response.create(data: "hello")
     end
 end
 
@@ -26,7 +25,7 @@ namespace :tennis do
         request["x-rapidapi-host"] = "tennis-live-data.p.rapidapi.com"
         request["Content-Type"] = "application/json"
         response = http.request(request)
-        # result = Response.create(data: response.read_body)
+        result = Response.create(data: response.read_body)
         response_body_json = JSON.parse(response.read_body)
         result_matches = response_body_json["results"]["matches"]
         puts result_matches
