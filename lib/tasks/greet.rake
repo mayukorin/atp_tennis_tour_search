@@ -31,7 +31,7 @@ namespace :tennis do
         result_matches = response_body_json["results"]["matches"]
         puts result_matches
         '''
-        response_read_body = (Response.find(2)).data
+        response_read_body = (Response.find(1)).data
         response_body_json = JSON.parse(response_read_body)
         result_matches = response_body_json["results"]["matches"]
         # puts response_body_json
