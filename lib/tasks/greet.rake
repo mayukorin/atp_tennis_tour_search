@@ -31,7 +31,7 @@ namespace :tennis do
         result_matches = response_body_json["results"]["matches"]
         puts result_matches
         '''
-        response_read_body = (Response.find(1)).data
+        response_read_body = (Response.find(2)).data
         response_body_json = JSON.parse(response_read_body)
         result_matches = response_body_json["results"]["matches"]
         # puts response_body_json
@@ -39,12 +39,14 @@ namespace :tennis do
         # puts result_matches
         # puts result_matches.class
         @tournament_year = TournamentYear.find_by(api_id: 1367)
-        
+        puts @tournament_year.first_day
         result_matches.each_with_index do |result_match, cnt|
             # puts result_match["date"]
             # if !result_match["date"].to_date.before? @tournament_year.first_day
-            if cnt == 0
+            # if !day.before? @tournament_year.first_day
             # 本選だけ，DBに書き込む
+                
+            if cnt == 0
                 home_player = Player.find_by(name: result_match["home_player"])
                 home_player ||= Player.create(name: result_match["home_player"])
 
@@ -56,38 +58,12 @@ namespace :tennis do
                 if match_query.length == 0
                     # 該当するmatchがない場合
                     # 入る?
-                    match = Match.create(day: result_match["date"], tournament_year_id: @tournament_year.id)
-                    home_player_match = match.player_matches.create(player_id: home_player.id, win_flag: 't')
-                    away_player_match = match.player_matches.create(player_id: away_player.id, win_flag: 't')
-                else 
-                    # 該当するmatchがある場合
-                    match_id = match_query[0].id
-                    match = Match.find(match_id)
-                    home_player_match = PlayerMatch.joins(:match, :player).find_by(match: match_id, player: home_player.id)
-                    away_player_match = PlayerMatch.joins(:match, :player).find_by(match: match_id, player: away_player.id)
-                    
-                end
-                tournament_year_and_home_player = TournamentYearAndPlayer.joins(:tournament_year, :player).find_by(tournament_year:  @tournament_year.id, player: home_player.id)
-                tournament_year_and_home_player ||= TournamentYearAndPlayer.create(tournament_year_id: @tournament_year.id, player_id: home_player.id, remain_flag: 't')
-                tournament_year_and_away_player = TournamentYearAndPlayer.joins(:tournament_year, :player).find_by(tournament_year:  @tournament_year.id, player: away_player.id)
-                tournament_year_and_away_player ||= TournamentYearAndPlayer.create(tournament_year_id: @tournament_year.id, player_id: away_player.id, remain_flag: 't')
-
-                if !result_match["result"].nil?
-                    # 試合結果が出ている場合
-                    if result_match["result"]["winner_id"] == result_match["home_id"]
-                        # home_player が勝った場合
-                        home_player_match.update(win_flag: 't')
-                        away_player_match.update(win_flag: 'f')
-                        tournament_year_and_away_player.update(remain_flag: 'f')
-                    else
-                        # away_player が勝った場合
-                        home_player_match.update(win_flag: 'f')
-                        away_player_match.update(win_flag: 't')
-                        tournament_year_and_home_player.update(remain_flag: 'f')
-
-                    end
+                    day =  Time.zone.parse(result_match["date"])
+                    puts day
+                    match = Match.create(day: day, tournament_year_id: @tournament_year.id)
                 end
             end
+
         end
 
 
