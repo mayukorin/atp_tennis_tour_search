@@ -75,4 +75,13 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.web_console.whitelisted_ips = '192.168.144.1'
+
+  config.after_initialize do
+    Bullet.enable = true # Bulletを有効化
+    Bullet.alert = true # JavaScriptのポップアップアラートを有効化
+    Bullet.bullet_logger = true # Rails.root/log/bullet.logに出力
+    Bullet.console = true # ブラウザのconsole.logに出力
+    Bullet.rails_logger = true # Railsのログに結果を出力
+    Bullet.add_footer = true # ページの左下に結果を表示
+  end
 end

@@ -17,7 +17,9 @@
 </div>
 <div>
     <div class="text-success heading m-5 text-center">試合一覧</div>
-    <div class="row text-body justify-content-center">
-        <%= render @tournament_year.matches %>
+    <div class="row justify-content-center">
+        <div class="text-body  col-md-9 justify-content-between row">
+            <%= render @tournament_year.matches %>
+        </div>
     </div>
 </div>
