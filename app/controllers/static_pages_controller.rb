@@ -1,7 +1,16 @@
 class StaticPagesController < ApplicationController
   def home
-    @favorite_players = Player.all
+    
+    # @favorite_players = Player.preload(player_matches: {match: [:tournament_year, :home_player, :away_player]}).all
+    @favorite_players = Player.preload(newer_matches: [:tournament_year, :home_player, :away_player]).all
+    # @favorite_players = Player.eager_load(:matches).order("matches.day DESC").where("matches_count = ?", 2).all
+    puts "OK"
+    puts Player.eager_load(:player_matches, :matches).where('matches.count(*) < ?', 3).to_sql
+    # @favorite_players =  Player.eager_load(:player_matches, :matches).where('matches.id < ?', 3)
+    # @favorite_players =  Player.eager_load(:player_matches, :matches)
+    
   end
+
 
   def get_tournament_info
     

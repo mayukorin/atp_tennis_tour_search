@@ -9,3 +9,9 @@ html {
 .text-body{
     font-size: 1.7rem;
 }
+
+.container_match::after {
+    content:"";
+    display:block;
+    width: 30%;
+}
