@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_27_080708) do
+ActiveRecord::Schema.define(version: 2021_08_30_033345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,11 +28,16 @@ ActiveRecord::Schema.define(version: 2021_08_27_080708) do
     t.bigint "tournament_year_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "home_player_id"
+    t.bigint "away_player_id"
+    t.bigint "win_player_id"
+    t.index ["away_player_id"], name: "index_matches_on_away_player_id"
+    t.index ["home_player_id"], name: "index_matches_on_home_player_id"
     t.index ["tournament_year_id"], name: "index_matches_on_tournament_year_id"
+    t.index ["win_player_id"], name: "index_matches_on_win_player_id"
   end
 
   create_table "player_matches", force: :cascade do |t|
-    t.boolean "win_flag"
     t.bigint "player_id", null: false
     t.bigint "match_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -51,6 +56,15 @@ ActiveRecord::Schema.define(version: 2021_08_27_080708) do
     t.string "data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tour_player_matches", force: :cascade do |t|
+    t.bigint "match_id"
+    t.bigint "tournament_year_and_player_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["match_id"], name: "index_tour_player_matches_on_match_id"
+    t.index ["tournament_year_and_player_id"], name: "index_tour_player_matches_on_tournament_year_and_player_id"
   end
 
   create_table "tournament_year_and_players", force: :cascade do |t|
@@ -86,9 +100,14 @@ ActiveRecord::Schema.define(version: 2021_08_27_080708) do
   end
 
   add_foreign_key "batch_schedules", "tournament_years"
+  add_foreign_key "matches", "players", column: "away_player_id"
+  add_foreign_key "matches", "players", column: "home_player_id"
+  add_foreign_key "matches", "players", column: "win_player_id"
   add_foreign_key "matches", "tournament_years"
   add_foreign_key "player_matches", "matches"
   add_foreign_key "player_matches", "players"
+  add_foreign_key "tour_player_matches", "matches"
+  add_foreign_key "tour_player_matches", "tournament_year_and_players"
   add_foreign_key "tournament_year_and_players", "players"
   add_foreign_key "tournament_year_and_players", "tournament_years"
   add_foreign_key "tournament_years", "players", column: "champion_id"

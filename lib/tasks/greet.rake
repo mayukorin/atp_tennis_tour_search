@@ -31,7 +31,7 @@ namespace :tennis do
         result_matches = response_body_json["results"]["matches"]
         puts result_matches
         '''
-        response_read_body = (Response.find(1)).data
+        response_read_body = (Response.find(2)).data
         response_body_json = JSON.parse(response_read_body)
         result_matches = response_body_json["results"]["matches"]
         # puts response_body_json
@@ -61,6 +61,7 @@ namespace :tennis do
                     day =  Time.zone.parse(result_match["date"])
                     puts day
                     match = Match.create(day: day, tournament_year_id: @tournament_year.id)
+                    puts match.day
                 end
             end
 
@@ -68,4 +69,26 @@ namespace :tennis do
 
 
     end
+end
+
+namespace :player_match_of_each_tournament do
+    desc "大会ごとに，ある選手の試合情報を取得したい"
+    task fetch_match_info: :environment do
+        puts TournamentYearAndPlayer.eager_load(:player, tournament_year: [matches: :player_matches]).where(player: 1, tournament_year: { matches: 1}).to_sql
+        @tournament_year_and_players = TournamentYearAndPlayer.eager_load(:player, tournament_year: [matches: :player_matches]).where(player: 1, tournament_year: { matches: 1})
+        @tournament_year_and_players.each  do |tournament_year_and_player|
+            puts tournament_year_and_player.tournament_year.id
+            tournament_year_and_player.tournament_year.matches.each do |match|
+                puts match.id
+            end
+        end
+        '''
+        @tournament_years = TournamentYearAndPlayer.all
+        @tournament_years.each  do |tournament_year|
+            puts tournament_year.player.id
+        end
+        '''
+
+    end
+    
 end

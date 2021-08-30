@@ -1,6 +1,8 @@
 class StaticPagesController < ApplicationController
   def home
-    @favorite_players = Player.all
+    puts "ok"
+    # puts Player.preload(:player_matches).all.to_sql
+    @favorite_players = Player.preload(player_matches: :match).all
   end
 
   def get_tournament_info
