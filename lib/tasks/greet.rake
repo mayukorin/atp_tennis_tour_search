@@ -15,7 +15,6 @@ namespace :tennis do
     desc "APIから試合情報を取得する"
     task fetch_match_info: :environment do
         # 最後の数字がトーナメントのID
-        '''
         tourament_id = "1367"
         url = URI("https://tennis-live-data.p.rapidapi.com/matches-results/"+tourament_id)
         http = Net::HTTP.new(url.host, url.port)
@@ -30,6 +29,5 @@ namespace :tennis do
         response_body_json = JSON.parse(response.read_body)
         result_matches = response_body_json["results"]["matches"]
         puts result_matches
-        '''
     end
 end
