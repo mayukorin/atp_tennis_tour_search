@@ -4,7 +4,7 @@
 <% else %>
     <div class="game_card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2 offset-md-1 text-body">
 <% end %>
-<div class="small"><%= match.day %></div>
+<div class="small"><%= l match.day %></div>
 <div class="small"><%= match.tournament_year.tournament.name %></div>
 <div>
     <%= match.home_player.name %> vs <%= match.away_player.name %>
