@@ -31,3 +31,16 @@ namespace :tennis do
         puts result_matches
     end
 end
+
+namespace :trial do
+    task trial: :environment do
+        # @fp = Player.eager_load(player_matches: :match).where("player_matches.id in (select id from player_matches where player_id = players.id limit 2)");
+        # @fp = Player.eager_load(player_matches: :match).where("player_matches.id in (select player_matches.id from player_matches left outer join matches on matches.id = match_id where player_id = players.id order by matches.day desc limit 2)");
+        @fp = Player.eager_load(:matches).where("player_matches.id in (select player_matches.id from player_matches left outer join matches on matches.id = match_id where player_id = players.id order by matches.day desc limit 2)");
+        @fp.each do |f|
+            f.matches.each do |ma|
+                puts ma.day
+            end
+        end
+    end
+end
