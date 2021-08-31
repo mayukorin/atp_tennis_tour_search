@@ -4,9 +4,12 @@
 <% else %>
     <div class="game_card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2 offset-md-1 text-body">
 <% end %>
-<div class="small"><%= l match.day %></div>
+<div class="small"><%= l match.day  %></div>
 <div class="small"><%= match.tournament_year.tournament.name %></div>
 <div>
     <%= match.home_player.name %> vs <%= match.away_player.name %>
+</div>
+<div class="small">
+    <%= link_to "スコア状況（Google検索）", "https://www.google.com/search?q=#{match.home_player.name}+#{match.away_player.name}+#{l match.day, format: :date_only}" %>
 </div>
 </div>

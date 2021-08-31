@@ -2,6 +2,7 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M"
+      date_only: "%Y/%m/%d"
   date:
     formats: 
       default: "%Y/%m/%d"
