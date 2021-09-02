@@ -10,6 +10,11 @@ html {
     font-size: 1.7rem;
 }
 
+.lose {
+    font-size: 1.7rem;
+    color: #EEEEEE;
+}
+
 .container_match::after {
     content:"";
     display:block;
