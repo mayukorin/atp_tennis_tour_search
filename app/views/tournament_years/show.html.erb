@@ -12,11 +12,40 @@
     </div>
 </div>
 <div>
-    <div class="text-success heading m-5 text-center">出場選手一覧</div>
+    <div class="text-success heading m-5 text-center">
+        <span class="m-3">出場選手一覧</span>
+    </div>
     <%= render @tournament_year.tournament_year_and_players %>
 </div>
 <div>
-    <div class="text-success heading m-5 text-center">試合一覧</div>
+    <div class="m-5 ">
+        <div class="text-success m-3 heading text-center">
+            試合一覧
+        </div>
+        <!--
+        <form class="row g-3 text-body">
+            <div class="col-4 offset-md-4 md-4">
+                <select class="form-select form-select-lg" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-4 text-left">
+                <button type="submit" class="btn btn-success mb-3 btn-lg ">選択した日程の試合を表示</button>
+            </div>
+        </form>
+        -->
+        <%= form_tag("/search", method: "get", class:"row g-3 text-body") do %>
+            <div class="col-4 offset-md-4 md-4">
+                <%= select_tag(:city_id, options_for_select([['Lisbon', 1], ['Madrid', 2]], 2),  class: "form-select form-select-lg") %>
+            </div>
+            <div class="col-4 text-left">
+                <%= submit_tag("選択した日程の試合を表示", class: "btn btn-success mb-3 btn-lg" )%>
+            </div>
+        <% end %>
+    </div>
     <div class="row justify-content-center">
         <div class="text-body  col-md-9 justify-content-between row">
             <%= render @tournament_year.matches %>
