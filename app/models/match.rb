@@ -7,4 +7,8 @@ class Match < ApplicationRecord
   belongs_to :win_player, class_name: 'Player', :foreign_key => 'win_player_id', optional: true
   has_many :tour_player_matches
   has_many :tournament_year_and_players, through: :tour_player_matches 
+
+  def date_only
+    self.date.strftime("%Y %m/%d")
+  end
 end

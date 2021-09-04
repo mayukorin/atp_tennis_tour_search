@@ -37,12 +37,12 @@
             </div>
         </form>
         -->
-        <%= form_tag("/search", method: "get", class:"row g-3 text-body") do %>
-            <div class="col-4 offset-md-4 md-4">
-                <%= select_tag(:city_id, options_for_select([['Lisbon', 1], ['Madrid', 2]], 2),  class: "form-select form-select-lg") %>
+        <%= form_tag(tournament_year_path, method: "get", class:"row g-3 justify-content-md-center") do %>
+            <div class="col-6 col-md-4 offset-md-4">
+                <%= select_tag(:day, options_for_select(@tournament_days, @selected_tournament_day), class: "form-select form-select-lg") %>
             </div>
-            <div class="col-4 text-left">
-                <%= submit_tag("選択した日程の試合を表示", class: "btn btn-success mb-3 btn-lg" )%>
+            <div class="col-4 col-md-4">
+                <%= submit_tag("選択日程の試合表示", class: "btn btn-success mb-3 btn-lg" )%>
             </div>
         <% end %>
     </div>
