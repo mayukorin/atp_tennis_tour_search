@@ -4,7 +4,7 @@
     <div class="text-success heading text-center m-3">試合一覧</div>
     <%= form_tag(player_path, method: "get", class:"row g-3 justify-content-md-center") do %>
         <div class="col-6 col-md-4 offset-md-4">
-            <%= select_tag(:tournament, options_for_select(@tournament_years, @selected_tournament_year_id), class: "form-select form-select-lg") %>
+            <%= select_tag(:tournament, options_for_select(@tournament_years_array, @selected_tournament_year_id), class: "form-select form-select-lg") %>
         </div>
         <div class="col-4 col-md-4">
             <%= submit_tag("選択大会の試合表示", class: "btn btn-success mb-3 btn-lg" )%>
@@ -13,7 +13,7 @@
 <ul>
     <div class="text-body row justify-content-center">
         <div class="mt-3 col-md-9 col-lg-8 justify-content-between row">
-            <%= render @tournament_year_and_player.matches %>
+            <%= render @player_matches %>
         </div>
     </div>
 </ul>

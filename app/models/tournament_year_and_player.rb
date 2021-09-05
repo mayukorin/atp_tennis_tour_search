@@ -4,4 +4,6 @@ class TournamentYearAndPlayer < ApplicationRecord
   has_many :tour_player_matches
   has_many :matches, ->{order(day: :desc)}, through: :tour_player_matches
   scope :pre_loading, -> { preload({tournament_year: :tournament}, :tour_player_matches, {matches: [:tournament_year, :home_player, :away_player, :win_player]}) }
+  # eager_load で Players_controller
+  scope :eager_loading, -> { eager_load({tournament_year: :tournament}, :tour_player_matches, {matches: [:tournament_year, :home_player, :away_player, :win_player]}) }
 end
