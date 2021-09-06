@@ -52,8 +52,7 @@ namespace :tennis do
 
         result_matches.each_with_index do |result_match, cnt|
             day = Time.zone.parse(result_match["date"])
-            puts day.to_date
-            puts @tournament_year.first_day
+            
             if !day.to_date.before? @tournament_year.first_day
                 
                 home_player = Player.find_by(name: result_match["home_player"])
@@ -81,12 +80,6 @@ namespace :tennis do
                 tournament_year_and_away_player = TournamentYearAndPlayer.joins(:tournament_year, :player).find_by(tournament_year:  @tournament_year.id, player: away_player.id)
                 tournament_year_and_away_player ||= TournamentYearAndPlayer.create(tournament_year_id: @tournament_year.id, player_id: away_player.id, remain_flag: 't')
 
-                tour_home_player_match = TourPlayerMatch.joins(:tournament_year_and_player, :match).find_by(tournament_year_and_player:  tournament_year_and_home_player.id, match: match.id)
-                tour_home_player_match ||= TourPlayerMatch.create(tournament_year_and_player_id: tournament_year_and_home_player.id, match_id: match.id)
-
-                tour_away_player_match = TourPlayerMatch.joins(:tournament_year_and_player, :match).find_by(tournament_year_and_player:  tournament_year_and_away_player.id, match: match.id)
-                tour_away_player_match ||= TourPlayerMatch.create(tournament_year_and_player_id: tournament_year_and_away_player.id, match_id: match.id)
-
                 if !result_match["result"].nil?
                     # 試合結果が出ている場合
                     if result_match["result"]["winner_id"] == result_match["home_id"]
@@ -102,30 +95,7 @@ namespace :tennis do
                 end
                 
             end
-            # if !day.to_date.before? @tournament_year.first_day
-            # if !day.before? @tournament_year.first_day
-            # 本選だけ，DBに書き込む
         end
-
-        
-
     end
 end
 
-namespace :trial do
-    task trial: :environment do
-        # @fp = Player.eager_load(player_matches: :match).where("player_matches.id in (select id from player_matches where player_id = players.id limit 2)");
-        # @fp = Player.eager_load(player_matches: :match).where("player_matches.id in (select player_matches.id from player_matches left outer join matches on matches.id = match_id where player_id = players.id order by matches.day desc limit 2)");
-        # @fp = Player.eager_load(:matches).where("player_matches.id in (select player_matches.id from player_matches left outer join matches on matches.id = match_id where player_id = players.id order by matches.day desc limit 2)");
-        '''
-        @fp.each do |f|
-            f.matches.each do |ma|
-                puts ma.day
-            end
-        end
-        '''
-        # TournamentYearAndPlayer.eager_load(:player, {tournament_year: {matches: {player_matches: :player}}}).where(player: {id: 1}).merge(Match.eager_load(player_matches: :player).where(player_matches: {player: {id: 1}}))
-        TournamentYearAndPlayer.eager_load(:player, {tournament_year: {matches: {player_matches: :player}}}).where(player: {id: 1}).merge(Match.joins(player_matches: :player).where(player_matches: {player: {id: 1}}))
-        # TournamentYearAndPlayer.eager_load(:player, {tournament_year: :matches}).where(player: {id: 1}).merge(Match.where(id: 1))
-    end
-end
