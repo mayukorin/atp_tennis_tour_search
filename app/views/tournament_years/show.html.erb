@@ -7,19 +7,41 @@
 <div class="row mt-3 justify-content-center">
     <div class="text-body col-12 col-lg-6">
         開催都市 : <%= @tournament_year.tournament.city %><br>
-        開催期間 : 2020/08/12 ~ 2020/0820<br>
+        開催期間 : <%= l @tournament_year.first_day %> ~  <%= l @tournament_year.last_day %><br>
         <a href="#">公式サイトへ</a>
     </div>
 </div>
-<div>
-    <div class="text-success heading m-5 text-center">出場選手一覧</div>
-    <%= render @tournament_year.tournament_year_and_players %>
-</div>
-<div>
-    <div class="text-success heading m-5 text-center">試合一覧</div>
-    <div class="row justify-content-center">
-        <div class="text-body  col-md-9 justify-content-between row">
-            <%= render @tournament_year.matches %>
+<% if @tournament_days_array.size() == 0 %>
+    <div>
+        <div class="text-success heading m-5 text-center">
+            <span class="m-3">試合日程がまだ発表されていません</span>
         </div>
     </div>
+<% else %>
+    <div>
+        <div class="text-success heading m-5 text-center">
+            <span class="m-3">出場選手一覧</span>
+        </div>
+        <%= render @tournament_year.tournament_year_and_players %>
+    </div>
+    <div>
+        <div class="m-5 ">
+            <div class="text-success m-3 heading text-center">
+                試合一覧
+            </div>
+            <%= form_tag(tournament_year_path, method: "get", class:"row g-3 justify-content-md-center") do %>
+                <div class="col-6 col-md-4 offset-md-4">
+                    <%= select_tag(:day, options_for_select(@tournament_days_array, @selected_tournament_day), class: "form-select form-select-lg") %>
+                </div>
+                <div class="col-4 col-md-4">
+                    <%= submit_tag("選択日程の試合表示", class: "btn btn-success mb-3 btn-lg" )%>
+                </div>
+            <% end %>
+        </div>
+        <div class="row justify-content-center">
+            <div class="text-body  col-md-9 justify-content-between row">
+                <%= render @selected_tournament_day_matches %>
+            </div>
+        </div>
+    <% end %>
 </div>

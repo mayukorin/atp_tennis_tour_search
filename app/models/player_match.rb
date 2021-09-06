@@ -1,5 +1,5 @@
 class PlayerMatch < ApplicationRecord
   belongs_to :player
   belongs_to :match
-  belongs_to :newer_match, class_name: 'Match', :foreign_key => 'match_id'
+  scope :eager_loading, -> { eager_load(:player, match: [{tournament_year: :tournament}, :home_player, :away_player, :win_player]) }
 end

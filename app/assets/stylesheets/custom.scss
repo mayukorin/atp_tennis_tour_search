@@ -2,16 +2,34 @@
 body {
     background-color:#f8f8f8;
 }
+
 html {
-    font-size: 62.5%;
+    //font-size: 63%;
+    font-size: 70%;
 }
+
 
 .text-body{
     font-size: 1.7rem;
+}
+
+.text-body2{
+    font-size: 5.0rem !important;
+}
+
+
+.lose {
+    font-size: 1.7rem;
+    color: #EEEEEE;
 }
 
 .container_match::after {
     content:"";
     display:block;
     width: 30%;
+}
+
+.text-body-white{
+    font-size: 2.0rem;
+    color: #EEEEEE;
 }
