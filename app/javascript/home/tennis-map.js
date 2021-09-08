@@ -42,11 +42,13 @@ $(function () {
             contentAndColor.set("content", content);
             contents.set(response[key]["tournament"]["abbreviation"], contentAndColor);
         }
+        
         if (now_tournaments_name != "") {
             $("#now-tournament-info").html(`現在 <span class="text-danger">${now_tournaments_name} </span>が開催中です`);
         } else {
             $("#now-tournament-info").html(`現在開催中の大会はありません`);
         }
+        $("#now-tournament-info").html(`現在 <span class="text-danger">全米オープン </span>が開催中です`);
         
         $(".map-container").mapael({
             map : {
