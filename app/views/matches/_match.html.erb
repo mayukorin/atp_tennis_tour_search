@@ -6,7 +6,7 @@
 <div class="small"><%= l match.day  %></div>
 <div class="small"><%= match.tournament_year.tournament.name %></div>
 <div>
-    <% if !match.win_player %>
+    <% unless match.win_player %>
         <%= match.home_player.name %> vs <%= match.away_player.name %>
     <% elsif match.win_player.id == match.home_player.id %>
         <%= match.home_player.name %> vs <span class="lose"><%= match.away_player.name %></span>
