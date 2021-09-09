@@ -6,12 +6,12 @@
 <div class="small"><%= l match.day  %></div>
 <div class="small"><%= match.tournament_year.tournament.name %></div>
 <div>
-    <% unless match.win_player %>
-        <%= match.home_player.name %> vs <%= match.away_player.name %>
+    <% if match.win_player == match.away_player.id %>
+        <span class="lose"><%= match.home_player.name %></span> vs <%= match.away_player.name %>
     <% elsif match.win_player.id == match.home_player.id %>
         <%= match.home_player.name %> vs <span class="lose"><%= match.away_player.name %></span>
     <% else %>
-        <span class="lose"><%= match.home_player.name %></span> vs <%= match.away_player.name %>
+        <%= match.home_player.name %> vs <%= match.away_player.name %>
     <% end %>
 </div>
 <div class="small">
