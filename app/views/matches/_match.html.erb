@@ -7,11 +7,11 @@
 <div class="small"><%= match.tournament_year.tournament.name %></div>
 <div>
     <% if match.win_player.nil? %>
-        <%= match.home_player.name %> vs <%= match.away_player.name %>
+        <%= link_to match.home_player.name, player_path(match.home_player) %> vs <%= link_to match.away_player.name, player_path(match.away_player) %>
     <% elsif match.win_player == match.away_player.id %>
-        <span class="lose"><%= match.home_player.name %></span> vs <%= match.away_player.name %>
+        <span class="lose"><%= link_to match.home_player.name, player_path(match.home_player) %></span> vs <%= link_to match.away_player.name, player_path(match.away_player) %>
     <% else %>
-        <%= match.home_player.name %> vs <span class="lose"><%= match.away_player.name %></span>
+        <%= link_to match.home_player.name, player_path(match.home_player) %> vs <span class="lose"><%= link_to match.away_player.name, player_path(match.away_player) %></span>
     <% end %>
 </div>
 <div class="small">
