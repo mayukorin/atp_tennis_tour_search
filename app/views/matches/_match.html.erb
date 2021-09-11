@@ -4,14 +4,14 @@
     <div class="game_card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2 offset-md-1 text-body">
 <% end %>
 <div class="small"><%= l match.day  %></div>
-<div class="small"><%= match.tournament_year.tournament.name %></div>
-<div>
-    <% if !match.win_player %>
-        <%= match.home_player.name %> vs <%= match.away_player.name %>
-    <% elsif match.win_player.id == match.home_player.id %>
-        <%= match.home_player.name %> vs <span class="lose"><%= match.away_player.name %></span>
+<div class="small tournament_year_link"><%= link_to match.tournament_year.tournament.name, tournament_year_path(match.tournament_year) %></div>
+<div class="player_link">
+    <% if match.win_player.nil? %>
+        <span class="win"><%= link_to match.home_player.name, player_path(match.home_player) %></span> vs <span class="win"><%= link_to match.away_player.name, player_path(match.away_player) %></span>
+    <% elsif match.win_player.id == match.away_player.id %>
+        <span class="lose"><%= link_to match.home_player.name, player_path(match.home_player) %></span> vs <span class="win"><%= link_to match.away_player.name, player_path(match.away_player) %></span>
     <% else %>
-        <span class="lose"><%= match.home_player.name %></span> vs <%= match.away_player.name %>
+        <span class="win"><%= link_to match.home_player.name, player_path(match.home_player) %></span> vs <span class="lose"><%= link_to match.away_player.name, player_path(match.away_player) %></span>
     <% end %>
 </div>
 <div class="small">
