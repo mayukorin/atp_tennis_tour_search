@@ -1,6 +1,6 @@
 <div class="text-success heading m-5 text-center">ユーザ登録</div>
-<div class="row justify-content-center">
-    <div class="col-md-6 text-body">
+<div class="row">
+    <div class="col-md-6 text-body col-md-offset-3">
         <%= form_with(model: @user, local: true) do |f| %>
             <% if @user.errors.include?(:name) %>
                 <div class="mb-3">
