@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get '/get_tournament_info', to: 'static_pages#get_tournament_info'
   resources :tournament_years, only: [:show]
   resources :players, only: [:show]
-  resources :users, only: [:new]
+  resources :users, only: [:new, :create]
 end

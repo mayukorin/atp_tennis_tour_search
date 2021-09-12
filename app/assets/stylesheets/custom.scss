@@ -52,3 +52,6 @@ li {
 }
 
 
+.field_with_errors {
+    @extend .is-invalid;
+}
