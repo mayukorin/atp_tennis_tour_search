@@ -1,7 +1,7 @@
 <% if match_counter%2 == 0%>
     <div class="game_card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2 text-body">
 <% else %>
-    <div class="game_card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2 offset-md-1 text-body">
+    <div class="game_card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2 col-md-offset-1 text-body">
 <% end %>
 <div class="small"><%= l match.day  %></div>
 <div class="small tournament_year_link"><%= link_to match.tournament_year.tournament.name, tournament_year_path(match.tournament_year) %></div>

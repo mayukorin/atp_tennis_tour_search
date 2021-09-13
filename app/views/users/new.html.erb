@@ -6,7 +6,7 @@
                 <div class="mb-3">
                     <%= f.label :name, "ユーザ名", class: "form-label text-success" %>
                     <%= f.text_field :name, class: "form-control form-control-lg is-invalid" %>
-                    <%= @user.errors.full_messages_for(:name) %>
+                    <div class="error_message"><%= @user.errors.full_messages_for(:name) %></div>
                 </div>
             <% else %>
                 <div class="mb-3">
