@@ -5,7 +5,7 @@
 <% end %>
 <div class="small"><%= l match.day  %></div>
 <div class="small tournament_year_link"><%= link_to match.tournament_year.tournament.name, tournament_year_path(match.tournament_year) %></div>
-<div class="player_link">
+<div>
     <% if match.win_player.nil? %>
         <span class="win"><%= link_to match.home_player.name, player_path(match.home_player) %></span> vs <span class="win"><%= link_to match.away_player.name, player_path(match.away_player) %></span>
     <% elsif match.win_player.id == match.away_player.id %>
@@ -15,6 +15,6 @@
     <% end %>
 </div>
 <div class="small">
-    <%= link_to "スコア状況（Google検索）", "https://www.google.com/search?q=#{match.home_player.name}+#{match.away_player.name}+#{l match.day, format: :date_only}" %>
+    <%= link_to "スコア状況（Google検索）", match_detail_url_of_google(match) %>
 </div>
 </div>

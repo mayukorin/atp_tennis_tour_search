@@ -1,0 +1,68 @@
+<div class="text-success heading m-5 text-center">ユーザ登録</div>
+<div class="row">
+    <div class="col-md-6 text-body offset-md-3">
+        <%= form_with(model: @user, local: true, html: { novalidate: true}) do |f| %>
+            <div class="mb-3">
+                <%= f.label :name, "ユーザ名", class: "form-label text-success" %>
+                <% if @user.errors.include?(:name) %>
+                    <%= f.text_field :name, class: "form-control form-control-lg is-invalid" %>
+                    <div class="error_message"><%= @user.errors.full_messages_for(:name).first %></div>
+                <% else %>
+                    <%= f.text_field :name, class: "form-control form-control-lg" %>
+                <% end %>
+            </div>
+            <div class="mb-3">
+                <%= f.label :email, "メールアドレス", class: "form-label text-success" %>
+                <% if @user.errors.include?(:email) %>
+                    <%= f.email_field :email, class: "form-control form-control-lg is-invalid" %>
+                    <div class="error_message"><%= @user.errors.full_messages_for(:email).first %></div>
+                <% else %>
+                    <%= f.email_field :email, class: "form-control form-control-lg" %>
+                <% end %>
+                
+            </div>
+            <div class="mb-3">
+                <%= f.label :password, "パスワード", class: "form-label text-success" %>
+                <% if @user.errors.include?(:password) %>
+                    <%= f.password_field :password, class: "form-control form-control-lg is-invalid" %>
+                    <div class="error_message"><%= @user.errors.full_messages_for(:password).first %></div>
+                <% else %>
+                    <%= f.password_field :password, class: "form-control form-control-lg" %>
+                <% end %>
+            </div>
+            <div class="mb-3">
+                <%= f.label :password_confirmation, "パスワード（確認用）", class: "form-label text-success" %>
+                <% if @user.errors.include?(:password_confirmation) %>
+                    <%= f.password_field :password_confirmation, class: "form-control form-control-lg is-invalid" %>
+                    <div class="error_message"><%= @user.errors.full_messages_for(:password_confirmation).first %></div>
+                <% else %>
+                    <%= f.password_field :password_confirmation, class: "form-control form-control-lg" %>
+                <% end %>
+            </div>
+            <div class="mb-3 row justify-content-center">
+                <%= f.submit "登録", class: "btn btn-primary btn-success col-4 btn-lg" %>
+            </div>
+        <% end %>
+        <!--
+        <form class="text-body">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label text-success">Email address</label>
+                <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label text-success">Password</label>
+                <input type="password" class="form-control form-control-lg" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <div class="row justify-content-center">
+                <button type="submit" class="btn btn-primary btn-success col-4 btn-lg">Submit</button>
+            </div>
+        </form>
+        -->
+    </div>
+</div>
+
