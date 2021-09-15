@@ -1,4 +1,23 @@
-<div class="text-success heading m-5 text-center"><%= @player.name %></div>
+<div class="text-success heading m-5  row justify-content-center">
+    <div class="col-6 col-md-4 offset-md-4 text-center">
+        <%= @player.name %>
+    </div>
+    <% if logged_in? %>
+        <div class="col-4 col-md-4">
+            <% if current_user.favorite?(@player) %>
+                <%= form_with(model: current_user.favorites.find_by(player_id: @player.id), 
+                    html: { method: :delete}, local: true) do |f| %>
+                    <%= submit_tag("お気に入り解除", class: "btn btn-success mb-3 btn-lg" )%>
+                <% end %>
+            <% else %>
+                <%= form_with(model: current_user.favorites.build, local: true) do %>
+                    <div><%= hidden_field_tag :favorite_player_id, @player.id %></div>
+                    <%= submit_tag("お気に入り登録", class: "btn btn-success mb-3 btn-lg" )%>
+                <% end %>
+            <% end %>
+        </div>
+    <% end %>
+</div>
 
 <div class="m-5">
     <div class="text-success heading text-center m-3">試合一覧</div>

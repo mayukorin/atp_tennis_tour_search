@@ -6,7 +6,5 @@ class Player < ApplicationRecord
     has_many :home_matches, class_name: 'Match', :foreign_key => 'home_player_id'
     has_many :away_matches, class_name: 'Match', :foreign_key => 'away_player_id'
     has_many :win_matches, class_name: 'Match', :foreign_key => 'win_player_id'
-    has_many :favorites
-    has_many :favorite_players, class_name: 'Player', through: :favorites, source: :player
     scope :eager_loading, -> { eager_load({matches: [{tournament_year: :tournament} , :home_player, :away_player, :win_player]}, :player_matches) }
 end
