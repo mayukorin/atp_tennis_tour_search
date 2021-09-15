@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_11_155043) do
+ActiveRecord::Schema.define(version: 2021_09_15_131530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 2021_09_11_155043) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tournament_year_id"], name: "index_batch_schedules_on_tournament_year_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "player_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["player_id"], name: "index_favorites_on_player_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -108,6 +117,8 @@ ActiveRecord::Schema.define(version: 2021_09_11_155043) do
   end
 
   add_foreign_key "batch_schedules", "tournament_years"
+  add_foreign_key "favorites", "players"
+  add_foreign_key "favorites", "users"
   add_foreign_key "matches", "players", column: "away_player_id"
   add_foreign_key "matches", "players", column: "home_player_id"
   add_foreign_key "matches", "players", column: "win_player_id"
