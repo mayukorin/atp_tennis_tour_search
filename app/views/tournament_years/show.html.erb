@@ -25,23 +25,12 @@
         <%= render @tournament_year.tournament_year_and_players %>
     </div>
     <div>
-        <div class="m-5 ">
-            <div class="text-success m-3 heading text-center">
-                試合一覧
-            </div>
-            <%= form_tag(tournament_year_path, method: "get", class:"row g-3 justify-content-md-center") do %>
-                <div class="col-6 col-md-4 offset-md-4">
-                    <%= select_tag(:day, options_for_select(@tournament_days_array, @selected_tournament_day), class: "form-select form-select-lg") %>
-                </div>
-                <div class="col-4 col-md-4">
-                    <%= submit_tag("選択日程の試合表示", class: "btn btn-success mb-3 btn-lg" )%>
-                </div>
-            <% end %>
-        </div>
-        <div class="row justify-content-center">
-            <div class="text-body  col-md-9 justify-content-between row">
-                <%= render @selected_tournament_day_matches %>
-            </div>
-        </div>
+        <%= render 'shared/match_select_form', 
+            path: tournament_year_path, param: :day, 
+            data_array: @tournament_days_array, 
+            selected_data: @selected_tournament_day, 
+            button_title: "選択日程の試合表示", 
+            selected_matches: @selected_tournament_day_matches 
+        %>
     </div>
 <% end %>
