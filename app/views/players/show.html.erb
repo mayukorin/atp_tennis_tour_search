@@ -4,7 +4,7 @@
     </div>
     <% if logged_in? %>
         <div class="col-4 col-md-4">
-            <%= render 'favorite_form' %>
+            <%= render 'favorite_form', player: @player%>
         </div>
     <% end %>
 </div>
