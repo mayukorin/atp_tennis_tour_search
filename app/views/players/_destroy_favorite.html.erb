@@ -1,0 +1,4 @@
+<%= form_with(model: current_user.favorites.find_by(player_id: @player.id), 
+        html: { method: :delete}, local: true) do |f| %>
+    <%= submit_tag("お気に入り解除", class: "btn btn-success mb-3 btn-lg" )%>
+<% end %>
