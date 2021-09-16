@@ -8,12 +8,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mapael/2.2.0/js/maps/world_countries.js"></script>
     <%= javascript_pack_tag 'home/application' %> 
 <% end %>
-<div>
-    <div class="text-success text-center heading m-5">お気に入り選手の直近の試合</div>
-    <ul>
-      <%= render partial:"players/player", collection: @favorite_players%>
-    </ul>
-</div>
+<% if logged_in? %>
+    <div>
+        <div class="text-success text-center heading m-5">お気に入り選手の直近の試合</div>
+        <ul>
+            <%= render partial:"players/player", collection: current_user.favorite_players %>
+        </ul>
+    </div>
+<% end %>
 <div class="map-container">
     <div class="text-success text-center heading m-5">地図で確認</div>
     <div id="now-tournament-info" class="text-center text-body mb-5"></div>
