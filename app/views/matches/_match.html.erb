@@ -1,20 +1,16 @@
-<% if match_counter%2 == 0%>
-    <div class="game_card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2 text-body">
-<% else %>
-    <div class="game_card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2 offset-md-1 text-body">
-<% end %>
-<div class="small"><%= l match.day  %></div>
-<div class="small tournament_year_link"><%= link_to match.tournament_year.tournament.name, tournament_year_path(match.tournament_year) %></div>
-<div>
-    <% if match.win_player.nil? %>
-        <span class="win"><%= link_to match.home_player.name, player_path(match.home_player) %></span> vs <span class="win"><%= link_to match.away_player.name, player_path(match.away_player) %></span>
-    <% elsif match.win_player.id == match.away_player.id %>
-        <span class="lose"><%= link_to match.home_player.name, player_path(match.home_player) %></span> vs <span class="win"><%= link_to match.away_player.name, player_path(match.away_player) %></span>
-    <% else %>
-        <span class="win"><%= link_to match.home_player.name, player_path(match.home_player) %></span> vs <span class="lose"><%= link_to match.away_player.name, player_path(match.away_player) %></span>
-    <% end %>
-</div>
-<div class="small">
-    <%= link_to "スコア状況（Google検索）", match_detail_url_of_google(match) %>
-</div>
+<div class="game_card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2 text-body <%= "offset-md-1" if match_counter % 2 == 1%>" >
+    <div class="small"><%= l match.day  %></div>
+    <div class="small tournament_year_link"><%= link_to match.tournament_year.tournament.name, tournament_year_path(match.tournament_year) %></div>
+    <div>
+        <% if match.win_player.nil? %>
+            <span class="win"><%= link_to match.home_player.name, player_path(match.home_player) %></span> vs <span class="win"><%= link_to match.away_player.name, player_path(match.away_player) %></span>
+        <% elsif match.win_player.id == match.away_player.id %>
+            <span class="lose"><%= link_to match.home_player.name, player_path(match.home_player) %></span> vs <span class="win"><%= link_to match.away_player.name, player_path(match.away_player) %></span>
+        <% else %>
+            <span class="win"><%= link_to match.home_player.name, player_path(match.home_player) %></span> vs <span class="lose"><%= link_to match.away_player.name, player_path(match.away_player) %></span>
+        <% end %>
+    </div>
+    <div class="small">
+        <%= link_to "スコア状況（Google検索）", match_detail_url_of_google(match) %>
+    </div>
 </div>
