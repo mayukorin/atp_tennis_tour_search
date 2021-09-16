@@ -9,6 +9,6 @@ class Player < ApplicationRecord
     scope :eager_loading, -> { eager_load({matches: [{tournament_year: :tournament} , :home_player, :away_player, :win_player]}, :player_matches) }
 
     def latest_matches
-        matches.eager_load({tournament_year: :tournament} , :home_player, :away_player, :win_player).limit(2)
+        matches.preload({tournament_year: :tournament} , :home_player, :away_player, :win_player).limit(2)
     end
 end
