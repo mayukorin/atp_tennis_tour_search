@@ -11,9 +11,7 @@
 <% if logged_in? %>
     <div>
         <div class="text-success text-center heading m-5">お気に入り選手の直近の試合</div>
-        <ul>
-            <%= render partial:"players/player", collection: current_user.favorite_players %>
-        </ul>
+        <%= render partial:"players/player", collection: current_user.favorite_players %>
     </div>
 <% end %>
 <div class="map-container">
