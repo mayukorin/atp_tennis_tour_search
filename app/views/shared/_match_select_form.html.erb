@@ -6,6 +6,9 @@
         <div class="col-6 col-md-4 offset-md-4">
             <%= select_tag(param, options_for_select(data_array, selected_data), class: "form-select form-select-lg") %>
         </div>
+        <% if local_assigns[:selected_tournament_year_id] %>
+            <%= hidden_field_tag :selected_tournament_year_id, selected_tournament_year_id %>
+        <% end %>
         <div class="col-4 col-md-4">
             <%= submit_tag(button_title, class: "btn btn-success mb-3 btn-lg" )%>
         </div>
