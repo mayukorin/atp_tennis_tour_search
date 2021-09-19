@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :tournament_years, only: [:show]
   resources :tournaments, only: [:show]
   resources :players, only: [:show]
+  get '/player_matches_index', to: 'player_matches#index'
   resources :users, only: [:new, :create]
   resources :favorites, only: [:create, :destroy]
   get '/login', to: 'sessions#new'

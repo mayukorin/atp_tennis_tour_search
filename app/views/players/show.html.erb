@@ -10,10 +10,16 @@
 </div>
 <div>
     <%= render 'shared/match_select_form', 
-        path: player_path(@player), param: :tournament, 
+        path: player_matches_index_path, param: :tournament_year_player, 
         data_array: @tournament_years_array, 
-        selected_data: @selected_tournament_year_id, 
+        selected_data: @selected_tournament_year_and_player, 
         button_title: "選択大会の試合表示"
     %>
-    <%= render 'shared/matches', matches: @selected_tournament_year_player_matches %>
+    <ul>
+        <div class="text-body row justify-content-center">
+            <div class="mt-3 col-md-9 col-lg-8 justify-content-between row" id="matches">
+                <%= render @selected_tournament_year_player_matches %>
+            </div>
+        </div>
+    </ul>
 </div>

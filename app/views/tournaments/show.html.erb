@@ -45,8 +45,6 @@
             button_title: "選択日程の試合表示", 
             selected_tournament_year_id: @selected_tournament_year_id
         %>
-        <div id="matches">
-            <%= render 'shared/matches', matches: @selected_tournament_day_matches %>
-        </div>
+        <%= render 'shared/matches', matches: @selected_tournament_day_matches %>
     </div>
 <% end %>
