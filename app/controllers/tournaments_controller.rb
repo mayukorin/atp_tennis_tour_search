@@ -3,9 +3,8 @@ class TournamentsController < ApplicationController
         @years_array = TournamentYear.joins(:tournament).where(tournament: params[:id]).order(first_day: :desc).map do |tournament_year|
             [tournament_year.first_day.strftime('%Y'), tournament_year.id]
         end
-        puts "ooooo"
+        puts "oooooooo"
         puts params[:selected_tournament_year_id]
-        puts "ooooooo"
         @selected_tournament_year_id = params[:selected_tournament_year_id] ? params[:selected_tournament_year_id] : @years_array[0][1]
         # @tournament_year = TournamentYear.eager_loading.find(params[:id])
         @tournament_year = TournamentYear.eager_loading.find(@selected_tournament_year_id)

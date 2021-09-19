@@ -2,9 +2,9 @@
     <div class="text-success heading m-5 text-center">
         <%= @tournament_year.tournament.name%>
     </div>
-    <%= form_tag(tournament_path(@tournament_year.tournament), method: "get", class:"row g-3 justify-content-md-center") do %>
+    <%= form_tag(tournament_path(@tournament_year), method: "get", class:"row g-3 justify-content-md-center") do %>
         <div class="col-6 col-md-4 offset-md-4">
-            <%= select_tag(:year, options_for_select(@years_array, @selected_tournament_year_id), class: "form-select form-select-lg") %>
+            <%= select_tag(:selected_tournament_year_id, options_for_select(@years_array, @selected_tournament_year_id), class: "form-select form-select-lg") %>
         </div>
         <div class="col-4 col-md-4">
             <%= submit_tag("年度を選択", class: "btn btn-success mb-3 btn-lg" )%>
