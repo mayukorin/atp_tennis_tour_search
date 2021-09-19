@@ -2,7 +2,7 @@
     <div class="text-success m-3 heading text-center">
         試合一覧
     </div>
-    <%= form_tag(path, method: "get", class:"row g-3 justify-content-md-center") do %>
+    <%= form_tag(path, method: "get", class:"row g-3 justify-content-md-center", remote: true) do %>
         <div class="col-6 col-md-4 offset-md-4">
             <%= select_tag(param, options_for_select(data_array, selected_data), class: "form-select form-select-lg") %>
         </div>
@@ -13,9 +13,4 @@
             <%= submit_tag(button_title, class: "btn btn-success mb-3 btn-lg" )%>
         </div>
     <% end %>
-</div>
-<div class="row justify-content-center">
-    <div class="text-body  col-md-9 justify-content-between row">
-        <%= render selected_matches %>
-    </div>
 </div>
