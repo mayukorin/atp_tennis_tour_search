@@ -1,0 +1,5 @@
+<% if current_user.favorite?(player) %>
+    <%= render 'destroy_favorite'%>
+<% else %>
+    <%= render 'make_favorite'%>
+<% end %>

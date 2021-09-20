@@ -22,5 +22,6 @@ module Myapp
     config.autoload_paths += Dir.glob("#{config.root}/app/serializers")
     config.i18n.default_locale = :ja
     # config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end

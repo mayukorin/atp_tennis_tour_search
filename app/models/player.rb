@@ -7,4 +7,8 @@ class Player < ApplicationRecord
     has_many :away_matches, class_name: 'Match', :foreign_key => 'away_player_id'
     has_many :win_matches, class_name: 'Match', :foreign_key => 'win_player_id'
     scope :eager_loading, -> { eager_load({matches: [{tournament_year: :tournament} , :home_player, :away_player, :win_player]}, :player_matches) }
+
+    def latest_matches
+        matches.preload({tournament_year: :tournament} , :home_player, :away_player, :win_player).limit(2)
+    end
 end

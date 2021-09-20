@@ -2,9 +2,10 @@
     <div class="text-success heading m-5 text-center">
         <%= @tournament_year.tournament.name%>
     </div>
-    <%= form_tag(tournament_year_url(@tournament_year), method: "get", class:"row g-3 justify-content-md-center") do %>
+    <!-- @tournament_year? -->
+    <%= form_tag(tournament_path(@tournament_year), method: "get", class:"row g-3 justify-content-md-center") do %>
         <div class="col-6 col-md-4 offset-md-4">
-            <%= select_tag(:year, options_for_select([2020, 2021]), class: "form-select form-select-lg") %>
+            <%= select_tag(:selected_tournament_year_id, options_for_select(@years_array, @selected_tournament_year_id), class: "form-select form-select-lg") %>
         </div>
         <div class="col-4 col-md-4">
             <%= submit_tag("年度を選択", class: "btn btn-success mb-3 btn-lg" )%>
@@ -38,11 +39,16 @@
     </div>
     <div>
         <%= render 'shared/match_select_form', 
-            path: tournament_year_path, param: :day, 
+            path: tournament_year_path(@tournament_year), param: :day, 
             data_array: @tournament_days_array, 
             selected_data: @selected_tournament_day, 
             button_title: "選択日程の試合表示", 
-            selected_matches: @selected_tournament_day_matches 
+            selected_tournament_year_id: @selected_tournament_year_id
         %>
+        <div class="row justify-content-center">
+            <div class="text-body  col-md-9 justify-content-between row" id="matches">
+                <%= render  @selected_tournament_day_matches %>
+            </div>
+        </div>
     </div>
 <% end %>
