@@ -17,7 +17,7 @@ $(function () {
                            `<div>${tournament_name}</div>`+
                            `<div>開催都市 : ${city_name}</div>`+
                            `<div>開催期間 : ${period}</div>`;
-            contentAndColor.set("id", response[key]["id"])
+            contentAndColor.set("id", response[key]["tournament"]["id"])
             if (response[key]["champion"] != null) {
                 var champion_name = response[key]["champion"]["name"];
                 content += `<div>優勝者 : ${champion_name}`+
@@ -71,7 +71,7 @@ $(function () {
                     latitude: 40.717079,
                     longitude: -74.00116,
                     tooltip: {content: contents.get("NY").get("content")},
-                    href: `/tournament_years/${contents.get("NY").get("id")}`,
+                    href: `/tournaments/${contents.get("NY").get("id")}`,
                     size: 10,
                     attrs: {
                         fill: contents.get("NY").get("plotColor")
@@ -81,7 +81,7 @@ $(function () {
                     latitude: -37.814,
                     longitude: 144.96332,
                     tooltip: {content: contents.get("ME").get("content")},
-                    href: `/tournament_years/${contents.get("ME").get("id")}`,
+                    href: `/tournaments/${contents.get("ME").get("id")}`,
                     size: 10,
                 }, 
                 'pa': {
