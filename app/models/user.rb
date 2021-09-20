@@ -22,4 +22,12 @@ class User < ApplicationRecord
     def destroy_favorite(player)
         favorites.find_by(player_id: player.id).destroy
     end
+
+    def favorite_players_id_list
+        id_list = []
+        favorite_players.each do |favorite_player|
+            id_list.push(favorite_player.id)
+        end
+        return id_list
+    end
 end
