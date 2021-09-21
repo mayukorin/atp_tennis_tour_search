@@ -31,5 +31,5 @@ ENV.each { |k, v| env(k, v) }
 job_type :rake, "cd :path && :environment_variable=:environment bundle exec rake :task --silent :output"
 
 every 1.minute do
-    rake 'greet:say_hello'
+    rake 'tennis:fetch_match_info'
 end

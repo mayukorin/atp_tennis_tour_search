@@ -96,6 +96,7 @@ namespace :tennis do
                 
             end
         end
+        puts "OK"
     end
 end
 
