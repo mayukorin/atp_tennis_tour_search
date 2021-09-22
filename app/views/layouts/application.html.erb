@@ -15,11 +15,28 @@
   </head>
 
   <body class="bg-light">
-    <div class="container"> 
-      <% flash.each do |message_type, message| %>
-        <div class="alert text-body m-3 alert-<%= message_type %>"><%= message %></div>
-      <% end %>
-      <%= yield %>
+    <header>
+        <div class="container justify-content-center text-body">
+            <div class="row justify-content-between">
+                <div class="col-2 d-flex app-logo text-success">
+                    ATP Tour Search
+                </div>
+                <ul class="col-5 my-auto text-success">
+                    <li>Top</li>
+                    <li>login</li>
+                    <li>SignUp</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="tennis-content">
+      <%= yield :topImage %>
+      <div class="container"> 
+        <% flash.each do |message_type, message| %>
+          <div class="alert text-body m-3 alert-<%= message_type %>"><%= message %></div>
+        <% end %>
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
