@@ -5,18 +5,28 @@ body {
     font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    
+    font-weight: normal!important;
+    font-family: inherit;
+    color: inherit;
+}
+
+/*
 html {
     //font-size: 63%;
     font-size: 70%;
 }
+*/
 
 li {
     list-style: none;
 }
-
+/*
 .text-body{
     font-size: 1.7rem;
 }
+*/
 /*
 .text-body2{
     font-size: 5.0rem !important;
@@ -24,14 +34,14 @@ li {
 */
 
 .lose {
-    font-size: 1.7rem;
+    // font-size: 1.2rem;
     a:link {color: #EEEEEE; text-decoration: none};
     a:visited {color: #EEEEEE; text-decoration: none};
     a:hover {color: blue}
 }
 
 .win {
-    font-size: 1.7rem;
+    // font-size: 1.2rem;
     a:link {color: black; text-decoration: none};
     a:visited {color: black; text-decoration: none};
     a:hover {color: blue}
@@ -48,12 +58,12 @@ li {
     display:block;
     width: 30%;
 }
-
+/*
 .text-body-white{
     font-size: 2.0rem;
     color: #EEEEEE;
 }
-
+*/
 
 .error_message {
     color: red;
@@ -102,7 +112,7 @@ li {
     background: image-url('topimg.JPG');
     background-size: cover;
     background-position: center;
-    //position: relative;
+    position: relative;
 }
 
 .app-title {
@@ -124,10 +134,11 @@ header {
     align-items: center;
     padding: 30px 50px;
     height: 70px;
+    position: fixed;
     
 }
 .app-logo {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-top: 5px!important;
     color: white;
 }
@@ -139,6 +150,10 @@ header ul {
 header ul li {
     margin: 15px;
 }
+
+.height-adjust {
+    height: 80px;
+}
 /*
 .field_with_errors {
     input {
@@ -146,3 +161,11 @@ header ul li {
     }
 }
 */
+
+#now-tournament-info {
+    font-size: 1.3rem;
+}
+
+.player-name {
+    font-size: 1.2rem;
+}
