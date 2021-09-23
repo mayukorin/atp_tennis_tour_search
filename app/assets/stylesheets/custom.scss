@@ -47,6 +47,12 @@ li {
     a:hover {color: blue}
 }
 
+.header-link {
+    a:link {color: green;};
+    a:visited {color: green;};
+    
+}
+
 .tournament_year_link {
     a:link {color: black; text-decoration: none};
     a:visited {color: black; text-decoration: none};
