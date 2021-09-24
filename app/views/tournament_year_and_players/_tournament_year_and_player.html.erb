@@ -1,5 +1,5 @@
 <% if tournament_year_and_player.remain_flag %>
-    <span class="m-2 text-body win"><%= link_to tournament_year_and_player.player.name, player_path(tournament_year_and_player.player) %> </span>
+    <span class="m-2 win"><%= link_to tournament_year_and_player.player.name, player_path(tournament_year_and_player.player) %> </span>
 <% else %>
     <span class="m-1 lose" ><%= link_to tournament_year_and_player.player.name, player_path(tournament_year_and_player.player) %> </span>
 <% end %>
