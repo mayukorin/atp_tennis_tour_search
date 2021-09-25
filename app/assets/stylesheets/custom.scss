@@ -25,9 +25,9 @@ li {
 
 .lose {
     // font-size: 1.2rem;
-    a:link {color: #EEEEEE; text-decoration: none};
-    a:visited {color: #EEEEEE; text-decoration: none};
-    a:hover {color: blue}
+    a:link {color: #EEEEEE!important; text-decoration: none!important};
+    a:visited {color: #EEEEEE!important; text-decoration: none!important};
+    a:hover {color: blue!important}
 }
 
 .win {
