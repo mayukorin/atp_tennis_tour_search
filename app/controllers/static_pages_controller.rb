@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
+    puts "ああああああああああああああああああああああ"
     if logged_in?
       @id_list = current_user.favorite_players_id_list
       player_matches_id_sql = PlayerMatch.select(:id).joins(:match).where('player_id = players.id').order('matches.day desc').limit(2).to_sql
