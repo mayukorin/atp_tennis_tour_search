@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
   def show
- 
+
     @player = Player.find(params[:id])
     @tournament_years_array = TournamentYearAndPlayer.eager_loading.where(player_id: @player.id).order('tournament_years.first_day DESC').map do |typ|
       [typ.tournament_year.tournament.name + "(" + typ.tournament_year.first_day.strftime("%Y") + ")", typ.id]
