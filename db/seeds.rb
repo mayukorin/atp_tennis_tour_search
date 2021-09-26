@@ -9,6 +9,7 @@
 
 
 
+=begin
 Tournament.create(:name => '全豪オープン', :abbreviation => 'ME', :city => 'メルボルン')
 Tournament.create(:name => '全仏オープン', :abbreviation => 'PA', :city => 'パリ')
 Tournament.create(:name => 'ウィンブルドン', :abbreviation => 'LO', :city => 'ロンドン')
@@ -27,3 +28,31 @@ lo = tournament.tournament_years.create(:year => 2021, :first_day => '2021-06-28
 tournament = Tournament.find_by(name: '全米オープン')
 ny = tournament.tournament_years.create(:year => 2021, :first_day => '2021-08-30', :last_day => '2021-09-12', :now_flag => 't', :api_id => 1368)
 
+grand_slam = AtpCategory.create(:name => 'GRAND SLAM')
+masters = AtpCategory.create(:name => 'Masters 1000')
+atp_500 = AtpCategory.create(:name => 'ATP 500')
+
+=end
+
+grand_slam = AtpCategory.find_by(:name => 'GRAND SLAM')
+masters = AtpCategory.find_by(:name => 'Masters 1000')
+atp_500 = AtpCategory.find_by(:name => 'ATP 500')
+
+me = Tournament.find_by(name: '全豪オープン')
+pa = Tournament.find_by(name: '全仏オープン')
+lo = Tournament.find_by(name: 'ウィンブルドン')
+ny = Tournament.find_by(name: '全米オープン')
+
+
+grand_slam.tournaments << me
+grand_slam.tournaments << pa
+grand_slam.tournaments << lo
+grand_slam.tournaments << ny
+
+grand_slam.save
+=begin
+me << grand_slam
+pa << grand_slam
+lo << grand_slam
+ny << grand_slam
+=end
