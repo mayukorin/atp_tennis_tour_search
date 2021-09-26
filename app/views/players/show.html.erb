@@ -1,13 +1,13 @@
-<div class="text-success heading m-5  row justify-content-center">
-    <div class="col-6 col-md-4 offset-md-4 text-center">
-        <%= @player.name %>
-    </div>
-    <% if logged_in? %>
+<div class="text-success text-center">
+    <h2><%= @player.name %></h2>
+</div>
+<% if logged_in? %>
+    <div class="text-success  m-5  row justify-content-center">
         <div class="col-4 col-md-4">
             <%= render 'favorite_form', player: @player%>
         </div>
-    <% end %>
-</div>
+    </div>
+<% end %>
 <div>
     <%= render 'shared/match_select_form', 
         path: player_matches_index_path, param: :tournament_year_player, 
@@ -16,7 +16,7 @@
         button_title: "選択大会の試合表示"
     %>
     <ul>
-        <div class="text-body row justify-content-center">
+        <div class="row justify-content-center">
             <div class="mt-3 col-md-9 col-lg-8 justify-content-between row" id="matches">
                 <%= render @selected_tournament_year_player_matches %>
             </div>

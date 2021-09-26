@@ -62,7 +62,7 @@ $(function () {
                     attrsHover: {
                         // 国をホバーした時
                         fill: "#f4f4e8",
-                        stroke: "#f4f4e8",
+                        stroke: "#ced8d0",
                     }
                 }
             },

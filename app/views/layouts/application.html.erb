@@ -15,11 +15,15 @@
   </head>
 
   <body class="bg-light">
-    <div class="container"> 
-      <% flash.each do |message_type, message| %>
-        <div class="alert text-body m-3 alert-<%= message_type %>"><%= message %></div>
-      <% end %>
-      <%= yield %>
+    <%= render 'layouts/header' %>
+    <div class="tennis-content">
+      <%= yield :topImage %>
+      <div class="container"> 
+        <% flash.each do |message_type, message| %>
+          <div class="alert m-3 alert-<%= message_type %>"><%= message %></div>
+        <% end %>
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

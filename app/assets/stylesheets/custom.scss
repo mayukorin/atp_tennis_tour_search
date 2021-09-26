@@ -5,36 +5,42 @@ body {
     font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    
+    font-weight: normal!important;
+    font-family: inherit;
+    color: inherit;
+}
+
+/*
 html {
     //font-size: 63%;
     font-size: 70%;
 }
+*/
 
 li {
     list-style: none;
 }
 
-.text-body{
-    font-size: 1.7rem;
-}
-/*
-.text-body2{
-    font-size: 5.0rem !important;
-}
-*/
-
 .lose {
-    font-size: 1.7rem;
-    a:link {color: #EEEEEE; text-decoration: none};
-    a:visited {color: #EEEEEE; text-decoration: none};
-    a:hover {color: blue}
+    // font-size: 1.2rem;
+    a:link {color: #EEEEEE!important; text-decoration: none!important};
+    a:visited {color: #EEEEEE!important; text-decoration: none!important};
+    a:hover {color: blue!important}
 }
 
 .win {
-    font-size: 1.7rem;
+    // font-size: 1.2rem;
     a:link {color: black; text-decoration: none};
     a:visited {color: black; text-decoration: none};
     a:hover {color: blue}
+}
+
+.header-link {
+    a:link {color: green;};
+    a:visited {color: green;};
+    
 }
 
 .tournament_year_link {
@@ -47,11 +53,6 @@ li {
     content:"";
     display:block;
     width: 30%;
-}
-
-.text-body-white{
-    font-size: 2.0rem;
-    color: #EEEEEE;
 }
 
 
@@ -92,6 +93,58 @@ li {
     justify-content: center;
 }
 
+.tennis-content {
+    position: relative;;
+}
+
+.top-image {
+    width: 100%;
+    min-height: 100vh;
+    background: image-url('topimg.JPG');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.app-title {
+    margin: 0;
+    position: absolute;
+    top: calc(40% - 0.5em);
+    width: 100%;
+    text-align: center;
+    line-height: 1;
+    font-size: 4rem;
+    font-weight: 400;
+    color: white;
+}
+
+header {
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 30px 50px;
+    height: 70px;
+    position: fixed;
+    
+}
+.app-logo {
+    font-size: 2rem;
+    margin-top: 5px!important;
+    color: white;
+}
+header ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header ul li {
+    margin: 15px;
+}
+
+.height-adjust {
+    height: 80px;
+}
 /*
 .field_with_errors {
     input {
@@ -99,3 +152,11 @@ li {
     }
 }
 */
+
+#now-tournament-info {
+    font-size: 1.3rem;
+}
+
+.player-name {
+    font-size: 1.2rem;
+}

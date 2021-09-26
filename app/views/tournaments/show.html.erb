@@ -1,54 +1,24 @@
 <div class="m-5">
-    <div class="text-success heading m-5 text-center">
-        <%= @tournament_year.tournament.name%>
+    <div class="text-success text-center m-5">
+        <h2><%= @tournament_year.tournament.name%></h2>
     </div>
-    <!-- @tournament_year? -->
-    <%= form_tag(tournament_path(@tournament_year), method: "get", class:"row g-3 justify-content-md-center") do %>
-        <div class="col-6 col-md-4 offset-md-4">
-            <%= select_tag(:selected_tournament_year_id, options_for_select(@years_array, @selected_tournament_year_id), class: "form-select form-select-lg") %>
+    
+    <%= form_tag(tournament_path(@tournament_year), method: "get", class:"g-3 text-center") do %>
+        <div class="form-group form-check-inline m-3">
+            <%= select_tag(:selected_tournament_year_id, options_for_select(@years_array, @selected_tournament_year_id), class: "form-select") %>
         </div>
-        <div class="col-4 col-md-4">
-            <%= submit_tag("年度を選択", class: "btn btn-success mb-3 btn-lg" )%>
-        </div>
+        <%= submit_tag("年度を選択", class: "btn btn-success m-3" )%>
     <% end %>
-    <div class="row justify-content-center">
-        <div class="col-12 col-lg-6">
-            <%= image_tag("ny.jpg", class: "img-fluid") %>
-        </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-11 col-lg-8 text-center">
+        <%= image_tag("ny.jpg", class: "img-fluid") %>
     </div>
 </div>
-<div class="row mt-3 justify-content-center">
-    <div class="text-body col-12 col-lg-6">
-        開催都市 : <%= @tournament_year.tournament.city %><br>
-        開催期間 : <%= l @tournament_year.first_day %> ~  <%= l @tournament_year.last_day %><br>
-        <a href="#">公式サイトへ</a>
-    </div>
-</div>
-<% if @tournament_days_array.size() == 0 %>
-    <div>
-        <div class="text-success heading m-5 text-center">
-            <span class="m-3">試合日程がまだ発表されていません</span>
-        </div>
-    </div>
-<% else %>
-    <div>
-        <div class="text-success heading m-5 text-center">
-            <span class="m-3">出場選手一覧</span>
-        </div>
-        <%= render @tournament_year.tournament_year_and_players %>
-    </div>
-    <div>
-        <%= render 'shared/match_select_form', 
-            path: tournament_year_path(@tournament_year), param: :day, 
-            data_array: @tournament_days_array, 
-            selected_data: @selected_tournament_day, 
-            button_title: "選択日程の試合表示", 
-            selected_tournament_year_id: @selected_tournament_year_id
-        %>
-        <div class="row justify-content-center">
-            <div class="text-body  col-md-9 justify-content-between row" id="matches">
-                <%= render  @selected_tournament_day_matches %>
-            </div>
-        </div>
-    </div>
-<% end %>
+<%= render @tournament_year, 
+    tournament_days_array:  @tournament_days_array,
+    selected_tournament_day: @selected_tournament_day,
+    selected_tournament_year_id: @selected_tournament_year_id,
+    selected_tournament_day_matches: @selected_tournament_day_matches
+%>
+

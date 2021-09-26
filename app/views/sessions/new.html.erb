@@ -1,6 +1,8 @@
-<div class="text-success heading m-5 text-center">ログイン</div>
+<div class="text-success m-3 text-center">
+    <h2>ログイン</h2>
+</div>
 <div class="row">
-    <div class="col-md-6 text-body offset-md-3">
+    <div class="col-md-6 offset-md-3">
         <%= form_with(url: login_path, scope: :session, local: true, html: { novalidate: true}) do |f| %>
             <div class="mb-3">
                 <%= f.label :email, "メールアドレス", class: "form-label text-success" %>

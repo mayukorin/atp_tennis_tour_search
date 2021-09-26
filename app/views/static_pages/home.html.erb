@@ -8,14 +8,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mapael/2.2.0/js/maps/world_countries.js"></script>
     <%= javascript_pack_tag 'home/application' %> 
 <% end %>
+<% content_for :topImage do %>
+    <div class="top-image">
+        <h1 class="app-title">
+            ATP ツアーの試合状況をチェック
+        </h1>
+    </div>
+<% end %>
 <% if logged_in? %>
     <div>
-        <div class="text-success text-center heading m-5">お気に入り選手の直近の試合</div>
+        <div class="text-success text-center m-5">
+            <h2>お気に入り選手の直近の試合</h2>
+        </div>
         <%= render partial:"players/player", collection: @favorite_players %>
     </div>
 <% end %>
 <div class="map-container">
-    <div class="text-success text-center heading m-5">地図で確認</div>
-    <div id="now-tournament-info" class="text-center text-body mb-5"></div>
-    <div class="map text-body"></div>
+    <div class="text-success text-center m-5">
+        <h2>地図で確認</h2>
+    </div>
+    <div id="now-tournament-info" class="text-center mb-5"></div>
+    <div class="map"></div>
 </div>

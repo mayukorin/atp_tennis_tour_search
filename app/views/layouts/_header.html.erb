@@ -1,0 +1,21 @@
+<header>
+    <div class="container justify-content-center">
+        <div class="row justify-content-between">
+            <div class="col-5 d-flex app-logo text-success">
+                ATP Tour Search
+            </div>
+            <ul class="col-5 my-auto text-success header-link">
+                <li><%= link_to 'top', root_url %></li>
+                <% if logged_in? %>
+                    <li><%= link_to 'logout', logout_path, method: :delete %></li>
+                <% else %>
+                    <li><%= link_to 'login', login_url %></li>
+                    <li><%= link_to 'SignUp', new_user_path %></li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+</header>
+<% unless controller.controller_name == 'static_pages' %>
+    <div class="height-adjust"></div>
+<% end %>
