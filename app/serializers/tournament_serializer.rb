@@ -1,3 +1,4 @@
 class TournamentSerializer < ActiveModel::Serializer
-    has_many :tournaments, serializer: TournamentSerializer
+    attributes :name, :abbreviation, :city
+    has_many :tournament_years, serializer: TournamentYearForMapSerializer
 end

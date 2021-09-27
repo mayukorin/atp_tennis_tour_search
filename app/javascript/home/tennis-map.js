@@ -6,6 +6,7 @@ $(function () {
         dataType: "json"
     }).done(function(response){
         console.log(response);
+        /*
         let contents = new Map();
         let now_tournaments_name = "";
         for(var key in response) {
@@ -100,7 +101,7 @@ $(function () {
                 }
             }
         });
-        
+        */
 
     }).fail(function() {
         alert(error);
