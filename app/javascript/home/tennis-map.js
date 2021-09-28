@@ -6,11 +6,14 @@ $(function () {
         dataType: "json"
     }).done(function(response){
         console.log(response);
-        /*
         let contents = new Map();
+        contents["GRAND SLAM"] = new Map();
+        contents["Masters 1000"] = new Map();
+        contents["ATP 500'"] = new Map();
         let now_tournaments_name = "";
         for(var key in response) {
             var contentAndColor = new Map();
+            var atp_category_name = response[key]["tournament"]["atp_category"]["name"]
             var tournament_name = response[key]["tournament"]["name"];
             var city_name = response[key]["tournament"]["city"];
             var period = response[key]["period"];
@@ -41,9 +44,10 @@ $(function () {
                 now_tournaments_name += tournament_name + " ";
             }
             contentAndColor.set("content", content);
-            contents.set(response[key]["tournament"]["abbreviation"], contentAndColor);
+ 
+            contents[atp_category_name].set(response[key]["tournament"]["abbreviation"], contentAndColor);
         }
-        
+    
         if (now_tournaments_name != "") {
             $("#now-tournament-info").html(`現在 <span class="text-danger">${now_tournaments_name} </span>が開催中です`);
         } else {
@@ -51,7 +55,7 @@ $(function () {
         }
         $("#now-tournament-info").html(`現在 <span class="text-danger">全米オープン </span>が開催中です`);
         
-        $(".map-container").mapael({
+        $(".map-container-GRAND-SLAM").mapael({
             map : {
                 name : "world_countries",
                 defaultArea: {
@@ -71,18 +75,18 @@ $(function () {
                 'ny': {
                     latitude: 40.717079,
                     longitude: -74.00116,
-                    tooltip: {content: contents.get("NY").get("content")},
-                    href: `/tournaments/${contents.get("NY").get("id")}`,
+                    tooltip: {content: contents["GRAND SLAM"].get("NY").get("content")},
+                    href: `/tournaments/${contents["GRAND SLAM"].get("NY").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents.get("NY").get("plotColor")
+                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
                     }
                 }, 
                 'me': {
                     latitude: -37.814,
                     longitude: 144.96332,
-                    tooltip: {content: contents.get("ME").get("content")},
-                    href: `/tournaments/${contents.get("ME").get("id")}`,
+                    tooltip: {content: contents["GRAND SLAM"].get("ME").get("content")},
+                    href: `/tournaments/${contents["GRAND SLAM"].get("ME").get("id")}`,
                     size: 10,
                 }, 
                 'pa': {
@@ -101,7 +105,109 @@ $(function () {
                 }
             }
         });
-        */
+
+        $(".map-container-Masters-1000").mapael({
+            map : {
+                name : "world_countries",
+                defaultArea: {
+                    attrs: {
+                        // 世界地図の国の色や境界
+                        fill: "#f4f4e8",
+                        stroke: "#ced8d0"
+                    },
+                    attrsHover: {
+                        // 国をホバーした時
+                        fill: "#f4f4e8",
+                        stroke: "#ced8d0",
+                    }
+                }
+            },
+            plots: {
+                'ny': {
+                    latitude: 40.717079,
+                    longitude: -74.00116,
+                    tooltip: {content: contents["GRAND SLAM"].get("NY").get("content")},
+                    href: `/tournaments/${contents["GRAND SLAM"].get("NY").get("id")}`,
+                    size: 10,
+                    attrs: {
+                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                    }
+                }, 
+                'me': {
+                    latitude: -37.814,
+                    longitude: 144.96332,
+                    tooltip: {content: contents["GRAND SLAM"].get("ME").get("content")},
+                    href: `/tournaments/${contents["GRAND SLAM"].get("ME").get("id")}`,
+                    size: 10,
+                }, 
+                'pa': {
+                    latitude: 48.85341,
+                    longitude: 2.3488,
+                    tooltip: {content: "Pari"},
+                    href: "/",
+                    size: 10,
+                },
+                'lo': {
+                    latitude: 51.3026,
+                    longitude: 0.0739,
+                    tooltip: {content: "London"},
+                    href: "/",
+                    size: 10,
+                }
+            }
+        });
+
+        $(".map-container-ATP-500").mapael({
+            map : {
+                name : "world_countries",
+                defaultArea: {
+                    attrs: {
+                        // 世界地図の国の色や境界
+                        fill: "#f4f4e8",
+                        stroke: "#ced8d0"
+                    },
+                    attrsHover: {
+                        // 国をホバーした時
+                        fill: "#f4f4e8",
+                        stroke: "#ced8d0",
+                    }
+                }
+            },
+            plots: {
+                'ny': {
+                    latitude: 40.717079,
+                    longitude: -74.00116,
+                    tooltip: {content: contents["GRAND SLAM"].get("NY").get("content")},
+                    href: `/tournaments/${contents["GRAND SLAM"].get("NY").get("id")}`,
+                    size: 10,
+                    attrs: {
+                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                    }
+                }, 
+                'me': {
+                    latitude: -37.814,
+                    longitude: 144.96332,
+                    tooltip: {content: contents["GRAND SLAM"].get("ME").get("content")},
+                    href: `/tournaments/${contents["GRAND SLAM"].get("ME").get("id")}`,
+                    size: 10,
+                }, 
+                'pa': {
+                    latitude: 48.85341,
+                    longitude: 2.3488,
+                    tooltip: {content: "Pari"},
+                    href: "/",
+                    size: 10,
+                },
+                'lo': {
+                    latitude: 51.3026,
+                    longitude: 0.0739,
+                    tooltip: {content: "London"},
+                    href: "/",
+                    size: 10,
+                }
+            }
+        });
+        
 
     }).fail(function() {
         alert(error);
