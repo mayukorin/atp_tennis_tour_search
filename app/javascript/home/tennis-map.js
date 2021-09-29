@@ -9,7 +9,7 @@ $(function () {
         let contents = new Map();
         contents["GRAND SLAM"] = new Map();
         contents["Masters 1000"] = new Map();
-        contents["ATP 500'"] = new Map();
+        contents["ATP 500"] = new Map();
         let now_tournaments_name = "";
         for(var key in response) {
             var contentAndColor = new Map();
@@ -21,7 +21,7 @@ $(function () {
                            `<div>${tournament_name}</div>`+
                            `<div>開催都市 : ${city_name}</div>`+
                            `<div>開催期間 : ${period}</div>`;
-            contentAndColor.set("id", response[key]["tournament"]["id"])
+            contentAndColor.set("id", response[key]["id"])
             if (response[key]["champion"] != null) {
                 var champion_name = response[key]["champion"]["name"];
                 content += `<div>優勝者 : ${champion_name}`+
@@ -92,15 +92,15 @@ $(function () {
                 'pa': {
                     latitude: 48.85341,
                     longitude: 2.3488,
-                    tooltip: {content: "Pari"},
-                    href: "/",
+                    tooltip: {content: contents["GRAND SLAM"].get("PA").get("content")},
+                    href: `/tournaments/${contents["GRAND SLAM"].get("PA").get("id")}`,
                     size: 10,
                 },
                 'lo': {
                     latitude: 51.3026,
                     longitude: 0.0739,
-                    tooltip: {content: "London"},
-                    href: "/",
+                    tooltip: {content: contents["GRAND SLAM"].get("LO").get("content")},
+                    href: `/tournaments/${contents["GRAND SLAM"].get("LO").get("id")}`,
                     size: 10,
                 }
             }
@@ -130,87 +130,87 @@ $(function () {
                     href: "",
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["Masters 1000"].get("MY").get("plotColor")
                     }
                 }, 
-                'lo': {
+                'lor': {
                     latitude: 43.4423,
                     longitude: 7.2538,
                     tooltip: {content: "ロレックス・モンテカルロ・マスターズ"},
-                    href: "",
+                    href: `/tournaments/${contents["Masters 1000"].get("LOR").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["Masters 1000"].get("LOR").get("plotColor")
                     }
                 }, 
                 'mu': {
                     latitude: 40.4165,
                     longitude: -3.70256,
                     tooltip: {content: "ムチュア・マドリード・オープン"},
-                    href: "/",
+                    href: `/tournaments/${contents["Masters 1000"].get("MU").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["Masters 1000"].get("MU").get("plotColor")
                     }
                 },
                 'bnl': {
                     latitude: 41.89474,
                     longitude: 12.4839,
                     tooltip: {content: "BNLイタリア国際"},
-                    href: "/",
+                    href: `/tournaments/${contents["Masters 1000"].get("BNL").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["Masters 1000"].get("BNL").get("plotColor")
                     }
                 },
                 'na': {
                     latitude: 43.7001,
                     longitude: -79.4163,
                     tooltip: {content: "ナショナルバンク・オープン"},
-                    href: "/",
+                    href: `/tournaments/${contents["Masters 1000"].get("NA").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["Masters 1000"].get("NA").get("plotColor")
                     }
                 },
                 'sa': {
                     latitude: 39.162,
                     longitude: -84.45689,
                     tooltip: {content: "ウエスタン&サザン・オープン"},
-                    href: "/",
+                    href: `/tournaments/${contents["Masters 1000"].get("SA").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["Masters 1000"].get("SA").get("plotColor")
                     }
                 },
                 'shy': {
                     latitude: 31.2333,
                     longitude: 121.14651,
                     tooltip: {content: "ロレックス上海マスターズ"},
-                    href: "/",
+                    href: `/tournaments/${contents["Masters 1000"].get("SHY").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["Masters 1000"].get("SHY").get("plotColor")
                     }
                 },
                 'bnp': {
                     latitude: 35.6652,
                     longitude: -117.8731,
                     tooltip: {content: "BNPパリバ・オープン"},
-                    href: "/",
+                    href: `/tournaments/${contents["Masters 1000"].get("BNP").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["Masters 1000"].get("BNP").get("plotColor")
                     }
                 },
-                'in': {
+                'lp': {
                     latitude: 48.85341,
                     longitude: 2.3488,
                     tooltip: {content: "ロレックス・パリ・マスターズ"},
-                    href: "/",
+                    href: `/tournaments/${contents["Masters 1000"].get("LP").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["Masters 1000"].get("LP").get("plotColor")
                     }
                 }
             }
@@ -237,120 +237,120 @@ $(function () {
                     latitude: 51.9166,
                     longitude: 4.4667,
                     tooltip: {content: "ABNアムロ・ワールド・テニス・トーナメント"},
-                    href: "/",
+                    href: `/tournaments/${contents["ATP 500"].get("ABN").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["ATP 500"].get("ABN").get("plotColor")
                     }
                 },
                 'do': {
                     latitude: 25.2048,
                     longitude: 55.2707,
                     tooltip: {content: "ドバイ・デューティフリー・テニス選手権"},
-                    href: "/",
+                    href: `/tournaments/${contents["ATP 500"].get("DO").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["ATP 500"].get("DO").get("plotColor")
                     }
                 },
                 'meki': {
                     latitude: 16.8638,
                     longitude: -99.88,
                     tooltip: {content: "メキシコ・オープン"},
-                    href: "/",
+                    href: `/tournaments/${contents["ATP 500"].get("MEKI").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["ATP 500"].get("MEKI").get("plotColor")
                     }
                 },
                 'val': {
                     latitude: 41.385,
                     longitude: 2.1734,
                     tooltip: {content: "バルセロナ・オープン"},
-                    href: "/",
+                    href: `/tournaments/${contents["ATP 500"].get("VAL").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["ATP 500"].get("VAL").get("plotColor")
                     }
                 },
                 'shin': {
                     latitude: 51.3026,
                     longitude: 0.0739,
                     tooltip: {content: "シンチ選手権"},
-                    href: "/",
+                    href: `/tournaments/${contents["ATP 500"].get("SHIN").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["ATP 500"].get("SHIN").get("plotColor")
                     }
                 },
                 'nov': {
                     latitude: 51.28,
                     longitude: 11.58,
                     tooltip: {content: "ノベンティ・オープン"},
-                    href: "/",
+                    href: `/tournaments/${contents["ATP 500"].get("NOV").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["ATP 500"].get("NOV").get("plotColor")
                     }
                 },
                 'han': {
                     latitude: 53.38,
                     longitude: 10.00,
                     tooltip: {content: "ハンブルク・ヨーロピアン・オープン"},
-                    href: "/",
+                    href: `/tournaments/${contents["ATP 500"].get("HAN").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["ATP 500"].get("HAN").get("plotColor")
                     }
                 },
                 'city': {
                     latitude: 38.9041,
                     longitude: -77.0171,
                     tooltip: {content: "シティ・オープン"},
-                    href: "/",
+                    href: `/tournaments/${contents["ATP 500"].get("CITY").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["ATP 500"].get("CITY").get("plotColor")
                     }
                 },
                 'chi': {
                     latitude: 39.54,
                     longitude: 116.24,
                     tooltip: {content: "チャイナ・オープン"},
-                    href: "/",
+                    href: `/tournaments/${contents["ATP 500"].get("CHI").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["ATP 500"].get("CHI").get("plotColor")
                     }
                 },
                 'tok': {
                     latitude: 35.39,
                     longitude: 139.32,
                     tooltip: {content: "楽天ジャパン・オープン"},
-                    href: "/",
+                    href: `/tournaments/${contents["ATP 500"].get("TOK").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["ATP 500"].get("TOK").get("plotColor")
                     }
                 },
                 'el': {
                     latitude: 48.13,
                     longitude: 16.22,
                     tooltip: {content: "エルステ・バンク・オープン"},
-                    href: "/",
+                    href: `/tournaments/${contents["ATP 500"].get("EL").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["ATP 500"].get("EL").get("plotColor")
                     }
                 },
                 'in': {
                     latitude: 47.34,
                     longitude: 7.36,
                     tooltip: {content: "スイス・インドア"},
-                    href: "/",
+                    href: `/tournaments/${contents["ATP 500"].get("IN").get("id")}`,
                     size: 10,
                     attrs: {
-                        fill: contents["GRAND SLAM"].get("NY").get("plotColor")
+                        fill: contents["ATP 500"].get("IN").get("plotColor")
                     }
                 },
             }
