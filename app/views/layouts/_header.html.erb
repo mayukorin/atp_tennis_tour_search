@@ -7,6 +7,7 @@
             <ul class="col-5 my-auto text-success header-link">
                 <li><%= link_to 'top', root_url %></li>
                 <% if logged_in? %>
+                    <li><%= link_to 'settings', edit_user_path(current_user) %>
                     <li><%= link_to 'logout', logout_path, method: :delete %></li>
                 <% else %>
                     <li><%= link_to 'login', login_url %></li>

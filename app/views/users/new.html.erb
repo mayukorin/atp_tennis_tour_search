@@ -1,48 +1,8 @@
+<% provide(:button_text, '登録') %>
 <div class="text-success heading m-5 text-center">ユーザ登録</div>
 <div class="row">
     <div class="col-md-6 offset-md-3">
-        <%= form_with(model: @user, local: true, html: { novalidate: true}) do |f| %>
-            <div class="mb-3">
-                <%= f.label :name, "ユーザ名", class: "form-label text-success" %>
-                <% if @user.errors.include?(:name) %>
-                    <%= f.text_field :name, class: "form-control  is-invalid" %>
-                    <div class="error_message"><%= @user.errors.full_messages_for(:name).first %></div>
-                <% else %>
-                    <%= f.text_field :name, class: "form-control" %>
-                <% end %>
-            </div>
-            <div class="mb-3">
-                <%= f.label :email, "メールアドレス", class: "form-label text-success" %>
-                <% if @user.errors.include?(:email) %>
-                    <%= f.email_field :email, class: "form-control  is-invalid" %>
-                    <div class="error_message"><%= @user.errors.full_messages_for(:email).first %></div>
-                <% else %>
-                    <%= f.email_field :email, class: "form-control" %>
-                <% end %>
-                
-            </div>
-            <div class="mb-3">
-                <%= f.label :password, "パスワード", class: "form-label text-success" %>
-                <% if @user.errors.include?(:password) %>
-                    <%= f.password_field :password, class: "form-control  is-invalid" %>
-                    <div class="error_message"><%= @user.errors.full_messages_for(:password).first %></div>
-                <% else %>
-                    <%= f.password_field :password, class: "form-control" %>
-                <% end %>
-            </div>
-            <div class="mb-3">
-                <%= f.label :password_confirmation, "パスワード（確認用）", class: "form-label text-success" %>
-                <% if @user.errors.include?(:password_confirmation) %>
-                    <%= f.password_field :password_confirmation, class: "form-control  is-invalid" %>
-                    <div class="error_message"><%= @user.errors.full_messages_for(:password_confirmation).first %></div>
-                <% else %>
-                    <%= f.password_field :password_confirmation, class: "form-control" %>
-                <% end %>
-            </div>
-            <div class="mb-3 row justify-content-center">
-                <%= f.submit "登録", class: "btn btn-primary btn-success col-4" %>
-            </div>
-        <% end %>
+        <%= render 'form' %>
     </div>
 </div>
 

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :tournaments, only: [:show]
   resources :players, only: [:show]
   get '/player_matches_index', to: 'player_matches#index'
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
   resources :favorites, only: [:create, :destroy]
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
