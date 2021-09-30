@@ -51,11 +51,7 @@ grand_slam.tournaments << ny
 =end
 
 
-grand_slam.save
-me << grand_slam
-pa << grand_slam
-lo << grand_slam
-ny << grand_slam
+
 my = Tournament.create!(:name => 'マイアミオープン', :abbreviation => 'MY', :city => 'マイアミ', :atp_category_id => 2)
 lor = Tournament.create(:name => 'ロレックス・モンテカルロ・マスターズ', :abbreviation => 'LOR', :city => 'モンテカルロ', :atp_category_id => 2)
 mu = Tournament.create(:name => 'ムチュア・マドリード・オープン', :abbreviation => 'MU', :city => 'マドリード', :atp_category_id => 2)
