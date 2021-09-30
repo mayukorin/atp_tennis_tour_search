@@ -27,7 +27,7 @@ lo = tournament.tournament_years.create(:year => 2021, :first_day => '2021-06-28
 
 tournament = Tournament.find_by(name: '全米オープン')
 ny = tournament.tournament_years.create(:year => 2021, :first_day => '2021-08-30', :last_day => '2021-09-12', :now_flag => 't', :api_id => 1368)
-=end
+
 grand_slam = AtpCategory.create(:name => 'GRAND SLAM')
 masters = AtpCategory.create(:name => 'Masters 1000')
 atp_500 = AtpCategory.create(:name => 'ATP 500')
@@ -48,8 +48,9 @@ grand_slam.tournaments << me
 grand_slam.tournaments << pa
 grand_slam.tournaments << lo
 grand_slam.tournaments << ny
+=end
 
-=begin
+
 grand_slam.save
 me << grand_slam
 pa << grand_slam
@@ -101,4 +102,3 @@ chi.tournament_years.create(:year => 2021, :first_day => '2021-10-04', :last_day
 tok.tournament_years.create(:year => 2021, :first_day => '2021-10-04', :last_day => '2021-10-10', :now_flag => 't', :api_id => 1375) 
 el.tournament_years.create(:year => 2021, :first_day => '2021-10-25', :last_day => '2021-10-31', :now_flag => 't', :api_id => 1381)
 ind.tournament_years.create(:year => 2021, :first_day => '2021-10-25', :last_day => '2021-10-31', :now_flag => 't', :api_id => 1382)
-=end
