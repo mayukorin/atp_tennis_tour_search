@@ -1,6 +1,7 @@
 class TournamentsController < ApplicationController
     def show
         puts "ああああああああああああああああああああああ"
+        puts params[:id]
         @years_array = TournamentYear.joins(:tournament).where(tournament: params[:id]).order(first_day: :desc).map do |tournament_year|
             [tournament_year.first_day.strftime('%Y'), tournament_year.id]
         end

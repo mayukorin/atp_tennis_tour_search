@@ -15,10 +15,15 @@
         <%= image_tag("ny.jpg", class: "img-fluid") %>
     </div>
 </div>
-<%= render @tournament_year, 
-    tournament_days_array:  @tournament_days_array,
-    selected_tournament_day: @selected_tournament_day,
-    selected_tournament_year_id: @selected_tournament_year_id,
-    selected_tournament_day_matches: @selected_tournament_day_matches
-%>
-
+<% unless @selected_tournament_day.nil? %>
+    <%= render @tournament_year, 
+        tournament_days_array:  @tournament_days_array,
+        selected_tournament_day: @selected_tournament_day,
+        selected_tournament_year_id: @selected_tournament_year_id,
+        selected_tournament_day_matches: @selected_tournament_day_matches
+    %>
+<% else %>
+<div class="text-success text-center m-5">
+    <h2>試合日程はまだ発表されていません</h2>
+</div>
+<% end %>

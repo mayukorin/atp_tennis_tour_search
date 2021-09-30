@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_15_131530) do
+ActiveRecord::Schema.define(version: 2021_09_26_060459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "atp_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "batch_schedules", force: :cascade do |t|
     t.date "today"
@@ -106,6 +112,8 @@ ActiveRecord::Schema.define(version: 2021_09_15_131530) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "abbreviation"
     t.string "city"
+    t.bigint "atp_category_id"
+    t.index ["atp_category_id"], name: "index_tournaments_on_atp_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -131,4 +139,5 @@ ActiveRecord::Schema.define(version: 2021_09_15_131530) do
   add_foreign_key "tournament_year_and_players", "tournament_years"
   add_foreign_key "tournament_years", "players", column: "champion_id"
   add_foreign_key "tournament_years", "tournaments"
+  add_foreign_key "tournaments", "atp_categories"
 end
