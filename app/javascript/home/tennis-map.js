@@ -127,7 +127,7 @@ $(function () {
                     latitude: 25.7616,
                     longitude: -80.1917,
                     tooltip: {content: "マイアミオープン"},
-                    href: "",
+                    href: `/tournaments/${contents["Masters 1000"].get("MY").get("id")}`,
                     size: 10,
                     attrs: {
                         fill: contents["Masters 1000"].get("MY").get("plotColor")

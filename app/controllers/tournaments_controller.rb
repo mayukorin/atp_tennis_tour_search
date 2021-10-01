@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
     def show
-        puts "ああああああああああああああああああああああ"
+        
         puts params[:id]
         @years_array = TournamentYear.joins(:tournament).where(tournament: params[:id]).order(first_day: :desc).map do |tournament_year|
             [tournament_year.first_day.strftime('%Y'), tournament_year.id]
@@ -9,6 +9,8 @@ class TournamentsController < ApplicationController
         @selected_tournament_year_id = @years_array[0][1]
         
         @tournament_year = TournamentYear.eager_loading.find(@selected_tournament_year_id)
+        puts "ああああああああああああああああああああああ"
+        puts @tournament_year.id
 
         @tournament_days_array = Match.joins(:tournament_year).select("day::date").where(tournament_year: params[:id]).group("day::date").order("day::date desc").map do |tournament_day|
             [tournament_day.day.strftime('%Y/%m/%d'), tournament_day.day]
