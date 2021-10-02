@@ -22,11 +22,16 @@ $(function () {
                            `<div>開催都市 : ${city_name}</div>`+
                            `<div>開催期間 : ${period}</div>`;
             contentAndColor.set("id", response[key]["id"])
+            if (response[key]["hold_flag"]) {
+                contentAndColor.set("plotColor", "red");
+                now_tournaments_name += tournament_name + " ";
+            } else {
+                contentAndColor.set("plotColor", "blue");
+            }
             if (response[key]["champion"] != null) {
                 var champion_name = response[key]["champion"]["name"];
                 content += `<div>優勝者 : ${champion_name}`+
                            `</div>`;
-                contentAndColor.set("plotColor", "blue");
             } else {
                 var main_players = ``;
                 for(var id in response[key]["tournament_year_and_players"]) {
@@ -40,8 +45,6 @@ $(function () {
                 content +=  '<div>主な出場者:</div>'+
                             `${main_players}`+
                             '</div>';
-                contentAndColor.set("plotColor", "red");
-                now_tournaments_name += tournament_name + " ";
             }
             contentAndColor.set("content", content);
  
@@ -53,7 +56,6 @@ $(function () {
         } else {
             $("#now-tournament-info").html(`現在開催中の大会はありません`);
         }
-        $("#now-tournament-info").html(`現在 <span class="text-danger">全米オープン </span>が開催中です`);
         
         $(".map-container-GRAND-SLAM").mapael({
             map : {
@@ -126,7 +128,7 @@ $(function () {
                 'my': {
                     latitude: 25.7616,
                     longitude: -80.1917,
-                    tooltip: {content: "マイアミオープン"},
+                    tooltip: {content: contents["Masters 1000"].get("MY").get("content")},
                     href: `/tournaments/${contents["Masters 1000"].get("MY").get("id")}`,
                     size: 10,
                     attrs: {

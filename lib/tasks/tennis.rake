@@ -36,7 +36,7 @@ namespace :tennis do
         response_body_json = JSON.parse(response_read_body)
         result_matches = response_body_json["results"]["matches"]
         '''
-        @tournament_year = TournamentYear.find_by(api_id: 1368)
+        @tournament_year = TournamentYear.find_by(api_id: 1334)
         url = URI("https://tennis-live-data.p.rapidapi.com/matches-results/"+@tournament_year.api_id.to_s)
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
