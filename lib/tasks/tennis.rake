@@ -36,7 +36,7 @@ namespace :tennis do
         response_body_json = JSON.parse(response_read_body)
         result_matches = response_body_json["results"]["matches"]
         '''
-        @tournament_year = TournamentYear.find_by(api_id: 1334)
+        @tournament_year = TournamentYear.find_by(api_id: 1368)
         url = URI("https://tennis-live-data.p.rapidapi.com/matches-results/"+@tournament_year.api_id.to_s)
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
@@ -97,6 +97,25 @@ namespace :tennis do
             end
         end
 
+        @result_nil_matches = Match.eager_loading.where(win_player: nil, tournament_year: @tournament_year.id)
+
+        @result_nil_matches.each do |result_nil_match|
+            home_player = result_nil_match.home_player
+            away_player = result_nil_match.away_player
+
+            if PlayerMatch.eager_loading.where(match: {home_player: home_player.id}, match: {tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
+                result_nil_match.update(win_player_id: home_player.id)
+                tournament_year_and_away_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: away_player.id)
+                tournament_year_and_away_player.update(remain_flag: 'f')
+
+            elsif PlayerMatch.eager_loading.where(match: {away_player: away_player.id }, match: {tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
+                result_nil_match.update(win_player_id: away_player.id)
+                tournament_year_and_home_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: home_player.id)
+                tournament_year_and_home_player.update(remain_flag: 'f')
+            end
+
+        end
+
         if @tournament_year.champion.nil?
             remain_players_cnt = TournamentYearAndPlayer.where(tournament_year: @tournament_year.id, remain_flag: 't').size
             if remain_players_cnt == 1
@@ -104,7 +123,6 @@ namespace :tennis do
                 @tournament_year.update(champion_id: champion_id)
             end
         end
-        puts "OK"
     end
 end
 
