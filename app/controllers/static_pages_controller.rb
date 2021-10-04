@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   def home
     if logged_in?
       @id_list = current_user.favorite_players_id_list
-      player_matches_id_sql = PlayerMatch.select(:id).joins(:match).where('player_id = players.id').order('matches.day desc').limit(2).to_sql
+      player_matches_id_sql = PlayerMatch.select(:id).joins(:match).where('player_id = players.id').in_order_of_latest.limit(2).to_sql
       @favorite_players = Player.eager_loading.where("player_matches.id in (#{player_matches_id_sql})").find(@id_list)
     end
     
