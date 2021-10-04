@@ -7,6 +7,8 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+
+//= require jquery-ui/widgets/autocomplete
 // import "jquery"
 // import "jquery-mapael"
 // import 'bootstrap';
@@ -15,4 +17,14 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+require("jquery")
+import "bootstrap"
+/*
+import "raphael"
+import "jquery-mousewheel";
+import "jquery-mapael/js/jquery.mapael.min.js";
+import "jquery-mapael/js/maps/world_countries.js";
+*/
+import '../stylesheets/application'
+
 
