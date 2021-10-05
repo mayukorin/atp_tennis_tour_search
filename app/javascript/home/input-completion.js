@@ -1,40 +1,49 @@
 $(function () {
-
-    var wordlist = [
-        "あいうえお",
-        "かきくけこ",
-        "さしすせそ",
-        "たちつてと",
-        "なにぬねの",
-        "はひふへほ",
-        "まみむめも",
-        "やゆよ",
-        "らりるれろ",
-        "わをん",
-        "あかさたなはまやらわ",
-        "いきしちにひみり",
-        "うくすつぬふむゆる",
-        "えけせてねへめれ",
-        "おこそとのほもよろを",
-        "ん",
-        "abcdefg",
-        "hijklmnop",
-        "qrstuv",
-        "wxyz",
-        "abc",
-        "def",
-        "ghi",
-        "jkl",
-        "mno",
-        "pqr",
-        "stu",
-        "vwx",
-        "yz",
-        "漢字１",
-        "漢字２",
-        "漢字３"
-      ];
     $('#sbox2').autocomplete({
-        source: wordlist
+        source: function(request, response) {
+            $.ajax({
+                type: "GET",
+                url: "/get_tournament_list",
+                dataType: "json",
+                data: {
+                    name: request.term
+                },
+                success: function(data) {
+                    let completeList = [];
+                
+                    for(let tournament of data["tournaments"]) {
+                        completeList.push(tournament["name"]);
+                    }
+                    for(let tournament of data["players"]) {
+                        completeList.push(tournament["name"]);
+                    }
+                    console.log(completeList);
+                    response(completeList);
+                }
+            });
+        }
     });
+
+
+    /*
+    $.ajax({
+        type: "GET",
+        url: "/get_tournament_list",
+        dataType: "json"
+    }).done(function(response){
+        console.log(response);
+        console.log(response["tournaments"]);
+        let completeList = [];
+        for(let tournament of response["tournaments"]) {
+            completeList.push(tournament["name"]);
+        }
+        for(let tournament of response["players"]) {
+            completeList.push(tournament["name"]);
+        }
+
+        $('#sbox2').autocomplete({
+            source: completeList
+        });
+    });
+    */
 });
