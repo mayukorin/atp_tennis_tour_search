@@ -22,10 +22,12 @@
         <%= render partial:"players/player", collection: @favorite_players %>
     </div>
 <% end %>
-<form id="form2" method="get">
-    <input id="sbox2"  id="s" name="s" type="text" placeholder="フリーワードを入力"/>
-    <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
-</form>
+<div class="text-center">
+    <form id="form2" method="get" class="text-center">
+        <input id="sbox2"  id="s" name="s" type="text" placeholder="フリーワードを入力"/>
+        <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
+    </form>
+</div>
 <br>
 <div class="text-success text-center m-5">
     <h2>地図で確認</h2>

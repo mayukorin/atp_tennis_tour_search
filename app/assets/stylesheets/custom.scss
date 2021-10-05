@@ -169,13 +169,14 @@ header ul li {
 
 
 #form2{
-    position:relative;
-    max-width:300px;	
+    position:relative;	
     margin-bottom:20px;
 }
+
 #sbox2{
-    height:50px;
+    height:40px;
     padding:0 10px; 
+    width: 200px;
     position:absolute; 
     left:0;
     top:0; 
@@ -185,14 +186,88 @@ header ul li {
     border-radius: 0.8em;
 }
 #sbtn2{
-    height:50px;
+    height:40px;
     position:absolute; 
-    left:255px;/*アイコン左右の位置調整*/
+    left: 160px;/*アイコン左右の位置調整*/
     top:0;
     background:none;
     color:green;
     border:none;
-    font-size:20px;/*アイコンサイズ*/
+    font-size: 16px;/*アイコンサイズ*/
+}
+
+@media screen and (min-width: 480px) {
+    #sbox2{
+        height:50px;
+        padding:0 10px; 
+        width: 300px;
+        position:absolute; 
+        left:0;
+        top:0; 
+        outline:0;
+        // background:#f8f8f8;	
+        border: 1px solid #EEEEEE;
+        border-radius: 0.8em;
+    }
+    #sbtn2{
+        height:50px;
+        position:absolute; 
+        left:255px;/*アイコン左右の位置調整*/
+        top:0;
+        background:none;
+        color:green;
+        border:none;
+        font-size:20px;/*アイコンサイズ*/
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #sbox2{
+        height: 50px;
+        padding:0 10px; 
+        width:350px;
+        position:absolute; 
+        left:0;
+        top:0; 
+        outline:0;
+        // background:#f8f8f8;	
+        border: 1px solid #EEEEEE;
+        border-radius: 0.8em;
+    }
+    #sbtn2{
+        height: 50px;
+        position:absolute; 
+        left: 310px;/*アイコン左右の位置調整*/
+        top:0;
+        background:none;
+        color:green;
+        border:none;
+        font-size:20px;/*アイコンサイズ*/
+    }
+}
+@media screen and (min-width: 1024px) {
+    #sbox2{
+        height:50px;
+        padding:0 10px; 
+        width:350px;
+        position:absolute; 
+        left:0;
+        top:0; 
+        outline:0;
+        // background:#f8f8f8;	
+        border: 1px solid #EEEEEE;
+        border-radius: 0.8em;
+    }
+    #sbtn2{
+        height:50px;
+        position:absolute; 
+        left:310px;/*アイコン左右の位置調整*/
+        top:0;
+        background:none;
+        color:green;
+        border:none;
+        font-size:20px;/*アイコンサイズ*/
+    }
 }
 #sbtn5:hover{
     color:#7fbfff;
