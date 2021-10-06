@@ -186,14 +186,16 @@ header ul li {
     border-radius: 0.8em;
 }
 #sbtn2{
-    height:40px;
+    // height:4px0px;
     position:absolute; 
-    left: 160px;/*アイコン左右の位置調整*/
-    top:0;
+    // left: 160px;/*アイコン左右の位置調整*/
+    right: 20px;
+    top:4px;
     background:none;
     color:green;
     border:none;
     font-size: 16px;/*アイコンサイズ*/
+    // vertical-align: middle;
 }
 
 @media screen and (min-width: 480px) {
@@ -210,9 +212,10 @@ header ul li {
         border-radius: 0.8em;
     }
     #sbtn2{
-        height:50px;
+        // height:50px;
         position:absolute; 
-        left:255px;/*アイコン左右の位置調整*/
+        // left:255px;/*アイコン左右の位置調整*/
+        right: 20px;
         top:0;
         background:none;
         color:green;
@@ -235,9 +238,10 @@ header ul li {
         border-radius: 0.8em;
     }
     #sbtn2{
-        height: 50px;
+        // height: 50px;
         position:absolute; 
-        left: 310px;/*アイコン左右の位置調整*/
+        // left: 350px;/*アイコン左右の位置調整*/
+        right: 20px;
         top:0;
         background:none;
         color:green;
@@ -259,9 +263,10 @@ header ul li {
         border-radius: 0.8em;
     }
     #sbtn2{
-        height:50px;
+        // height:50px;
         position:absolute; 
-        left:310px;/*アイコン左右の位置調整*/
+        // left:310px;/*アイコン左右の位置調整*/
+        right: 20px;
         top:0;
         background:none;
         color:green;
@@ -272,3 +277,14 @@ header ul li {
 #sbtn5:hover{
     color:#7fbfff;
 }
+
+.aabb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*
+#trial {
+    width:350px;
+}
+*/

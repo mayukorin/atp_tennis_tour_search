@@ -22,10 +22,17 @@
         <%= render partial:"players/player", collection: @favorite_players %>
     </div>
 <% end %>
-<div class="text-center">
-    <form id="form2" method="get" class="text-center">
-        <input id="sbox2"  id="s" name="s" type="text" placeholder="フリーワードを入力"/>
-        <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
+<div class="row justify-content-center m-5">
+    <form id="form2" method="get" class="text-center col-12 col-md-8 col-lg-7">
+        <div class="form-group">
+            <input type="text" class="form-control" id="trial">
+            <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
+        </div>
+            <!--
+            <input id="sbox2"  id="s" name="s" type="text" placeholder="フリーワードを入力" class="text-center"/>
+            -->
+        <!--
+        -->
     </form>
 </div>
 <br>
