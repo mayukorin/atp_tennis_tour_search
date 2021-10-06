@@ -1,5 +1,5 @@
 $(function () {
-    $('#sbox2').autocomplete({
+    $('#search-box').autocomplete({
         source: function(request, response) {
             $.ajax({
                 type: "GET",

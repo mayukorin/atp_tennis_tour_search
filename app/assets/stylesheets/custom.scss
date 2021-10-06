@@ -196,6 +196,7 @@ header ul li {
     border:none;
     font-size: 16px;/*アイコンサイズ*/
     // vertical-align: middle;
+    outline: none;
 }
 
 @media screen and (min-width: 480px) {
@@ -221,6 +222,7 @@ header ul li {
         color:green;
         border:none;
         font-size:20px;/*アイコンサイズ*/
+        outline: none;
     }
 }
 
@@ -247,6 +249,7 @@ header ul li {
         color:green;
         border:none;
         font-size:20px;/*アイコンサイズ*/
+        outline: none;
     }
 }
 @media screen and (min-width: 1024px) {
@@ -268,6 +271,7 @@ header ul li {
         // left:310px;/*アイコン左右の位置調整*/
         right: 20px;
         top:0;
+        outline: none;
         background:none;
         color:green;
         border:none;
