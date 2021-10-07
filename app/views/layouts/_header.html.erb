@@ -1,8 +1,18 @@
 <header>
-    <div class="container justify-content-center">
+    <div class="container justify-content-center px-2">
         <div class="row justify-content-between">
-            <div class="col-5 d-flex app-logo text-success">
+            <div class="col-2 d-flex app-logo text-success">
                 ATP Tour Search
+            </div>
+            <div class="col-5 my-auto">
+                <div class="row justify-content-center">
+                    <%= form_tag("/search", method: "get", class: "text-center col-12 col-md-8 col-lg-7", id: "form2") do %>
+                            <div class="form-group">
+                                <%= text_field_tag "name", "", {class: 'form-control', id: 'search-box'} %>
+                                <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
+                            </div>
+                    <% end %>
+                </div>
             </div>
             <ul class="col-5 my-auto text-success header-link">
                 <li><%= link_to 'top', root_path %></li>
@@ -17,6 +27,4 @@
         </div>
     </div>
 </header>
-<% unless controller.controller_name == 'static_pages' %>
-    <div class="height-adjust"></div>
-<% end %>
+<div class="height-adjust"></div>
