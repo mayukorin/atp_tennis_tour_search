@@ -45,7 +45,12 @@ li {
 .header-link {
     a:link {color: green;};
     a:visited {color: green;};
-    
+}
+
+.footer-link {
+    a:link {color: green;};
+    a:visited {color: green;};
+    margin-bottom: 0px!important;
 }
 
 .tournament_year_link {
@@ -135,6 +140,41 @@ header {
     box-shadow: 0 0.5rem 1rem gray ;
     
 }
+
+.fixed-menu {
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+    /* 768pxまでの幅の場合に適応される */
+    #top-logo {
+        display: none!important;
+    }
+    .header-link {
+        display: none!important;
+    }
+
+    .name-search {
+        margin-top: 14px!important;
+    }
+
+    .fixed-menu {
+        position: fixed;
+        display: block;
+        left: 0;
+        bottom: 15px;
+        width: 100%;
+    }
+
+    .fixed-menu-inner-list{
+        box-shadow: 0 0.5rem 1rem gray ;
+        background-color: #f8f9fa;
+    }
+}
+
+
+
+
 .app-logo {
     font-size: 2rem;
     margin-top: 5px!important;
@@ -146,6 +186,16 @@ header ul {
     align-items: center;
 }
 header ul li {
+    margin: 15px;
+}
+
+.fixed-menu ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fixed-menu ul li {
     margin: 15px;
 }
 

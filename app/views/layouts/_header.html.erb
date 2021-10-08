@@ -1,18 +1,11 @@
 <header>
     <div class="container justify-content-center px-2">
-        <div class="row justify-content-between">
-            <div class="col-2 d-flex app-logo text-success">
+        <div class="row justify-content-center justify-content-md-between">
+            <div class="col-2 d-flex app-logo text-success" id="top-logo">
                 ATP Tour Search
             </div>
-            <div class="col-5 my-auto">
-                <div class="row justify-content-center">
-                    <%= form_tag("/search", method: "get", class: "text-center col-12 col-md-8 col-lg-7", id: "form2") do %>
-                            <div class="form-group">
-                                <%= text_field_tag "name", "", {class: 'form-control', id: 'search-box'} %>
-                                <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
-                            </div>
-                    <% end %>
-                </div>
+            <div class="col-10 col-md-5 my-md-auto name-search">
+                <%= render 'shared/name_search_form' %>
             </div>
             <ul class="col-5 my-auto text-success header-link">
                 <li><%= link_to 'top', root_path %></li>

@@ -23,12 +23,9 @@
     </div>
 <% end %>
 <div class="row justify-content-center m-5">
-<%= form_tag("/search", method: "get", class: "text-center col-12 col-md-8 col-lg-7", id: "form2") do %>
-        <div class="form-group">
-            <%= text_field_tag "name", "", {class: 'form-control', id: 'search-box'} %>
-            <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
-        </div>
-<% end %>
+    <div class="text-center col-12 col-md-8 col-lg-7">
+        <%= render 'shared/name_search_form' %>
+    </div>
 </div>
 <br>
 <div class="text-success text-center m-5">
