@@ -26,5 +26,6 @@ import "jquery-mapael/js/jquery.mapael.min.js";
 import "jquery-mapael/js/maps/world_countries.js";
 */
 import '../stylesheets/application'
+import "header-layout"
 
 

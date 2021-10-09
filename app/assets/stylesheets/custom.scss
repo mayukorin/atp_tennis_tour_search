@@ -104,7 +104,7 @@ li {
 }
 
 .tennis-content {
-    position: relative;;
+    position: relative;
 }
 
 .top-image {
@@ -136,31 +136,55 @@ header {
     // padding: 30px 50px;
     // height: 70px;
     position: fixed;
-    background-color: #f8f9fa;
-    box-shadow: 0 0.5rem 1rem gray ;
+    // background-color: #f8f9fa; //
+    // box-shadow: 0 0.5rem 1rem gray ; //
+    top: 0;
+    left: 0;
     
 }
+
+.independent {
+    background-color: #f8f9fa; //
+    box-shadow: 0 0.5rem 1rem gray; //
+}
+
+.height-adjust {
+    height: 100px;
+    // height: 0px;
+}
+
+
 
 .fixed-menu {
     display: none;
 }
 
+@media screen and (min-width: 768px) {
+    
+    #top-logo {
+        display: flex!important;
+    }
+}
+
+
 @media screen and (max-width: 767px) {
     /* 768pxまでの幅の場合に適応される */
+    /*
     #top-logo {
         display: none!important;
     }
+    */
     .header-link {
         display: none!important;
     }
-
     .name-search {
         margin-top: 14px!important;
     }
-
+    #top-logo {
+        text-align: center;
+    }
     .fixed-menu {
         position: fixed;
-        display: block;
         left: 0;
         bottom: 15px;
         width: 100%;
@@ -171,6 +195,8 @@ header {
         background-color: #f8f9fa;
     }
 }
+
+
 
 
 
@@ -199,9 +225,7 @@ header ul li {
     margin: 15px;
 }
 
-.height-adjust {
-    height: 100px;
-}
+
 /*
 .field_with_errors {
     input {

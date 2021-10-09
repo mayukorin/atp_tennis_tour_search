@@ -7,3 +7,4 @@ import "jquery-mapael/js/maps/world_countries.js";
 
 import "home/tennis-map"
 import "home/input-completion"
+import "header-layout"
