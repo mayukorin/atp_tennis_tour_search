@@ -23,7 +23,7 @@
       <%= yield :topImage %>
       <div class="container"> 
         <% flash.each do |message_type, message| %>
-          <div class="alert m-3 alert-<%= message_type %>"><%= message %></div>
+          <div class="alert alert-<%= message_type %> flash-message"><%= message %></div>
         <% end %>
         <%= yield %>
       </div>

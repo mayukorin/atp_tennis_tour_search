@@ -27,5 +27,6 @@ import "jquery-mapael/js/maps/world_countries.js";
 */
 import '../stylesheets/application'
 import "header-layout"
-
+import "input-completion"
+import "flash-message"
 

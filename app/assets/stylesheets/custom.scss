@@ -155,15 +155,30 @@ header {
 
 
 
-.fixed-menu {
-    display: none;
-}
+
 
 @media screen and (min-width: 768px) {
     
     #top-logo {
         display: flex!important;
     }
+
+    .fixed-menu {
+        display: none!important;
+    }
+
+}
+
+.flash-message {
+    top: 10%;
+    right: 2%;
+    text-align: right;
+    position: fixed;
+    margin-top: 2%;
+    z-index: 100;
+    opacity: 0.8;
+    border-radius: 10px;
+    width: auto;
 }
 
 
@@ -194,6 +209,28 @@ header {
         box-shadow: 0 0.5rem 1rem gray ;
         background-color: #f8f9fa;
     }
+
+    .fixed-menu ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .fixed-menu ul li {
+        margin: 15px;
+    }
+
+    .other-page {
+        display: none;
+    }
+    
+    .flash-message {
+        margin-left: 42%;
+        margin-top: 6%;
+        margin-right: 3%;
+        padding-left: 1.2rem;
+        text-align: left;
+    }
 }
 
 
@@ -215,24 +252,6 @@ header ul li {
     margin: 15px;
 }
 
-.fixed-menu ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fixed-menu ul li {
-    margin: 15px;
-}
-
-
-/*
-.field_with_errors {
-    input {
-        @extend .is-invalid;
-    }
-}
-*/
 
 #now-tournament-info {
     font-size: 1.3rem;
@@ -358,13 +377,3 @@ header ul li {
     color:#7fbfff;
 }
 
-.aabb {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-/*
-#trial {
-    width:350px;
-}
-*/

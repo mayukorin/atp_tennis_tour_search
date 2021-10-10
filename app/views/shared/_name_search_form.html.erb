@@ -1,6 +1,7 @@
 <%= form_tag("/search", method: "get", id: "form2") do %>
         <div class="form-group">
-            <%= text_field_tag "name", "", {class: 'form-control', id: 'search-box'} %>
+            <%= hidden_field_tag :back_url, request.original_url %>
+            <%= text_field_tag "name", "", {class: 'form-control search-box2', id: 'search-box'} %>
             <button type="submit" id="sbtn2"><i class="fas fa-search"></i></button>
         </div>
 <% end %>

@@ -1,7 +1,7 @@
 <header class="<%= "independent" unless controller.controller_name == 'static_pages' %>">
     <div class="container justify-content-center px-2">
         <div class="row justify-content-center justify-content-md-between">
-            <div class="col-10 col-md-2 app-logo text-success" id="top-logo">
+            <div class="col-10 col-md-2 app-logo text-success <%= "other-page" unless controller.controller_name == 'static_pages' %>" id="top-logo">
                 ATP Tour Search
             </div>
             <div class="col-10 col-md-5 my-md-auto name-search">

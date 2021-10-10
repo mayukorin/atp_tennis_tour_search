@@ -23,14 +23,14 @@ $(function () {
                 // console.log("mizu");
                 $('header').addClass('independent');
                 if ($(window).width() < 768) {
-                    $('#top-logo').css('display', 'none');
-                    $('.fixed-menu').css('display', 'block');
+                    $('.app-logo').css('display', 'none');
+                    // $('.fixed-menu').css('display', 'block');
                 }
             } else {
                 $('header').removeClass('independent');
                 if ($(window).width() < 768) {
-                    $('#top-logo').css('display', 'block');
-                    $('.fixed-menu').css('display', 'none');
+                    $('.app-logo').css('display', 'block');
+                    // $('.fixed-menu').css('display', 'none');
                 }
             }
         }
