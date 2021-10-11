@@ -159,7 +159,7 @@ header {
 
 @media screen and (min-width: 768px) {
     
-    #top-logo {
+    .app-logo {
         display: flex!important;
     }
 
@@ -195,7 +195,7 @@ header {
     .name-search {
         margin-top: 14px!important;
     }
-    #top-logo {
+    .app-logo {
         text-align: center;
     }
     .fixed-menu {
@@ -263,7 +263,7 @@ header ul li {
 
 
 
-#form2{
+#name-search-form{
     position:relative;	
     margin-bottom:20px;
 }
@@ -280,7 +280,7 @@ header ul li {
     border: 1px solid #EEEEEE;
     border-radius: 0.8em;
 }
-#sbtn2{
+#sbtn{
     // height:4px0px;
     position:absolute; 
     // left: 160px;/*アイコン左右の位置調整*/
@@ -307,7 +307,7 @@ header ul li {
         border: 1px solid #EEEEEE;
         border-radius: 0.8em;
     }
-    #sbtn2{
+    #sbtn{
         // height:50px;
         position:absolute; 
         // left:255px;/*アイコン左右の位置調整*/
@@ -334,7 +334,7 @@ header ul li {
         border: 1px solid #EEEEEE;
         border-radius: 0.8em;
     }
-    #sbtn2{
+    #sbtn{
         // height: 50px;
         position:absolute; 
         // left: 350px;/*アイコン左右の位置調整*/
@@ -360,7 +360,7 @@ header ul li {
         border: 1px solid #EEEEEE;
         border-radius: 0.8em;
     }
-    #sbtn2{
+    #sbtn{
         // height:50px;
         position:absolute; 
         // left:310px;/*アイコン左右の位置調整*/
