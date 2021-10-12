@@ -1,6 +1,5 @@
 <% content_for :head do %>
     <%= stylesheet_link_tag 'tennis-map', media: 'all', 'data-turbolinks-track': 'reload'%>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"
             charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js" charset="utf-8"></script>
@@ -23,10 +22,16 @@
         <%= render partial:"players/player", collection: @favorite_players %>
     </div>
 <% end %>
-<div class="text-success text-center m-5">
-        <h2>地図で確認</h2>
+<div class="row justify-content-center m-5">
+    <div class="text-center col-12 col-md-8 col-lg-7">
+        <%= render 'shared/name_search_form' %>
     </div>
-    <div id="now-tournament-info" class="text-center mb-5"></div>
+</div>
+<br>
+<div class="text-success text-center m-5">
+    <h2>地図で確認</h2>
+</div>
+<div id="now-tournament-info" class="text-center mb-5"></div>
 <div class="map-container-GRAND-SLAM">
     <div class="text-success text-center m-5">
         <h2>GRAND SLAM</h2>

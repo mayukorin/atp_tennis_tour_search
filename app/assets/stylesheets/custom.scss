@@ -1,5 +1,10 @@
 // @import "../node_modules/bootstrap/scss/bootstrap";
 /* universal */
+/*
+@import "jquery-ui/autocomplete";
+@import "jquery-ui/theme";
+@import "jquery-ui/menu";
+*/
 body {
     background-color:#f8f8f8;
     font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
@@ -12,12 +17,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: inherit;
 }
 
-/*
-html {
-    //font-size: 63%;
-    font-size: 70%;
-}
-*/
 
 li {
     list-style: none;
@@ -40,7 +39,12 @@ li {
 .header-link {
     a:link {color: green;};
     a:visited {color: green;};
-    
+}
+
+.footer-link {
+    a:link {color: green;};
+    a:visited {color: green;};
+    margin-bottom: 0px!important;
 }
 
 .tournament_year_link {
@@ -49,52 +53,16 @@ li {
     a:hover {color: blue}
 }
 
-.container_match::after {
-    content:"";
-    display:block;
-    width: 30%;
+.heading {
+    font-size:xx-large;
 }
-
 
 .error_message {
     color: red;
 }
 
-.m-5 {
-    margin : 5rem;
-}
-
-.mt-3 {
-    margin-top: 3rem;
-}
-
-.mb-3 {
-    margin-bottom: 3rem;
-}
-.m-auto {
-    margin: auto;
-}
-
-.p-2 {
-    padding: 2rem;
-}
-
-.justify-content-center {
-    justify-content: center!important;
-}
-
-.justify-content-between {
-    justify-content: space-between;
-}
-
-.aaaaaa {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-}
-
 .tennis-content {
-    position: relative;;
+    position: relative;
 }
 
 .top-image {
@@ -123,11 +91,25 @@ header {
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 30px 50px;
-    height: 70px;
+    // padding: 30px 50px;
+    // height: 70px;
     position: fixed;
+    // background-color: #f8f9fa; //
+    // box-shadow: 0 0.5rem 1rem gray ; //
+    top: 0;
+    left: 0;
     
 }
+
+.independent {
+    background-color: #f8f9fa; //
+    box-shadow: 0 0.5rem 1rem gray; //
+}
+
+.height-adjust {
+    height: 115px;
+}
+
 .app-logo {
     font-size: 2rem;
     margin-top: 5px!important;
@@ -142,16 +124,6 @@ header ul li {
     margin: 15px;
 }
 
-.height-adjust {
-    height: 80px;
-}
-/*
-.field_with_errors {
-    input {
-        @extend .is-invalid;
-    }
-}
-*/
 
 #now-tournament-info {
     font-size: 1.3rem;
@@ -159,4 +131,216 @@ header ul li {
 
 .player-name {
     font-size: 1.2rem;
+}
+
+
+
+#name-search-form {
+    position:relative;	
+    margin-bottom:20px;
+}
+
+#sbox2{
+    height:40px;
+    padding:0 10px; 
+    width: 200px;
+    position:absolute; 
+    left:0;
+    top:0; 
+    outline:0;
+    // background:#f8f8f8;	
+    border: 1px solid #EEEEEE;
+    border-radius: 0.8em;
+}
+#sbtn {
+    // height:4px0px;
+    position:absolute; 
+    // left: 160px;/*アイコン左右の位置調整*/
+    right: 20px;
+    top:4px;
+    background:none;
+    color:green;
+    border:none;
+    font-size: 16px;/*アイコンサイズ*/
+    // vertical-align: middle;
+    outline: none;
+}
+
+.mapael .map {
+    position: relative;
+}
+
+.mapael .mapTooltip {
+    position: absolute;
+    background-color: #fff;
+    moz-opacity: 0.70;
+    opacity: 0.70;
+    filter: alpha(opacity=70);
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 1000;
+    max-width: 200px;
+    display: none;
+    color: #343434;
+}
+
+
+
+
+.game_card {
+    background-color: white;
+}
+
+
+@media screen and (min-width: 768px) {
+    
+    .app-logo {
+        display: flex!important;
+    }
+
+    .fixed-menu {
+        display: none!important;
+    }
+
+}
+
+.flash-message {
+    top: 10%;
+    right: 2%;
+    text-align: right;
+    position: fixed;
+    margin-top: 2%;
+    z-index: 100;
+    opacity: 0.8;
+    border-radius: 10px;
+    width: auto;
+}
+
+
+@media screen and (max-width: 767px) {
+    /* 768pxまでの幅の場合に適応される */
+   
+    .header-link {
+        display: none!important;
+    }
+    .name-search {
+        margin-top: 14px!important;
+    }
+    .app-logo {
+        text-align: center;
+    }
+    .fixed-menu {
+        position: fixed;
+        left: 0;
+        bottom: 15px;
+        width: 100%;
+    }
+
+    .fixed-menu-inner-list{
+        box-shadow: 0 0.5rem 1rem gray ;
+        background-color: #f8f9fa;
+    }
+
+    .fixed-menu ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .fixed-menu ul li {
+        margin: 15px;
+    }
+
+    .other-page {
+        display: none;
+    }
+    
+    .flash-message {
+        margin-left: 42%;
+        margin-top: 6%;
+        margin-right: 3%;
+        padding-left: 1.2rem;
+        text-align: left;
+    }
+}
+
+
+@media screen and (min-width: 480px) {
+    #sbox2{
+        height:50px;
+        padding:0 10px; 
+        width: 300px;
+        position:absolute; 
+        left:0;
+        top:0; 
+        outline:0;
+        // background:#f8f8f8;	
+        border: 1px solid #EEEEEE;
+        border-radius: 0.8em;
+    }
+    #sbtn{
+        // height:50px;
+        position:absolute; 
+        // left:255px;/*アイコン左右の位置調整*/
+        right: 20px;
+        top:0;
+        background:none;
+        color:green;
+        border:none;
+        font-size:20px;/*アイコンサイズ*/
+        outline: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #sbox2{
+        height: 50px;
+        padding:0 10px; 
+        width:350px;
+        position:absolute; 
+        left:0;
+        top:0; 
+        outline:0;
+        // background:#f8f8f8;	
+        border: 1px solid #EEEEEE;
+        border-radius: 0.8em;
+    }
+    #sbtn{
+        // height: 50px;
+        position:absolute; 
+        // left: 350px;/*アイコン左右の位置調整*/
+        right: 20px;
+        top:0;
+        background:none;
+        color:green;
+        border:none;
+        font-size:20px;/*アイコンサイズ*/
+        outline: none;
+    }
+}
+@media screen and (min-width: 1024px) {
+    #sbox2{
+        height:50px;
+        padding:0 10px; 
+        width:350px;
+        position:absolute; 
+        left:0;
+        top:0; 
+        outline:0;
+        // background:#f8f8f8;	
+        border: 1px solid #EEEEEE;
+        border-radius: 0.8em;
+    }
+    #sbtn{
+        // height:50px;
+        position:absolute; 
+        // left:310px;/*アイコン左右の位置調整*/
+        right: 20px;
+        top:0;
+        outline: none;
+        background:none;
+        color:green;
+        border:none;
+        font-size:20px;/*アイコンサイズ*/
+    }
 }

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # root 'welcome#index'
   get '/get_tournament_info', to: 'static_pages#get_tournament_info'
+  get '/get_tournament_list', to: 'static_pages#get_tournament_list'
   resources :tournament_years, only: [:show]
   resources :tournaments, only: [:show]
   resources :players, only: [:show]
@@ -15,4 +16,5 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  get '/search', to: 'searches#search'
 end
