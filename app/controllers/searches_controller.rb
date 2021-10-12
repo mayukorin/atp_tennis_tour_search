@@ -2,8 +2,6 @@ class SearchesController < ApplicationController
 
     def search
         @tournament = Tournament.find_by(name: params[:name])
-        puts "okkk"
-        puts request.original_url
         if @tournament
             redirect_to tournament_path(@tournament)
         end

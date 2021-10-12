@@ -17,12 +17,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: inherit;
 }
 
-/*
-html {
-    //font-size: 63%;
-    font-size: 70%;
-}
-*/
 
 li {
     list-style: none;
@@ -59,48 +53,12 @@ li {
     a:hover {color: blue}
 }
 
-.container_match::after {
-    content:"";
-    display:block;
-    width: 30%;
+.heading {
+    font-size:xx-large;
 }
-
 
 .error_message {
     color: red;
-}
-
-.m-5 {
-    margin : 5rem;
-}
-
-.mt-3 {
-    margin-top: 3rem;
-}
-
-.mb-3 {
-    margin-bottom: 3rem;
-}
-.m-auto {
-    margin: auto;
-}
-
-.p-2 {
-    padding: 2rem;
-}
-
-.justify-content-center {
-    justify-content: center!important;
-}
-
-.justify-content-between {
-    justify-content: space-between;
-}
-
-.aaaaaa {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
 }
 
 .tennis-content {
@@ -149,12 +107,89 @@ header {
 }
 
 .height-adjust {
-    height: 100px;
-    // height: 0px;
+    height: 115px;
+}
+
+.app-logo {
+    font-size: 2rem;
+    margin-top: 5px!important;
+    color: white;
+}
+header ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header ul li {
+    margin: 15px;
+}
+
+
+#now-tournament-info {
+    font-size: 1.3rem;
+}
+
+.player-name {
+    font-size: 1.2rem;
 }
 
 
 
+#name-search-form {
+    position:relative;	
+    margin-bottom:20px;
+}
+
+#sbox2{
+    height:40px;
+    padding:0 10px; 
+    width: 200px;
+    position:absolute; 
+    left:0;
+    top:0; 
+    outline:0;
+    // background:#f8f8f8;	
+    border: 1px solid #EEEEEE;
+    border-radius: 0.8em;
+}
+#sbtn {
+    // height:4px0px;
+    position:absolute; 
+    // left: 160px;/*アイコン左右の位置調整*/
+    right: 20px;
+    top:4px;
+    background:none;
+    color:green;
+    border:none;
+    font-size: 16px;/*アイコンサイズ*/
+    // vertical-align: middle;
+    outline: none;
+}
+
+.mapael .map {
+    position: relative;
+}
+
+.mapael .mapTooltip {
+    position: absolute;
+    background-color: #fff;
+    moz-opacity: 0.70;
+    opacity: 0.70;
+    filter: alpha(opacity=70);
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 1000;
+    max-width: 200px;
+    display: none;
+    color: #343434;
+}
+
+
+
+
+.game_card {
+    background-color: white;
+}
 
 
 @media screen and (min-width: 768px) {
@@ -184,11 +219,7 @@ header {
 
 @media screen and (max-width: 767px) {
     /* 768pxまでの幅の場合に適応される */
-    /*
-    #top-logo {
-        display: none!important;
-    }
-    */
+   
     .header-link {
         display: none!important;
     }
@@ -233,66 +264,6 @@ header {
     }
 }
 
-
-
-
-
-
-.app-logo {
-    font-size: 2rem;
-    margin-top: 5px!important;
-    color: white;
-}
-header ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-header ul li {
-    margin: 15px;
-}
-
-
-#now-tournament-info {
-    font-size: 1.3rem;
-}
-
-.player-name {
-    font-size: 1.2rem;
-}
-
-
-
-#name-search-form{
-    position:relative;	
-    margin-bottom:20px;
-}
-
-#sbox2{
-    height:40px;
-    padding:0 10px; 
-    width: 200px;
-    position:absolute; 
-    left:0;
-    top:0; 
-    outline:0;
-    // background:#f8f8f8;	
-    border: 1px solid #EEEEEE;
-    border-radius: 0.8em;
-}
-#sbtn{
-    // height:4px0px;
-    position:absolute; 
-    // left: 160px;/*アイコン左右の位置調整*/
-    right: 20px;
-    top:4px;
-    background:none;
-    color:green;
-    border:none;
-    font-size: 16px;/*アイコンサイズ*/
-    // vertical-align: middle;
-    outline: none;
-}
 
 @media screen and (min-width: 480px) {
     #sbox2{
@@ -373,7 +344,3 @@ header ul li {
         font-size:20px;/*アイコンサイズ*/
     }
 }
-#sbtn5:hover{
-    color:#7fbfff;
-}
-

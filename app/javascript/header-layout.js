@@ -1,15 +1,3 @@
-/*
-$(window).on('load',function(){
-    let pathName = $(location).attr('pathname');
-    console.log(pathName);
-    if (pathName != '/') {
-        $('header').addClass('independent');
-        $('.height-adjust').css('height', '80px');
-    }
-});
-*/
-
-
 $(function () {
 
     $(window).scroll(function () {
