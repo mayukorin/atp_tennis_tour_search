@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+  get 'errors/internal_server_error'
   get 'sessions/new'
   get 'users/new'
   get 'players/new'
@@ -17,4 +19,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   get '/search', to: 'searches#search'
+  match "/404", to: 'errors#not_found', via: :all
+  match "/500", to: 'errors#internal_server_error', via: :all
 end
