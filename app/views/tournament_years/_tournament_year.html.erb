@@ -2,7 +2,7 @@
     <div class="col-11 col-lg-6">
         開催都市 : <%= tournament_year.tournament.city %><br>
         開催期間 : <%= l tournament_year.first_day %> ~  <%= l tournament_year.last_day %><br>
-        <a href="#">公式サイトへ</a>
+        <%= link_to '公式サイトへ', tournament_year.tournament.site_url %>
     </div>
 </div>
 <div>
