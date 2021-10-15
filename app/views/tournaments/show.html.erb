@@ -1,6 +1,7 @@
 <div class="m-5">
     <div class="text-success text-center m-5">
         <h2><%= @tournament_year.tournament.name%></h2>
+        <%= link_to '公式サイトへ', @tournament_year.tournament.site_url %>
     </div>
     
     <%= form_tag(tournament_path(@tournament_year), method: "get", class:"g-3 text-center") do %>

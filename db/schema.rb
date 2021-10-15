@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_26_060459) do
+ActiveRecord::Schema.define(version: 2021_10_14_134242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 2021_09_26_060459) do
     t.string "abbreviation"
     t.string "city"
     t.bigint "atp_category_id"
+    t.string "site_url"
     t.index ["atp_category_id"], name: "index_tournaments_on_atp_category_id"
   end
 
