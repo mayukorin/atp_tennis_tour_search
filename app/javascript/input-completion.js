@@ -19,7 +19,7 @@ $(function() {
                             for(let tournament of data["players"]) {
                                 completeList.push(tournament["name"]);
                             }
-                            console.log(completeList);
+                            // console.log(completeList);
                             response(completeList);
                         }
                     });
