@@ -89,6 +89,9 @@ $(function () {
                     tooltip: {content: contents["GRAND SLAM"].get("ME").get("content")},
                     href: `/tournaments/${contents["GRAND SLAM"].get("ME").get("id")}`,
                     size: 10,
+                    attrs: {
+                        fill: contents["GRAND SLAM"].get("ME").get("plotColor")
+                    }
                 }, 
                 'pa': {
                     latitude: 48.85341,
@@ -96,6 +99,9 @@ $(function () {
                     tooltip: {content: contents["GRAND SLAM"].get("PA").get("content")},
                     href: `/tournaments/${contents["GRAND SLAM"].get("PA").get("id")}`,
                     size: 10,
+                    attrs: {
+                        fill: contents["GRAND SLAM"].get("PA").get("plotColor")
+                    }
                 },
                 'lo': {
                     latitude: 51.3026,
@@ -103,6 +109,9 @@ $(function () {
                     tooltip: {content: contents["GRAND SLAM"].get("LO").get("content")},
                     href: `/tournaments/${contents["GRAND SLAM"].get("LO").get("id")}`,
                     size: 10,
+                    attrs: {
+                        fill: contents["GRAND SLAM"].get("LO").get("plotColor")
+                    }
                 }
             }
         });
