@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_14_134242) do
+ActiveRecord::Schema.define(version: 2021_10_22_051945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,12 @@ ActiveRecord::Schema.define(version: 2021_10_14_134242) do
   end
 
   create_table "batch_schedules", force: :cascade do |t|
-    t.date "today"
     t.bigint "tournament_year_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "start_day"
+    t.date "end_day"
+    t.integer "start_hour"
     t.index ["tournament_year_id"], name: "index_batch_schedules_on_tournament_year_id"
   end
 

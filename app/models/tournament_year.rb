@@ -1,6 +1,6 @@
 class TournamentYear < ApplicationRecord
   belongs_to :tournament
-  has_many :batch_schedules
+  has_one :batch_schedule
   belongs_to :player, optional: true
   has_many :tournament_year_and_players
   has_many :matches, ->{order(day: :desc)}
