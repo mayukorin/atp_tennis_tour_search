@@ -150,10 +150,11 @@ el = Tournament.find_by(name: 'エルステ・バンク・オープン')
 el.update(site_url: 'https://www.erstebank-open.com/')
 ind = Tournament.find_by(name: 'スイス・インドア')
 ind.update(site_url: 'https://www.swisessindoorsbasel.ch/')
-
+=end
 me = TournamentYear.find(1)
 me.create_batch_schedule(start_day: '2021-02-07', end_day: '2021-02-22', start_hour: 9)
-=end
+
+=begin
 me = TournamentYear.find(2)
 me.create_batch_schedule(start_day: '2021-05-29', end_day: '2021-06-14', start_hour: 18)
 
@@ -225,3 +226,4 @@ me.create_batch_schedule(start_day: '2021-10-24', end_day: '2021-11-01', start_h
 
 me = TournamentYear.find(25)
 me.create_batch_schedule(start_day: '2021-10-24', end_day: '2021-11-01', start_hour: 18)
+=end
