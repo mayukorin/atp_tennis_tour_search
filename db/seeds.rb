@@ -98,7 +98,7 @@ tok.tournament_years.create(:year => 2021, :first_day => '2021-10-04', :last_day
 el.tournament_years.create(:year => 2021, :first_day => '2021-10-25', :last_day => '2021-10-31', :now_flag => 't', :api_id => 1381)
 ind.tournament_years.create(:year => 2021, :first_day => '2021-10-25', :last_day => '2021-10-31', :now_flag => 't', :api_id => 1382)
 
-=end
+
 me = Tournament.find_by(name: '全豪オープン')
 me.update(site_url: 'https://ausopen.com/')
 pa = Tournament.find_by(name: '全仏オープン')
@@ -149,4 +149,79 @@ tok.update(site_url: 'https://www.rakutenopen.com/')
 el = Tournament.find_by(name: 'エルステ・バンク・オープン')
 el.update(site_url: 'https://www.erstebank-open.com/')
 ind = Tournament.find_by(name: 'スイス・インドア')
-ind.update(site_url: 'https://www.swissindoorsbasel.ch/')
+ind.update(site_url: 'https://www.swisessindoorsbasel.ch/')
+
+me = TournamentYear.find(1)
+me.create_batch_schedule(start_day: '2021-02-07', end_day: '2021-02-22', start_hour: 9)
+=end
+me = TournamentYear.find(2)
+me.create_batch_schedule(start_day: '2021-05-29', end_day: '2021-06-14', start_hour: 18)
+
+me = TournamentYear.find(3)
+me.create_batch_schedule(start_day: '2021-06-27', end_day: '2021-07-12', start_hour: 19)
+
+me = TournamentYear.find(4)
+me.create_batch_schedule(start_day: '2021-08-29', end_day: '2021-09-12', start_hour: 0)
+
+me = TournamentYear.find(5)
+me.create_batch_schedule(start_day: '2021-03-23', end_day: '2021-04-04', start_hour: 0)
+
+me = TournamentYear.find(6)
+me.create_batch_schedule(start_day: '2021-04-10', end_day: '2021-04-19', start_hour: 18)
+
+me = TournamentYear.find(7)
+me.create_batch_schedule(start_day: '2021-05-01', end_day: '2021-05-10', start_hour: 18)
+
+me = TournamentYear.find(8)
+me.create_batch_schedule(start_day: '2021-05-08', end_day: '2021-05-17', start_hour: 18)
+
+me = TournamentYear.find(9)
+me.create_batch_schedule(start_day: '2021-08-08', end_day: '2021-08-15', start_hour: 0)
+
+me = TournamentYear.find(10)
+me.create_batch_schedule(start_day: '2021-08-14', end_day: '2021-08-22', start_hour: 0)
+
+me = TournamentYear.find(11)
+me.create_batch_schedule(start_day: '2021-10-02', end_day: '2021-10-11', start_hour: 12)
+
+me = TournamentYear.find(12)
+me.create_batch_schedule(start_day: '2021-10-06', end_day: '2021-10-17', start_hour: 3)
+
+me = TournamentYear.find(13)
+me.create_batch_schedule(start_day: '2021-10-31', end_day: '2021-11-07', start_hour: 0)
+
+me = TournamentYear.find(14)
+me.create_batch_schedule(start_day: '2021-02-28', end_day: '2021-03-08', start_hour: 18)
+
+me = TournamentYear.find(15)
+me.create_batch_schedule(start_day: '2021-03-13', end_day: '2021-03-21', start_hour: 16)
+
+me = TournamentYear.find(16)
+me.create_batch_schedule(start_day: '2021-03-14', end_day: '2021-03-20', start_hour: 1)
+
+me = TournamentYear.find(17)
+me.create_batch_schedule(start_day: '2021-04-18', end_day: '2021-04-26', start_hour: 18)
+
+me = TournamentYear.find(18)
+me.create_batch_schedule(start_day: '2021-06-13', end_day: '2021-06-21', start_hour: 19)
+
+me = TournamentYear.find(19)
+me.create_batch_schedule(start_day: '2021-06-13', end_day: '2021-06-21', start_hour: 18)
+
+me = TournamentYear.find(20)
+me.create_batch_schedule(start_day: '2021-07-11', end_day: '2021-07-19', start_hour: 18)
+
+me = TournamentYear.find(21)
+me.create_batch_schedule(start_day: '2021-08-01', end_day: '2021-08-08', start_hour: 0)
+
+me = TournamentYear.find(22)
+me.create_batch_schedule(start_day: '2021-10-03', end_day: '2021-10-11', start_hour: 12)
+
+me = TournamentYear.find(23)
+me.create_batch_schedule(start_day: '2021-10-03', end_day: '2021-10-11', start_hour: 11)
+
+me = TournamentYear.find(24)
+me.create_batch_schedule(start_day: '2021-10-24', end_day: '2021-11-01', start_hour: 18)
+
+me = TournamentYear.find(25)
+me.create_batch_schedule(start_day: '2021-10-24', end_day: '2021-11-01', start_hour: 18)
