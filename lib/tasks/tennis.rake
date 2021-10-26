@@ -56,6 +56,9 @@ namespace :tennis do
                 result_matches = response_body_json["results"]["matches"]
     
                 result_matches.each_with_index do |result_match, cnt|
+                    if result_match["round_name"].include?("Qualification")
+                        # 予選は登録しない
+                        next
                     day = Time.zone.parse(result_match["date"])
                     
                     if !day.to_date.before? @tournament_year.first_day
