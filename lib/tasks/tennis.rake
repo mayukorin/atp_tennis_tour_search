@@ -65,6 +65,7 @@ namespace :tennis do
                         # 予選は登録しない
                         next
                     end
+                    stil_match_info_flag = false
                     default_player_name_list.each do |default_player_name|
                         if result_match["home_player"].start_with?(default_player_name)
                             stil_match_info_flag = true
