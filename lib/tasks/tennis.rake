@@ -14,6 +14,11 @@ end
 namespace :tennis do
     desc "APIから試合情報を取得する"
     task fetch_match_info: :environment do
+        default_player_name_list = []
+        default_player_name_list.push('R16p')
+        default_player_name_list.push('Qf')
+        default_player_name_list.push('Wqf')
+        default_player_name_list.push('Wsf')
         # 最後の数字がトーナメントのID
         today = Time.zone.now
         today_date_string = today.strftime("%Y-%m-%d")
@@ -54,8 +59,24 @@ namespace :tennis do
                 result = Response.create(data: response.read_body)
                 response_body_json = JSON.parse(response.read_body)
                 result_matches = response_body_json["results"]["matches"]
-    
+                
                 result_matches.each_with_index do |result_match, cnt|
+                    if result_match["round_name"].include?("Qualification")
+                        # 予選は登録しない
+                        next
+                    end
+                    stil_match_info_flag = false
+                    default_player_name_list.each do |default_player_name|
+                        if result_match["home_player"].start_with?(default_player_name)
+                            stil_match_info_flag = true
+                        end
+                        if result_match["away_player"].start_with?(default_player_name)
+                            stil_match_info_flag = true
+                        end
+                    end
+                    if stil_match_info_flag == true
+                        next
+                    end
                     day = Time.zone.parse(result_match["date"])
                     
                     if !day.to_date.before? @tournament_year.first_day
@@ -108,12 +129,12 @@ namespace :tennis do
                     home_player = result_nil_match.home_player
                     away_player = result_nil_match.away_player
     
-                    if PlayerMatch.eager_loading.where(match: {home_player: home_player.id}, match: {tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
+                    if PlayerMatch.eager_loading.where(match: {home_player: home_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
                         result_nil_match.update(win_player_id: home_player.id)
                         tournament_year_and_away_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: away_player.id)
                         tournament_year_and_away_player.update(remain_flag: 'f')
     
-                    elsif PlayerMatch.eager_loading.where(match: {away_player: away_player.id }, match: {tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
+                    elsif PlayerMatch.eager_loading.where(match: {away_player: away_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
                         result_nil_match.update(win_player_id: away_player.id)
                         tournament_year_and_home_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: home_player.id)
                         tournament_year_and_home_player.update(remain_flag: 'f')

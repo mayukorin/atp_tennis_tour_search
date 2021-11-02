@@ -1,3 +1,3 @@
 $(function() {
-    $('.flash-message').fadeOut(4000);
+    $('.flash-message').fadeOut(10000);
 });

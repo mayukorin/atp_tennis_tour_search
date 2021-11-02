@@ -78,7 +78,9 @@ li {
     background-position: center;
     position: relative;
 }
-
+.footer-name {
+    min-height: 20vh;
+}
 .app-title {
     margin: 0;
     position: absolute;
@@ -86,10 +88,13 @@ li {
     width: 100%;
     text-align: center;
     line-height: 1;
-    font-size: 4rem;
-    font-weight: 400;
-    color: white;
+    font-size: 2rem;
+    background-color: white;
+    color: green;
+    font-weight: 500;
+    opacity: 0.8;
 }
+
 
 header {
     z-index: 10;
@@ -267,6 +272,11 @@ header ul li {
         padding-left: 1.2rem;
         text-align: left;
     }
+
+    .app-title{
+        font-size: 2rem;
+        font-weight: 500;
+    }
 }
 
 
@@ -295,6 +305,13 @@ header ul li {
         font-size:20px;/*アイコンサイズ*/
         outline: none;
     }
+
+    .app-title{
+        font-size: 2rem;
+        font-weight: 500;
+    }
+
+    
 }
 
 @media screen and (min-width: 768px) {
@@ -322,6 +339,11 @@ header ul li {
         font-size:20px;/*アイコンサイズ*/
         outline: none;
     }
+
+    .app-title{
+        font-size: 2rem;
+        font-weight: 500;
+    }
 }
 @media screen and (min-width: 1024px) {
     #sbox2{
@@ -347,5 +369,10 @@ header ul li {
         color:green;
         border:none;
         font-size:20px;/*アイコンサイズ*/
+    }
+
+    .app-title{
+        font-size: 3rem;
+        font-weight: 500;
     }
 }
