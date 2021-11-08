@@ -83,7 +83,9 @@ namespace :tennis do
                         
                         home_player = Player.find_or_create_by(name: result_match["home_player"])
                         away_player = Player.find_or_create_by(name: result_match["away_player"])
-
+                        
+                        home_player.update(ranking: result_match["home"]["ranking"])
+                        away_player.update(ranking: result_match["away"]["ranking"])
                         
                         # 該当するmatch があるか，調べる
                         match_query = Match.joins(:home_player, :away_player, :tournament_year).where(home_player_id: home_player.id, away_player_id: away_player.id, tournament_year_id: @tournament_year.id)
@@ -200,6 +202,9 @@ namespace :tennis do
                 home_player = Player.find_or_create_by(name: result_match["home_player"])
 
                 away_player = Player.find_or_create_by(name: result_match["away_player"])
+
+                home_player.update(ranking: result_match["home"]["ranking"])
+                away_player.update(ranking: result_match["away"]["ranking"])
 
                 # 該当するmatch があるか，調べる
                 match_query = Match.joins(:home_player, :away_player, :tournament_year).where(home_player_id: home_player.id, away_player_id: away_player.id, tournament_year_id: @tournament_year.id)
