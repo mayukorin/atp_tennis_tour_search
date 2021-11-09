@@ -271,5 +271,31 @@ namespace :tennis do
 
 
     end
+
+    desc "選手のランキングの情報を取得"
+    task fetch_player_ranking_info: :environment do
+        url = URI("https://tennis-live-data.p.rapidapi.com/rankings/ATP")
+
+        http = Net::HTTP.new(url.host, url.port)
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+        request = Net::HTTP::Get.new(url)
+        request["x-rapidapi-key"] = 'e86e5c5e7amsh4ac322ec0b5d9ebp1b3e45jsn881daff8be48'
+        request["x-rapidapi-host"] = 'tennis-live-data.p.rapidapi.com'
+
+        response = http.request(request)
+        result = Response.create(data: response.read_body)
+        response_body_json = JSON.parse(response.read_body)
+
+        result_players = response_body_json["results"]["rankings"]
+        result_players.each do |result_player|
+            api_id = result_player["id"].to_i
+            name = result_player["last_name"] + " " + result_player["first_name"][0] + "."
+            player = Player.create_with(name: name).find_or_create_by(api_id: api_id)
+            player.update(ranking: result_player["ranking"])
+        end
+
+    end
 end
 
