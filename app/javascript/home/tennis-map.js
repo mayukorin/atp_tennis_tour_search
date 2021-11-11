@@ -147,7 +147,7 @@ $(document).on('turbolinks:load', function() {
                     'lor': {
                         latitude: 43.4423,
                         longitude: 7.2538,
-                        tooltip: {content: "ロレックス・モンテカルロ・マスターズ"},
+                        tooltip: {content: contents["Masters 1000"].get("LOR").get("content")},
                         href: `/tournaments/${contents["Masters 1000"].get("LOR").get("id")}`,
                         size: 10,
                         attrs: {
@@ -157,7 +157,7 @@ $(document).on('turbolinks:load', function() {
                     'mu': {
                         latitude: 40.4165,
                         longitude: -3.70256,
-                        tooltip: {content: "ムチュア・マドリード・オープン"},
+                        tooltip: {content: contents["Masters 1000"].get("MU").get("content")},
                         href: `/tournaments/${contents["Masters 1000"].get("MU").get("id")}`,
                         size: 10,
                         attrs: {
@@ -167,7 +167,7 @@ $(document).on('turbolinks:load', function() {
                     'bnl': {
                         latitude: 41.89474,
                         longitude: 12.4839,
-                        tooltip: {content: "BNLイタリア国際"},
+                        tooltip: {content: contents["Masters 1000"].get("BNL").get("content")},
                         href: `/tournaments/${contents["Masters 1000"].get("BNL").get("id")}`,
                         size: 10,
                         attrs: {
@@ -177,7 +177,7 @@ $(document).on('turbolinks:load', function() {
                     'na': {
                         latitude: 43.7001,
                         longitude: -79.4163,
-                        tooltip: {content: "ナショナルバンク・オープン"},
+                        tooltip: {content: contents["Masters 1000"].get("NA").get("content")},
                         href: `/tournaments/${contents["Masters 1000"].get("NA").get("id")}`,
                         size: 10,
                         attrs: {
@@ -187,7 +187,7 @@ $(document).on('turbolinks:load', function() {
                     'sa': {
                         latitude: 39.162,
                         longitude: -84.45689,
-                        tooltip: {content: "ウエスタン&サザン・オープン"},
+                        tooltip: {content: contents["Masters 1000"].get("SA").get("content")},
                         href: `/tournaments/${contents["Masters 1000"].get("SA").get("id")}`,
                         size: 10,
                         attrs: {
@@ -197,7 +197,7 @@ $(document).on('turbolinks:load', function() {
                     'shy': {
                         latitude: 31.2333,
                         longitude: 121.14651,
-                        tooltip: {content: "ロレックス上海マスターズ"},
+                        tooltip: {content: contents["Masters 1000"].get("SHY").get("content")},
                         href: `/tournaments/${contents["Masters 1000"].get("SHY").get("id")}`,
                         size: 10,
                         attrs: {
@@ -207,7 +207,7 @@ $(document).on('turbolinks:load', function() {
                     'bnp': {
                         latitude: 35.6652,
                         longitude: -117.8731,
-                        tooltip: {content: "BNPパリバ・オープン"},
+                        tooltip: {content: contents["Masters 1000"].get("BNP").get("content")},
                         href: `/tournaments/${contents["Masters 1000"].get("BNP").get("id")}`,
                         size: 10,
                         attrs: {
@@ -217,7 +217,7 @@ $(document).on('turbolinks:load', function() {
                     'lp': {
                         latitude: 48.85341,
                         longitude: 2.3488,
-                        tooltip: {content: "ロレックス・パリ・マスターズ"},
+                        tooltip: {content: contents["Masters 1000"].get("LP").get("content")},
                         href: `/tournaments/${contents["Masters 1000"].get("LP").get("id")}`,
                         size: 10,
                         attrs: {
@@ -247,7 +247,7 @@ $(document).on('turbolinks:load', function() {
                     'abn': {
                         latitude: 51.9166,
                         longitude: 4.4667,
-                        tooltip: {content: "ABNアムロ・ワールド・テニス・トーナメント"},
+                        tooltip: {content: contents["ATP 500"].get("ABN").get("content")},
                         href: `/tournaments/${contents["ATP 500"].get("ABN").get("id")}`,
                         size: 10,
                         attrs: {
@@ -257,7 +257,7 @@ $(document).on('turbolinks:load', function() {
                     'do': {
                         latitude: 25.2048,
                         longitude: 55.2707,
-                        tooltip: {content: "ドバイ・デューティフリー・テニス選手権"},
+                        tooltip: {content: contents["ATP 500"].get("DO").get("content")},
                         href: `/tournaments/${contents["ATP 500"].get("DO").get("id")}`,
                         size: 10,
                         attrs: {
@@ -267,7 +267,7 @@ $(document).on('turbolinks:load', function() {
                     'meki': {
                         latitude: 16.8638,
                         longitude: -99.88,
-                        tooltip: {content: "メキシコ・オープン"},
+                        tooltip: {content: contents["ATP 500"].get("MEKI").get("content")},
                         href: `/tournaments/${contents["ATP 500"].get("MEKI").get("id")}`,
                         size: 10,
                         attrs: {
@@ -277,7 +277,7 @@ $(document).on('turbolinks:load', function() {
                     'val': {
                         latitude: 41.385,
                         longitude: 2.1734,
-                        tooltip: {content: "バルセロナ・オープン"},
+                        tooltip: {content: contents["ATP 500"].get("VAL").get("content")},
                         href: `/tournaments/${contents["ATP 500"].get("VAL").get("id")}`,
                         size: 10,
                         attrs: {
@@ -287,7 +287,7 @@ $(document).on('turbolinks:load', function() {
                     'shin': {
                         latitude: 51.3026,
                         longitude: 0.0739,
-                        tooltip: {content: "シンチ選手権"},
+                        tooltip: {content: contents["ATP 500"].get("SHIN").get("content")},
                         href: `/tournaments/${contents["ATP 500"].get("SHIN").get("id")}`,
                         size: 10,
                         attrs: {
@@ -297,7 +297,7 @@ $(document).on('turbolinks:load', function() {
                     'nov': {
                         latitude: 51.28,
                         longitude: 11.58,
-                        tooltip: {content: "ノベンティ・オープン"},
+                        tooltip: {content: contents["ATP 500"].get("NOV").get("content")},
                         href: `/tournaments/${contents["ATP 500"].get("NOV").get("id")}`,
                         size: 10,
                         attrs: {
@@ -307,7 +307,7 @@ $(document).on('turbolinks:load', function() {
                     'han': {
                         latitude: 53.38,
                         longitude: 10.00,
-                        tooltip: {content: "ハンブルク・ヨーロピアン・オープン"},
+                        tooltip: {content: contents["ATP 500"].get("HAN").get("content")},
                         href: `/tournaments/${contents["ATP 500"].get("HAN").get("id")}`,
                         size: 10,
                         attrs: {
@@ -317,7 +317,7 @@ $(document).on('turbolinks:load', function() {
                     'city': {
                         latitude: 38.9041,
                         longitude: -77.0171,
-                        tooltip: {content: "シティ・オープン"},
+                        tooltip: {content: contents["ATP 500"].get("CITY").get("content")},
                         href: `/tournaments/${contents["ATP 500"].get("CITY").get("id")}`,
                         size: 10,
                         attrs: {
@@ -327,7 +327,7 @@ $(document).on('turbolinks:load', function() {
                     'chi': {
                         latitude: 39.54,
                         longitude: 116.24,
-                        tooltip: {content: "チャイナ・オープン"},
+                        tooltip: {content: contents["ATP 500"].get("CHI").get("content")},
                         href: `/tournaments/${contents["ATP 500"].get("CHI").get("id")}`,
                         size: 10,
                         attrs: {
@@ -337,7 +337,7 @@ $(document).on('turbolinks:load', function() {
                     'tok': {
                         latitude: 35.39,
                         longitude: 139.32,
-                        tooltip: {content: "楽天ジャパン・オープン"},
+                        tooltip: {content: contents["ATP 500"].get("TOK").get("content")},
                         href: `/tournaments/${contents["ATP 500"].get("TOK").get("id")}`,
                         size: 10,
                         attrs: {
@@ -347,7 +347,7 @@ $(document).on('turbolinks:load', function() {
                     'el': {
                         latitude: 48.13,
                         longitude: 16.22,
-                        tooltip: {content: "エルステ・バンク・オープン"},
+                        tooltip: {content: contents["ATP 500"].get("EL").get("content")},
                         href: `/tournaments/${contents["ATP 500"].get("EL").get("id")}`,
                         size: 10,
                         attrs: {
@@ -357,7 +357,7 @@ $(document).on('turbolinks:load', function() {
                     'in': {
                         latitude: 47.34,
                         longitude: 7.36,
-                        tooltip: {content: "スイス・インドア"},
+                        tooltip: {content: contents["ATP 500"].get("IN").get("content")},
                         href: `/tournaments/${contents["ATP 500"].get("IN").get("id")}`,
                         size: 10,
                         attrs: {
