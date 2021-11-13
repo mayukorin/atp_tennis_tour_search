@@ -19,6 +19,7 @@ class StaticPagesController < ApplicationController
   def get_tournament_list
     tournaments = Tournament.where("name LIKE ?", params[:name]+"%")
     players = Player.where("name LIKE ?", params[:name]+"%")
-    render json: { tournaments: tournaments, players: players }
+    full_name_players = Player.where("full_name LIKE ?", params[:name]+"%")
+    render json: { tournaments: tournaments, players: players, full_name_players: full_name_players }
   end
 end
