@@ -16,7 +16,7 @@
         <%= image_tag("ny.jpg", class: "img-fluid") %>
     </div>
 </div>
-<% unless @selected_tournament_day.nil? %>
+<% unless @tournament_days_array.size == 0 %>
     <%= render @tournament_year, 
         tournament_days_array:  @tournament_days_array,
         selected_tournament_day: @selected_tournament_day,
