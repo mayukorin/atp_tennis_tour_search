@@ -203,10 +203,10 @@ namespace :tennis do
             if !day.to_date.before? @tournament_year.first_day
                 
                 # home_player = Player.find_or_create_by(name: result_match["home_player"])
-                home_player = Player.create_with(name: result_match["home_player"]).find_or_create_by(api_id: result_match["home_id"])
+                home_player = Player.create_with(name: result_match["home_player"], full_name: result_match["home"]["full_name"]).find_or_create_by(api_id: result_match["home_id"])
 
                 # away_player = Player.find_or_create_by(name: result_match["away_player"])
-                away_player = Player.create_with(name: result_match["away_player"]).find_or_create_by(api_id: result_match["away_id"])
+                away_player = Player.create_with(name: result_match["away_player"], full_name: result_match["away"]["full_name"]).find_or_create_by(api_id: result_match["away_id"])
 
                 # home_player.update(ranking: result_match["home"]["ranking"])
                 # away_player.update(ranking: result_match["away"]["ranking"])
@@ -298,6 +298,7 @@ namespace :tennis do
             api_id = result_player["id"].to_i
             name = result_player["last_name"] + " " + result_player["first_name"][0] + "."
             player = Player.create_with(name: name).find_or_create_by(api_id: api_id)
+            player.update(full_name: result_player["full_name"])
             player.update(ranking: result_player["ranking"])
         end
 
