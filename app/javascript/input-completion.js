@@ -16,8 +16,11 @@ $(function() {
                             for(let tournament of data["tournaments"]) {
                                 completeList.push(tournament["name"]);
                             }
-                            for(let tournament of data["players"]) {
-                                completeList.push(tournament["name"]);
+                            for(let player of data["players"]) {
+                                completeList.push(player["name"]);
+                            }
+                            for(let fullNamePlayer of data["full_name_players"]) {
+                                completeList.push(fullNamePlayer["full_name"]);
                             }
                             // console.log(completeList);
                             response(completeList);
