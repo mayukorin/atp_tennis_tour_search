@@ -150,9 +150,11 @@ el = Tournament.find_by(name: 'エルステ・バンク・オープン')
 el.update(site_url: 'https://www.erstebank-open.com/')
 ind = Tournament.find_by(name: 'スイス・インドア')
 ind.update(site_url: 'https://www.swisessindoorsbasel.ch/')
-=end
+
 me = TournamentYear.find(1)
 me.create_batch_schedule(start_day: '2021-02-07', end_day: '2021-02-22', start_hour: 9)
+
+=end
 
 =begin
 me = TournamentYear.find(2)
@@ -226,4 +228,49 @@ me.create_batch_schedule(start_day: '2021-10-24', end_day: '2021-11-01', start_h
 
 me = TournamentYear.find(25)
 me.create_batch_schedule(start_day: '2021-10-24', end_day: '2021-11-01', start_hour: 18)
+
+
+City.create!(name: 'ニューヨーク', latitude: '40.717079', longitude: '-74.00116')
+
+ny = City.find_by(name: 'ニューヨーク')
+# Tournament.find_by(name: '全米オープン').update!(city_id: ny.id)
+me = City.create!(name: 'メルボルン', latitude: '-37.814', longitude: '144.96332')
+Tournament.find_by(name: '全豪オープン').update!(city_id: me.id)
+
+pa = City.create!(name: 'パリ', latitude: '48.85341', longitude: '2.3488')
+Tournament.find_by(name: '全仏オープン').update!(city_id: pa.id)
+Tournament.find_by(name: 'ロレックス・パリ・マスターズ').update!(city_id: pa.id)
+
+lo = City.create!(name: 'ロンドン', latitude: '51.3026', longitude: '0.0739')
+Tournament.find_by(name: 'ウィンブルドン').update!(city_id: lo.id)
+Tournament.find_by(name: 'シンチ選手権').update!(city_id: lo.id)
+
+my = City.create!(name: 'マイアミ', latitude: '25.7616', longitude: '-80.1917')
+Tournament.find_by(name: 'マイアミオープン').update!(city_id: my.id)
+
+mo = City.create!(name: 'モンテカルロ', latitude: '43.4423', longitude: '7.2538')
+Tournament.find_by(name: 'ロレックス・モンテカルロ・マスターズ').update!(city_id: mo.id)
+
+
+ma = City.create!(name: 'マドリード', latitude: '40.4165', longitude: '-3.70256')
+Tournament.find_by(name: 'ムチュア・マドリード・オープン').update!(city_id: ma.id)
+
+lo = City.create!(name: 'ローマ', latitude: '41.89474', longitude: '12.4839')
+Tournament.find_by(name: 'BNLイタリア国際').update!(city_id: lo.id)
 =end
+
+to = City.create!(name: 'トロント', latitude: '43.7001', longitude: '-79.4163')
+Tournament.find_by(name: 'ナショナルバンク・オープン').update!(city_id: to.id)
+
+si = City.create!(name: 'シンシナティ', latitude: '39.162', longitude: '-84.45689')
+Tournament.find_by(name: 'ウエスタン&サザン・オープン').update!(city_id: si.id)
+
+shy = City.create!(name: '上海', latitude: '31.2333', longitude: '121.14651')
+Tournament.find_by(name: 'ロレックス上海マスターズ').update!(city_id: shy.id)
+
+ind = City.create!(name: 'インディアンウェルズ', latitude: '35.6652', longitude: '-117.8731')
+Tournament.find_by(name: 'BNPパリバ・オープン').update!(city_id: ind.id)
+
+am = City.create!(name: 'ロッテルダム', latitude: '48.85341', longitude: '2.3488')
+Tournament.find_by(name: 'ABNアムロ・ワールド・テニス・トーナメント').update!(city_id: am.id)
+
