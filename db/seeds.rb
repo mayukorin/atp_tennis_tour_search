@@ -257,7 +257,7 @@ Tournament.find_by(name: 'ムチュア・マドリード・オープン').update
 
 lo = City.create!(name: 'ローマ', latitude: '41.89474', longitude: '12.4839')
 Tournament.find_by(name: 'BNLイタリア国際').update!(city_id: lo.id)
-=end
+
 
 to = City.create!(name: 'トロント', latitude: '43.7001', longitude: '-79.4163')
 Tournament.find_by(name: 'ナショナルバンク・オープン').update!(city_id: to.id)
@@ -273,4 +273,36 @@ Tournament.find_by(name: 'BNPパリバ・オープン').update!(city_id: ind.id)
 
 am = City.create!(name: 'ロッテルダム', latitude: '48.85341', longitude: '2.3488')
 Tournament.find_by(name: 'ABNアムロ・ワールド・テニス・トーナメント').update!(city_id: am.id)
+=end
+
+doo = City.create!(name: 'ドバイ', latitude: '25.2048', longitude: '55.2707')
+Tournament.find_by(name: 'ドバイ・デューティフリー・テニス選手権').update!(city_id: doo.id)
+
+aka = City.create!(name: 'アカプルコ', latitude: '16.8638', longitude: '-99.88')
+Tournament.find_by(name: 'メキシコ・オープン').update!(city_id: aka.id)
+
+val = City.create!(name: 'バルセロナ', latitude: '41.385', longitude: '2.1734')
+Tournament.find_by(name: 'バルセロナ・オープン').update!(city_id: val.id)
+
+val = City.create!(name: 'ハレ', latitude: '51.28', longitude: '11.58')
+Tournament.find_by(name: 'ノベンティ・オープン').update!(city_id: val.id)
+
+val = City.create!(name: 'ハンブルク', latitude: '53.38', longitude: '10.00')
+Tournament.find_by(name: 'ハンブルク・ヨーロピアン・オープン').update!(city_id: val.id)
+
+val = City.create!(name: 'ワシントンD.C.', latitude: '38.9041', longitude: '-77.0171')
+Tournament.find_by(name: 'シティ・オープン').update!(city_id: val.id)
+
+val = City.create!(name: '北京', latitude: '39.54', longitude: '116.24')
+Tournament.find_by(name: 'チャイナ・オープン').update!(city_id: val.id)
+
+val = City.create!(name: '東京', latitude: '35.39', longitude: '139.32')
+Tournament.find_by(name: '楽天ジャパン・オープン').update!(city_id: val.id)
+
+val = City.create!(name: 'ウィーン', latitude: '48.13', longitude: '16.22')
+Tournament.find_by(name: 'エルステ・バンク・オープン').update!(city_id: val.id)
+
+val = City.create!(name: 'バーゼル', latitude: '47.34', longitude: '7.36')
+Tournament.find_by(name: 'スイス・インドア').update!(city_id: val.id)
+
 

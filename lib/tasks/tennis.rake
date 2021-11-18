@@ -303,5 +303,32 @@ namespace :tennis do
         end
 
     end
+
+    desc "開催都市のwebカメラ映像を取得" 
+    task fetch_web_cam_img: :environment do
+        @cities = City.all
+        @cities.each do |city|
+            lat = city.latitude
+            lng = city.longitude
+            url = URI("https://webcamstravel.p.rapidapi.com/webcams/list/nearby=#{lat},#{lng},30?lang=en&show=webcams%3Aimage%2Clocation")
+
+            http = Net::HTTP.new(url.host, url.port)
+            http.use_ssl = true
+            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+            request = Net::HTTP::Get.new(url)
+            request["x-rapidapi-key"] = 'e86e5c5e7amsh4ac322ec0b5d9ebp1b3e45jsn881daff8be48'
+            request["x-rapidapi-host"] = 'webcamstravel.p.rapidapi.com'
+
+            response = http.request(request)
+            result = Response.create(data: response.read_body)
+            response_body_json = JSON.parse(response.read_body)
+            puts city.name
+            puts response_body_json["result"]["total"]
+            if response_body_json["result"]["total"] > 0
+                city.update!(image_url: response_body_json["result"]["webcams"][0]["image"]["current"]["preview"])
+            end
+        end
+    end
 end
 

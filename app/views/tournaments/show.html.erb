@@ -1,7 +1,17 @@
 <div class="m-5">
     <div class="text-success text-center m-5">
-        <h2><%= @tournament_year.tournament.name%></h2>
-        <%= link_to '公式サイトへ', @tournament_year.tournament.site_url %>
+        <h2><%= @tournament.name%></h2>
+        <%= link_to '公式サイトへ', @tournament.site_url %>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-11 col-lg-8 text-center">
+            <%= image_tag(@tournament.city.image_url, class: "img-fluid") %>
+        </div>
+    </div>
+    <div class="row mt-3 justify-content-center">
+        <div class="col-11 col-lg-6">
+            開催都市 : <%= @tournament.city.name %>（上の画像はwebカメラ画像）<br>
+        </div>
     </div>
     
     <%= form_tag(tournament_path(@tournament_year), method: "get", class:"g-3 text-center") do %>
@@ -11,10 +21,11 @@
         <%= submit_tag("年度を選択", class: "btn btn-success m-3" )%>
     <% end %>
 </div>
-<div class="row justify-content-center">
-    <div class="col-11 col-lg-8 text-center">
-        <%= image_tag("ny.jpg", class: "img-fluid") %>
+<div class="text-center m-5">
+    <div class="text-success m-3">
+        <h2>開催期間</h2>
     </div>
+    <%= l @tournament_year.first_day %> ~  <%= l @tournament_year.last_day %>
 </div>
 <% unless @tournament_days_array.size == 0 %>
     <%= render @tournament_year, 
