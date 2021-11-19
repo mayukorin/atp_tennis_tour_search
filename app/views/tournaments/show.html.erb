@@ -21,21 +21,10 @@
         <%= submit_tag("年度を選択", class: "btn btn-success m-3" )%>
     <% end %>
 </div>
-<div class="text-center m-5">
-    <div class="text-success m-3">
-        <h2>開催期間</h2>
-    </div>
-    <%= l @tournament_year.first_day %> ~  <%= l @tournament_year.last_day %>
-</div>
-<% unless @tournament_days_array.size == 0 %>
-    <%= render @tournament_year, 
-        tournament_days_array:  @tournament_days_array,
-        selected_tournament_day: @selected_tournament_day,
-        selected_tournament_year_id: @selected_tournament_year_id,
-        selected_tournament_day_matches: @selected_tournament_day_matches
-    %>
-<% else %>
-<div class="text-success text-center m-5">
-    <h2>試合日程はまだ発表されていません</h2>
-</div>
-<% end %>
+
+<%= render @tournament_year, 
+    tournament_days_array:  @tournament_days_array,
+    selected_tournament_day: @selected_tournament_day,
+    selected_tournament_year_id: @selected_tournament_year_id,
+    selected_tournament_day_matches: @selected_tournament_day_matches
+%>
