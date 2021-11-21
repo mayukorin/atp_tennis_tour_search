@@ -15,7 +15,7 @@ $(document).on('turbolinks:load', function() {
                 var contentAndColor = new Map();
                 var atp_category_name = response[key]["tournament"]["atp_category"]["name"]
                 var tournament_name = response[key]["tournament"]["name"];
-                var city_name = response[key]["tournament"]["city"];
+                var city_name = response[key]["tournament"]["city"]["name"];
                 var period = response[key]["period"];
                 var content =  `<div>`+
                                `<div>${tournament_name}</div>`+
