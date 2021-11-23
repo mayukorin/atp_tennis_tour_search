@@ -228,12 +228,13 @@ me.create_batch_schedule(start_day: '2021-10-24', end_day: '2021-11-01', start_h
 
 me = TournamentYear.find(25)
 me.create_batch_schedule(start_day: '2021-10-24', end_day: '2021-11-01', start_hour: 18)
-
+=end
 
 City.create!(name: 'ニューヨーク', latitude: '40.717079', longitude: '-74.00116')
 
 ny = City.find_by(name: 'ニューヨーク')
-# Tournament.find_by(name: '全米オープン').update!(city_id: ny.id)
+Tournament.find_by(name: '全米オープン').update!(city_id: ny.id)
+
 me = City.create!(name: 'メルボルン', latitude: '-37.814', longitude: '144.96332')
 Tournament.find_by(name: '全豪オープン').update!(city_id: me.id)
 
@@ -273,7 +274,7 @@ Tournament.find_by(name: 'BNPパリバ・オープン').update!(city_id: ind.id)
 
 am = City.create!(name: 'ロッテルダム', latitude: '48.85341', longitude: '2.3488')
 Tournament.find_by(name: 'ABNアムロ・ワールド・テニス・トーナメント').update!(city_id: am.id)
-=end
+
 
 doo = City.create!(name: 'ドバイ', latitude: '25.2048', longitude: '55.2707')
 Tournament.find_by(name: 'ドバイ・デューティフリー・テニス選手権').update!(city_id: doo.id)
