@@ -1,30 +1,31 @@
 <div class="m-5">
     <div class="text-success text-center m-5">
-        <h2><%= @tournament_year.tournament.name%></h2>
-        <%= link_to '公式サイトへ', @tournament_year.tournament.site_url %>
+        <h2><%= @tournament.name%></h2>
+        <%= link_to '公式サイトへ', @tournament.site_url %>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-11 col-lg-8 text-center">
+            <%= image_tag(@tournament.city.image_url, class: "img-fluid web_cam") %>
+        </div>
+    </div>
+    <div class="row mt-3 justify-content-center">
+        <div class="col-11 col-lg-6">
+            開催都市 : <%= @tournament.city.name %>（上の画像はwebカメラ画像）<br>
+        </div>
     </div>
     
-    <%= form_tag(tournament_path(@tournament_year), method: "get", class:"g-3 text-center") do %>
+    <%= form_tag(tournament_year_path(@tournament_year), method: "get", class:"g-3 text-center", remote: true) do %>
         <div class="form-group form-check-inline m-3">
             <%= select_tag(:selected_tournament_year_id, options_for_select(@years_array, @selected_tournament_year_id), class: "form-select") %>
         </div>
         <%= submit_tag("年度を選択", class: "btn btn-success m-3" )%>
     <% end %>
 </div>
-<div class="row justify-content-center">
-    <div class="col-11 col-lg-8 text-center">
-        <%= image_tag("ny.jpg", class: "img-fluid") %>
-    </div>
-</div>
-<% unless @tournament_days_array.size == 0 %>
+<div id="tournament_year">
     <%= render @tournament_year, 
         tournament_days_array:  @tournament_days_array,
         selected_tournament_day: @selected_tournament_day,
         selected_tournament_year_id: @selected_tournament_year_id,
         selected_tournament_day_matches: @selected_tournament_day_matches
     %>
-<% else %>
-<div class="text-success text-center m-5">
-    <h2>試合日程はまだ発表されていません</h2>
 </div>
-<% end %>

@@ -1,1 +1,2 @@
-$("#matches").html("<%= escape_javascript(render(@selected_tournament_day_matches)) %>");
+console.log("ここまで");
+$("#tournament_year").html("<%= escape_javascript(render(@tournament_year, tournament_days_array:  @tournament_days_array, selected_tournament_day: @selected_tournament_day, selected_tournament_year_id: @selected_tournament_year_id, selected_tournament_day_matches: @selected_tournament_day_matches)) %>");

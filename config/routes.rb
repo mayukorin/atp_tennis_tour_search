@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/get_tournament_info', to: 'static_pages#get_tournament_info'
   get '/get_tournament_list', to: 'static_pages#get_tournament_list'
   resources :tournament_years, only: [:show]
+  # get '/tournament_years/:id', to: 'tournament_years#show'
+  get '/tournament_years_day_show/:id', to: 'tournament_years#day_show', as: 'tournament_year_day_show'
   resources :tournaments, only: [:show]
   resources :players, only: [:show]
   get '/player_matches_index', to: 'player_matches#index'

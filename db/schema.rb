@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_13_125617) do
+ActiveRecord::Schema.define(version: 2021_11_17_143936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 2021_11_13_125617) do
     t.date "end_day"
     t.integer "start_hour"
     t.index ["tournament_year_id"], name: "index_batch_schedules_on_tournament_year_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.string "latitude"
+    t.string "longitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "image_url"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -119,7 +128,9 @@ ActiveRecord::Schema.define(version: 2021_11_13_125617) do
     t.string "city"
     t.bigint "atp_category_id"
     t.string "site_url"
+    t.bigint "city_id"
     t.index ["atp_category_id"], name: "index_tournaments_on_atp_category_id"
+    t.index ["city_id"], name: "index_tournaments_on_city_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -146,4 +157,5 @@ ActiveRecord::Schema.define(version: 2021_11_13_125617) do
   add_foreign_key "tournament_years", "players", column: "champion_id"
   add_foreign_key "tournament_years", "tournaments"
   add_foreign_key "tournaments", "atp_categories"
+  add_foreign_key "tournaments", "cities"
 end

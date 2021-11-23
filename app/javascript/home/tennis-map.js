@@ -4,7 +4,6 @@ $(document).on('turbolinks:load', function() {
             url: "/get_tournament_info",
             dataType: "json"
         }).done(function(response){
-            console.log("oo")
             console.log(response);
             let contents = new Map();
             contents["GRAND SLAM"] = new Map();
@@ -15,7 +14,7 @@ $(document).on('turbolinks:load', function() {
                 var contentAndColor = new Map();
                 var atp_category_name = response[key]["tournament"]["atp_category"]["name"]
                 var tournament_name = response[key]["tournament"]["name"];
-                var city_name = response[key]["tournament"]["city"];
+                var city_name = response[key]["tournament"]["city"]["name"];
                 var period = response[key]["period"];
                 var content =  `<div>`+
                                `<div>${tournament_name}</div>`+
@@ -50,6 +49,27 @@ $(document).on('turbolinks:load', function() {
      
                 contents[atp_category_name].set(response[key]["tournament"]["abbreviation"], contentAndColor);
             }
+            let map_info = `<div id="now-tournament-info" class="text-center mb-5"></div>
+                            <div class="map-container-GRAND-SLAM">
+                                <div class="text-success text-center m-5">
+                                    <h2>GRAND SLAM</h2>
+                                </div>
+                                <div class="map"></div>
+                            </div>
+                            <div class="map-container-Masters-1000">
+                                <div class="text-success text-center m-5">
+                                    <h2>Masters 1000</h2>
+                                </div>
+                                <div class="map"></div>
+                            </div>
+                            <div class="map-container-ATP-500">
+                                <div class="text-success text-center m-5">
+                                    <h2>ATP 500</h2>
+                                </div>
+                                <div class="map"></div>
+                            </div>`;
+            $("#map-info").html(map_info)
+
         
             if (now_tournaments_name != "") {
                 $("#now-tournament-info").html(`現在 <span class="text-danger">${now_tournaments_name} </span>が開催中です`);
