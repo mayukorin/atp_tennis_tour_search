@@ -4,7 +4,7 @@
     </div>
     <%= form_tag(path, method: "get", class:"g-3 text-center", remote: true) do %>
         <div class="form-group m-3 form-check-inline">
-            <%= select_tag(param, options_for_select(data_array, selected_data), class: "form-select") %>
+            <%= select_tag(param, options_from_collection_for_select(data_array, value_key, text_key, selected_data ), class: "form-select") %>
         </div>
         <% if local_assigns[:selected_tournament_year_id] %>
             <%= hidden_field_tag :selected_tournament_year_id, selected_tournament_year_id %>

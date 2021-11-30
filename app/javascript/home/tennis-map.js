@@ -46,6 +46,7 @@ $(document).on('turbolinks:load', function() {
                                 '</div>';
                 }
                 contentAndColor.set("content", content);
+                // contentAndColor.set("la", content);
      
                 contents[atp_category_name].set(response[key]["tournament"]["abbreviation"], contentAndColor);
             }
