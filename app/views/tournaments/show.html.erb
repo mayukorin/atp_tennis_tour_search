@@ -16,14 +16,14 @@
     
     <%= form_tag(tournament_year_path(@tournament_year), method: "get", class:"g-3 text-center", remote: true) do %>
         <div class="form-group form-check-inline m-3">
-            <%= select_tag(:selected_tournament_year_id, options_from_collection_for_select(@years_array, :id, :year, @selected_tournament_year_id ), class: "form-select") %>
+            <%= select_tag(:selected_tournament_year_id, options_from_collection_for_select(@years_collection, :id, :year, @selected_tournament_year_id ), class: "form-select") %>
         </div>
         <%= submit_tag("年度を選択", class: "btn btn-success m-3" )%>
     <% end %>
 </div>
 <div id="tournament_year">
     <%= render @tournament_year, 
-        tournament_days_array:  @tournament_days_array,
+        tournament_days_array:  @tournament_days_collection,
         selected_tournament_day: @selected_tournament_day,
         selected_tournament_year_id: @selected_tournament_year_id,
         selected_tournament_day_matches: @selected_tournament_day_matches

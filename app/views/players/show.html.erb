@@ -12,7 +12,7 @@
     <div>
         <%= render 'shared/match_select_form', 
             path: player_matches_index_path, param: :tournament_year_and_player_id, 
-            data_array: @tournament_years_array, 
+            data_array: @tournament_year_and_players_collection, 
             value_key: :tournament_year_and_player_id,
             text_key: :tournament_name_and_year,
             selected_data: @selected_tournament_year_and_player, 
