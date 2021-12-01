@@ -8,7 +8,7 @@ class PlayersController < ApplicationController
       tournament_year_and_player_hash[:tournament_name_and_year] = typ.tournament_year.tournament.name + "(" + typ.tournament_year.first_day.strftime("%Y") + ")"
       tournament_year_and_player_hash[:tournament_year_and_player_id] = typ.id
       tournament_year_and_player_hash = Struct.new(*(tournament_year_and_player_hash.keys)).new(*(tournament_year_and_player_hash.values))
-      tournament_year_and_players_collection.push(tournament_year_and_player_hash)
+      @tournament_year_and_players_collection.push(tournament_year_and_player_hash)
     end
     
     if @tournament_year_and_players_collection.length > 0
