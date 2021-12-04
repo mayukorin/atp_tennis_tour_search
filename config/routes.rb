@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   # root 'welcome#index'
   get '/get_tournament_info', to: 'static_pages#get_tournament_info'
-  get '/get_tournament_list', to: 'static_pages#get_tournament_list'
+  # get '/get_tournament_list', to: 'static_pages#get_tournament_list'
+  get '/get_search_candidates', to: 'searches#get_search_candidates'
   resources :tournament_years, only: [:show]
   # get '/tournament_years/:id', to: 'tournament_years#show'
   get '/tournament_years_day_show/:id', to: 'tournament_years#day_show', as: 'tournament_year_day_show'

@@ -5,7 +5,7 @@ $(function() {
                 source: function(request, response) {
                     $.ajax({
                         type: "GET",
-                        url: "/get_tournament_list",
+                        url: "/get_search_candidates",
                         dataType: "json",
                         data: {
                             name: request.term
