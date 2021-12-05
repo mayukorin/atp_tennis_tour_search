@@ -1,15 +1,14 @@
 class SearchesController < ApplicationController
 
     def search
+
         @tournament = Tournament.find_by(name: params[:name])
-        if @tournament
-            redirect_to tournament_path(@tournament) and return
-        end
+        redirect_to tournament_path(@tournament) and return if @tournament
+
         @player = Player.find_by(name: params[:name])
         @player ||= Player.find_by(full_name: params[:name])
-        if @player
-            redirect_to player_path(@player) and return
-        end
+        redirect_to player_path(@player) and return if @player
+        
         flash[:danger] = "検索結果が見つかりませんでした"
         redirect_to(params[:back_url])
     end
