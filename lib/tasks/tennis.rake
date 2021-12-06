@@ -166,7 +166,7 @@ namespace :tennis do
         default_player_name_list.push('Wsf')
 
         
-        api_id = 1381
+        api_id = 1364
         @tournament_year = TournamentYear.find_by(api_id: api_id)
         url = URI("https://tennis-live-data.p.rapidapi.com/matches-results/"+@tournament_year.api_id.to_s)
         http = Net::HTTP.new(url.host, url.port)
