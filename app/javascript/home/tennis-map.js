@@ -20,7 +20,7 @@ $(document).on('turbolinks:load', function() {
                                `<div>${tournament_name}</div>`+
                                `<div>開催都市 : ${city_name}</div>`+
                                `<div>開催期間 : ${period}</div>`;
-                contentAndColor.set("id", response[key]["id"])
+                contentAndColor.set("id", response[key]["tournament"]["id"])
                 if (response[key]["hold_flag"]) {
                     contentAndColor.set("plotColor", "red");
                     now_tournaments_name += tournament_name + " ";
@@ -33,13 +33,9 @@ $(document).on('turbolinks:load', function() {
                                `</div>`;
                 } else {
                     var main_players = ``;
-                    for(var id in response[key]["tournament_year_and_players"]) {
-                        var player_name = response[key]["tournament_year_and_players"][id]["player"]["name"];
-                        if (response[key]["tournament_year_and_players"][id]["remain_flag"]) {
-                            main_players += `<span>${player_name}</span> `;
-                        } else {
-                            main_players += `<span style=\"color: #EEEEEE;\">${player_name} </span> `;
-                        }
+                    for(var id in response[key]["top_ten_remain_players"]) {
+                        var player_name = response[key]["top_ten_remain_players"][id]["name"];
+                        main_players += `<span>${player_name}</span> `;
                     }
                     content +=  '<div>主な出場者:</div>'+
                                 `${main_players}`+

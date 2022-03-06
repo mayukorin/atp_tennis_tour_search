@@ -140,6 +140,16 @@ namespace :tennis do
                         result_nil_match.update(win_player_id: away_player.id)
                         tournament_year_and_home_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: home_player.id)
                         tournament_year_and_home_player.update(remain_flag: 'f')
+
+                    elsif PlayerMatch.eager_loading.where(match: {home_player: away_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
+                        result_nil_match.update(win_player_id: away_player.id)
+                        tournament_year_and_home_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: home_player.id)
+                        tournament_year_and_home_player.update(remain_flag: 'f')
+                
+                    elsif PlayerMatch.eager_loading.where(match: {away_player: home_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
+                        result_nil_match.update(win_player_id: home_player.id)
+                        tournament_year_and_away_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: away_player.id)
+                        tournament_year_and_away_player.update(remain_flag: 'f')
                     end
     
                 end
@@ -166,7 +176,7 @@ namespace :tennis do
         default_player_name_list.push('Wsf')
 
         
-        api_id = 1381
+        api_id = 1437
         @tournament_year = TournamentYear.find_by(api_id: api_id)
         url = URI("https://tennis-live-data.p.rapidapi.com/matches-results/"+@tournament_year.api_id.to_s)
         http = Net::HTTP.new(url.host, url.port)
@@ -261,6 +271,16 @@ namespace :tennis do
                 result_nil_match.update(win_player_id: away_player.id)
                 tournament_year_and_home_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: home_player.id)
                 tournament_year_and_home_player.update(remain_flag: 'f')
+
+            elsif PlayerMatch.eager_loading.where(match: {home_player: away_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
+                result_nil_match.update(win_player_id: away_player.id)
+                tournament_year_and_home_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: home_player.id)
+                tournament_year_and_home_player.update(remain_flag: 'f')
+            
+            elsif PlayerMatch.eager_loading.where(match: {away_player: home_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
+                result_nil_match.update(win_player_id: home_player.id)
+                tournament_year_and_away_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: away_player.id)
+                tournament_year_and_away_player.update(remain_flag: 'f')
             end
 
         end

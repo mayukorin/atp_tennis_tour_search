@@ -228,7 +228,7 @@ me.create_batch_schedule(start_day: '2021-10-24', end_day: '2021-11-01', start_h
 
 me = TournamentYear.find(25)
 me.create_batch_schedule(start_day: '2021-10-24', end_day: '2021-11-01', start_hour: 18)
-=end
+
 
 City.create!(name: 'ニューヨーク', latitude: '40.717079', longitude: '-74.00116')
 
@@ -305,5 +305,67 @@ Tournament.find_by(name: 'エルステ・バンク・オープン').update!(city
 
 val = City.create!(name: 'バーゼル', latitude: '47.34', longitude: '7.36')
 Tournament.find_by(name: 'スイス・インドア').update!(city_id: val.id)
+=end
+# newnew
+me = Tournament.find_by(name: '全豪オープン')
+me2 = me.tournament_years.create(:year => 2022, :first_day => '2022-01-17', :last_day => '2022-01-30', :now_flag => 't', :api_id => 1437)
+me2.create_batch_schedule(start_day: '2022-01-16', end_day: '2022-01-31', start_hour: 9)
 
 
+pa = Tournament.find_by(name: '全仏オープン')
+pa2 = pa.tournament_years.create(:year => 2022, :first_day => '2022-05-22', :last_day => '2022-06-05', :now_flag => 't', :api_id => 1464)
+pa2.create_batch_schedule(start_day: '2022-05-21', end_day: '2022-06-06', start_hour: 18)
+
+lo = Tournament.find_by(name: 'ウィンブルドン')
+lo2 = lo.tournament_years.create(:year => 2022, :first_day => '2022-06-27', :last_day => '2022-07-10', :now_flag => 't', :api_id => 1471)
+lo2.create_batch_schedule(start_day: '2022-06-26', end_day: '2022-07-11', start_hour: 19)
+
+my = Tournament.find_by(name: 'マイアミオープン')
+my2 = my.tournament_years.create(:year => 2022, :first_day => '2022-03-23', :last_day => '2022-04-03', :now_flag => 't', :api_id => 1452)
+my2.create_batch_schedule(start_day: '2022-03-23', end_day: '2022-04-03', start_hour: 0)
+
+lor = Tournament.find_by(name: 'ロレックス・モンテカルロ・マスターズ')
+lor2 = lor.tournament_years.create(:year => 2022, :first_day => '2022-04-10', :last_day => '2022-04-17', :now_flag => 't', :api_id => 1455)
+lor2.create_batch_schedule(start_day: '2022-04-09', end_day: '2022-04-18', start_hour: 18)
+
+mu = Tournament.find_by(name: 'ムチュア・マドリード・オープン')
+mu2 = mu.tournament_years.create(:year => 2022, :first_day => '2022-05-01', :last_day => '2022-05-08', :now_flag => 't', :api_id => 1460)
+mu2.create_batch_schedule(start_day: '2022-04-29', end_day: '2022-05-09', start_hour: 18)
+
+bnl = Tournament.find_by(name: 'BNLイタリア国際')
+bnl2 = bnl.tournament_years.create(:year => 2022, :first_day => '2022-05-08', :last_day => '2022-05-15', :now_flag => 't', :api_id => 1461)
+bnl2.create_batch_schedule(start_day: '2022-05-07', end_day: '2022-05-16', start_hour: 18)
+
+abn = Tournament.find_by(name: 'ABNアムロ・ワールド・テニス・トーナメント')
+abn2 = abn.tournament_years.create(:year => 2022, :first_day => '2022-02-07', :last_day => '2022-02-13', :now_flag => 't', :api_id => 1441)
+abn2.create_batch_schedule(start_day: '2022-02-06', end_day: '2022-02-14', start_hour: 18)
+
+dob = Tournament.find_by(name: 'ドバイ・デューティフリー・テニス選手権')
+dob2 = dob.tournament_years.create(:year => 2022, :first_day => '2022-02-21', :last_day => '2022-02-26', :now_flag => 't', :api_id => 1450)
+dob2.create_batch_schedule(start_day: '2022-02-20', end_day: '2022-02-27', start_hour: 16)
+
+meki = Tournament.find_by(name: 'メキシコ・オープン')
+meki2 = meki.tournament_years.create(:year => 2022, :first_day => '2022-02-21', :last_day => '2022-02-26', :now_flag => 't', :api_id => 1448)
+meki2.create_batch_schedule(start_day: '2022-02-21', end_day: '2022-02-21', start_hour: 1)
+
+val = Tournament.find_by(name: 'バルセロナ・オープン')
+val2 = val.tournament_years.create(:year => 2022, :first_day => '2022-04-18', :last_day => '2022-04-24', :now_flag => 't', :api_id => 1456)
+val2.create_batch_schedule(start_day: '2022-04-17', end_day: '2022-04-25', start_hour: 18)
+
+shin = Tournament.find_by(name: 'シンチ選手権')
+shin2 = shin.tournament_years.create(:year => 2022, :first_day => '2022-06-13', :last_day => '2022-06-19', :now_flag => 't', :api_id => 1467)
+shin2.create_batch_schedule(start_day: '2022-06-12', end_day: '2022-06-20', start_hour: 19)
+
+# 2021 のtyをnow flag falseに
+TournamentYear.where(year: 2021).update_all(now_flag: 'f')
+# リオオープンなど，新しく 500 になったもの
+
+tournament_years_2021 = TournamentYear.where(year: 2021)
+
+tournament_years_2021.each do |tournament_year|
+    tournament_year_2022_cnt = TournamentYear.where(year: 2022, tournament_id: tournament_year.tournament.id).count()
+    if tournament_year_2022_cnt == 0
+        tournament_year.update(now_flag: 't')
+    end
+
+end
