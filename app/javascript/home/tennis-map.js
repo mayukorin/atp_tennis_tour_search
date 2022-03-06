@@ -20,7 +20,7 @@ $(document).on('turbolinks:load', function() {
                                `<div>${tournament_name}</div>`+
                                `<div>開催都市 : ${city_name}</div>`+
                                `<div>開催期間 : ${period}</div>`;
-                contentAndColor.set("id", response[key]["id"])
+                contentAndColor.set("id", response[key]["tournament"]["id"])
                 if (response[key]["hold_flag"]) {
                     contentAndColor.set("plotColor", "red");
                     now_tournaments_name += tournament_name + " ";
