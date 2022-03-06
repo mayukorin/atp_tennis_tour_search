@@ -308,7 +308,7 @@ Tournament.find_by(name: 'スイス・インドア').update!(city_id: val.id)
 =end
 # newnew
 me = Tournament.find_by(name: '全豪オープン')
-me2 = me.tournament_years.create(:year => 2022, :first_day => '2022-01-17', :last_day => '2022-01-30', :now_flag => 't', :api_id => 1437)
+me2 = me.tournament_years.create!(:year => 2022, :first_day => '2022-01-17', :last_day => '2022-01-30', :now_flag => 't', :api_id => 1437)
 me2.create_batch_schedule(start_day: '2022-01-16', end_day: '2022-01-31', start_hour: 9)
 
 
