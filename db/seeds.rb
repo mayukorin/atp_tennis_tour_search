@@ -305,7 +305,7 @@ Tournament.find_by(name: 'エルステ・バンク・オープン').update!(city
 
 val = City.create!(name: 'バーゼル', latitude: '47.34', longitude: '7.36')
 Tournament.find_by(name: 'スイス・インドア').update!(city_id: val.id)
-
+=end
 # newnew
 me = Tournament.find_by(name: '全豪オープン')
 me2 = me.tournament_years.create(:year => 2022, :first_day => '2022-01-17', :last_day => '2022-01-30', :now_flag => 't', :api_id => 1437)
@@ -359,7 +359,7 @@ shin2.create_batch_schedule(start_day: '2022-06-12', end_day: '2022-06-20', star
 # 2021 のtyをnow flag falseに
 TournamentYear.where(year: 2021).update_all(now_flag: 'f')
 # リオオープンなど，新しく 500 になったもの
-=end
+
 tournament_years_2021 = TournamentYear.where(year: 2021)
 
 tournament_years_2021.each do |tournament_year|
