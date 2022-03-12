@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   get '/get_search_candidates', to: 'searches#get_search_candidates'
   resources :tournament_years, only: [:show]
   # get '/tournament_years/:id', to: 'tournament_years#show'
-  get '/tournament_years_day_show/:id', to: 'tournament_years#day_show', as: 'tournament_year_day_show'
+  get '/selected_tournament_year_show', to: 'tournament_years#selected_tournament_year_show'
+  get '/tournament_years_day_show', to: 'tournament_years#day_show', as: 'tournament_year_day_show'
   resources :tournaments, only: [:show]
   resources :players, only: [:show]
   get '/player_matches_index/:player_id', to: 'player_matches#index', as: 'player_matches_index'

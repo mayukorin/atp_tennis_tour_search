@@ -13,13 +13,13 @@
     </div>
     <div>
         <%= render 'shared/match_select_form', 
-            path: tournament_year_day_show_path(tournament_year), param: :day, 
+            path: tournament_year_day_show_path, param: :selected_tournament_day, 
             data_array: tournament_days_array, 
             selected_data: selected_tournament_day, 
             button_title: "選択日程の試合表示", 
             selected_tournament_year_id: selected_tournament_year_id,
-            value_key: :day,
-            text_key: :day_str
+            value_key: :second,
+            text_key: :first
         %>
         <div class="row justify-content-center">
             <div class="col-md-9 justify-content-between row" id="matches">
