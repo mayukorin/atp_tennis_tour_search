@@ -15,7 +15,10 @@ namespace :tennis do
     desc "APIから試合情報を取得する"
     task fetch_match_info: :environment do
         default_player_name_list = []
+        default_player_name_list.push('R64p')
+        default_player_name_list.push('R32p')
         default_player_name_list.push('R16p')
+        default_player_name_list.push('R4p')
         default_player_name_list.push('Qf')
         default_player_name_list.push('Wqf')
         default_player_name_list.push('Wsf')
