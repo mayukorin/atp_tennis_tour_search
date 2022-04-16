@@ -117,10 +117,12 @@ namespace :tennis do
                                 # home_player が勝った場合
                                 match.update(win_player_id: home_player.id)
                                 tournament_year_and_away_player.update(remain_flag: 'f')
+                                tournament_year_and_home_player.update(remain_flag: 't')
                             else
                                 # away_player が勝った場合
                                 match.update(win_player_id: away_player.id)
                                 tournament_year_and_home_player.update(remain_flag: 'f')
+                                tournament_year_and_away_player.update(remain_flag: 't')
     
                             end
                         end
@@ -138,21 +140,26 @@ namespace :tennis do
                         result_nil_match.update(win_player_id: home_player.id)
                         tournament_year_and_away_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: away_player.id)
                         tournament_year_and_away_player.update(remain_flag: 'f')
+                        tournament_year_and_home_player.update(remain_flag: 't')
+                        
     
                     elsif PlayerMatch.eager_loading.where(match: {away_player: away_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
                         result_nil_match.update(win_player_id: away_player.id)
                         tournament_year_and_home_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: home_player.id)
                         tournament_year_and_home_player.update(remain_flag: 'f')
+                        tournament_year_and_away_player.update(remain_flag: 't')
 
                     elsif PlayerMatch.eager_loading.where(match: {home_player: away_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
                         result_nil_match.update(win_player_id: away_player.id)
                         tournament_year_and_home_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: home_player.id)
                         tournament_year_and_home_player.update(remain_flag: 'f')
+                        tournament_year_and_away_player.update(remain_flag: 't')
                 
                     elsif PlayerMatch.eager_loading.where(match: {away_player: home_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
                         result_nil_match.update(win_player_id: home_player.id)
                         tournament_year_and_away_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: away_player.id)
                         tournament_year_and_away_player.update(remain_flag: 'f')
+                        tournament_year_and_home_player.update(remain_flag: 't')
                     end
     
                 end
