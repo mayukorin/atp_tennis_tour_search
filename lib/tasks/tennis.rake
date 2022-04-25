@@ -135,8 +135,10 @@ namespace :tennis do
                 @result_nil_matches.each do |result_nil_match|
                     home_player = result_nil_match.home_player
                     away_player = result_nil_match.away_player
+
+                    # この書き方 OUT!!! 自分だとしても消える
     
-                    if PlayerMatch.eager_loading.where(match: {home_player: home_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
+                    if Match.eager_loading.where(home_player: home_player.id, tournament_year: @tournament_year.id}).where("day > ?", result_nil_match.day).exists?
                         result_nil_match.update(win_player_id: home_player.id)
                         tournament_year_and_away_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: away_player.id)
                         tournament_year_and_away_player.update(remain_flag: 'f')
