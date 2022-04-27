@@ -120,7 +120,7 @@ namespace :tennis do
                                 match.update(win_player_id: home_player.id)
                                 tournament_year_and_away_player.update(remain_flag: 'f')
                                 # tournament_year_and_home_player.update(remain_flag: 't')
-                            else
+                            elsif result_match["result"]["winner_id"] == result_match["away_id"]
                                 # away_player が勝った場合
                                 match.update(win_player_id: away_player.id)
                                 tournament_year_and_home_player.update(remain_flag: 'f')
