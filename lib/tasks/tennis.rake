@@ -183,7 +183,7 @@ namespace :tennis do
         
         api_id = 1456
                
-        @tournament_year = TouornamentYear.find_by(api_id: api_id)
+        @tournament_year = TournamentYear.find_by(api_id: api_id)
         url = URI("https://tennis-live-data.p.rapidapi.com/matches-results/"+@tournament_year.api_id.to_s)
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
@@ -312,7 +312,7 @@ namespace :tennis do
         end
 
     end
-    
+
     desc "選手のランキングの情報を取得"
     task fetch_player_ranking_info: :environment do
         url = URI("https://tennis-live-data.p.rapidapi.com/rankings/ATP")
