@@ -36,6 +36,10 @@ http://3.233.106.108/
 # 使用技術
 
 Ruby on Rails, Tennis Live Data API （試合情報取得に利用），AWS （デプロイ）
+
+# ER図
+
+![drawSQL-export-2022-04-28_19_48](https://user-images.githubusercontent.com/63027348/165736590-536b51f5-11cf-480c-a993-35496014c870.png)
  
 <!--
 # Requirement
