@@ -105,6 +105,8 @@ namespace :tennis do
                         else
                             match = match_query[0]
                         end
+
+                        match.update(day: day)
     
                         tournament_year_and_home_player = TournamentYearAndPlayer.joins(:tournament_year, :player).find_by(tournament_year:  @tournament_year.id, player: home_player.id)
                         tournament_year_and_home_player ||= TournamentYearAndPlayer.create(tournament_year_id: @tournament_year.id, player_id: home_player.id, remain_flag: 't')
@@ -118,7 +120,7 @@ namespace :tennis do
                                 match.update(win_player_id: home_player.id)
                                 tournament_year_and_away_player.update(remain_flag: 'f')
                                 # tournament_year_and_home_player.update(remain_flag: 't')
-                            else
+                            elsif result_match["result"]["winner_id"] == result_match["away_id"]
                                 # away_player が勝った場合
                                 match.update(win_player_id: away_player.id)
                                 tournament_year_and_home_player.update(remain_flag: 'f')
@@ -138,7 +140,7 @@ namespace :tennis do
 
                     # この書き方 OUT!!! 自分だとしても消える
     
-                    if Match.eager_loading.where(home_player: home_player.id, tournament_year: @tournament_year.id}).where("day > ?", result_nil_match.day).exists?
+                    if Match.eager_loading.where(home_player: home_player.id, tournament_year: @tournament_year.id).where("day > ?", result_nil_match.day).exists?
                         result_nil_match.update(win_player_id: home_player.id)
                         tournament_year_and_away_player = TournamentYearAndPlayer.joins(:tournament_year, :player).where(tournament_year: @tournament_year.id, player: away_player.id)
                         tournament_year_and_away_player.update(remain_flag: 'f')
@@ -192,7 +194,7 @@ namespace :tennis do
 
         # api_ids = [1283, 1347, 1354, 1368, 1334, 1338, 1343, 1344, 1365, 1366, 1377, 1331, 1383, 1326, 1332, 1333, 1339, 1350, 1351, 1356, 1364, 1376, 1375, 1381, 1382]
         # api_ids = [1339, 1350, 1351, 1356, 1364, 1376, 1375, 1381, 1382]
-        api_ids = [1455]
+        api_ids = [1456]
         api_ids.each do |api_id|
             puts api_id
             @tournament_year = TournamentYear.find_by(api_id: api_id)
@@ -251,6 +253,8 @@ namespace :tennis do
                     else
                         match = match_query[0]
                     end
+
+                    match.update(day: day)
 
                     tournament_year_and_home_player = TournamentYearAndPlayer.joins(:tournament_year, :player).find_by(tournament_year:  @tournament_year.id, player: home_player.id)
                     tournament_year_and_home_player ||= TournamentYearAndPlayer.create(tournament_year_id: @tournament_year.id, player_id: home_player.id, remain_flag: 't')
