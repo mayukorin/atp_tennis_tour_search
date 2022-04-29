@@ -1,4 +1,4 @@
-<div class="game_card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2  <%= "offset-md-1" if match_counter % 2 == 1%>" >
+<div class="white-card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2  <%= "offset-md-1" if match_counter % 2 == 1%>" >
     <%= l match.day  %>
     <div class="tournament_year_link"><%= link_to match.tournament_year.tournament.name, tournament_path(match.tournament_year.tournament) %></div>
     <div class="player-name">

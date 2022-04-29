@@ -197,7 +197,7 @@ header ul li {
 
 
 
-.game_card {
+.white-card {
     background-color: white;
 }
 
@@ -448,4 +448,9 @@ header ul li {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.tournament_name {
+    a:link {color: green;};
+    a:visited {color: green;};
 }
