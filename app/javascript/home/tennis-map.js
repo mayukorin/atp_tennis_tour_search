@@ -98,14 +98,23 @@ $(document).on('turbolinks:load', function() {
                     `
                     for (let abbreviation of contents.get(atp_category_name).keys()) {
                         console.log(contents.get(atp_category_name).get(abbreviation).get("tournament_name"));
-    
-                        inner_html += `
-                            <div class="col-3 p-2 tournament_name">
-                                <a href=/tournaments/${contents.get(atp_category_name).get(abbreviation).get("id")}>
-                                    ${contents.get(atp_category_name).get(abbreviation).get("tournament_name")}
-                                </a>
-                            </div>
-                        `
+                        if (contents.get(atp_category_name).get(abbreviation).get("plotColor") == "red") {
+                            inner_html += `
+                                <div class="col-3 p-2 tournament_name_red">
+                                    <a href=/tournaments/${contents.get(atp_category_name).get(abbreviation).get("id")}>
+                                        ${contents.get(atp_category_name).get(abbreviation).get("tournament_name")}
+                                    </a>
+                                </div>
+                            `
+                        } else {
+                            inner_html += `
+                                <div class="col-3 p-2 tournament_name">
+                                    <a href=/tournaments/${contents.get(atp_category_name).get(abbreviation).get("id")}>
+                                        ${contents.get(atp_category_name).get(abbreviation).get("tournament_name")}
+                                    </a>
+                                </div>
+                            `
+                        }
                     }
                     inner_html += `
                             </div>
