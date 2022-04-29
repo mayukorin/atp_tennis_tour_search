@@ -305,7 +305,7 @@ Tournament.find_by(name: 'エルステ・バンク・オープン').update!(city
 
 val = City.create!(name: 'バーゼル', latitude: '47.34', longitude: '7.36')
 Tournament.find_by(name: 'スイス・インドア').update!(city_id: val.id)
-=end
+
 # newnew
 me = Tournament.find_by(name: '全豪オープン')
 me2 = me.tournament_years.create!(:year => 2022, :first_day => '2022-01-17', :last_day => '2022-01-30', :now_flag => 't', :api_id => 1437)
@@ -369,3 +369,50 @@ tournament_years_2021.each do |tournament_year|
     end
 
 end
+=end
+
+# me2 = TournamentYear.find_by(api_id: 1437)
+# me2.create_batch_schedule(start_day: '2022-01-16', end_day: '2022-01-31', start_hour: 9)
+
+pa2 = TournamentYear.find_by(api_id: 1464)
+pa2.update(first_day: '2022-05-30', last_day: '2022-06-13')
+pa2.batch_schedule.update(start_day: '2022-05-29', end_day: '2022-06-14')
+
+
+lo2 = TournamentYear.find_by(api_id: 1471)
+lo2.update(first_day: '2022-06-28', last_day: '2022-07-11')
+lo2.batch_schedule.update(start_day: '2022-06-27', end_day: '2022-07-12', start_hour: 19)
+
+my2 = TournamentYear.find_by(api_id: 1452)
+my2.update(first_day: '2022-03-22', last_day: '2022-04-04')
+my2.batch_schedule.update(start_day: '2022-03-21', end_day: '2022-04-05', start_hour: 0)
+
+lor2 = TournamentYear.find_by(api_id: 1455)
+lor2.update(first_day: '2022-04-10', last_day: '2022-04-17')
+lor2.batch_schedule.update(start_day: '2022-04-09', end_day: '2022-04-18', start_hour: 18)
+
+mu2 = TournamentYear.find_by(api_id: 1460)
+mu2.update(first_day: '2022-04-29', last_day: '2022-05-08')
+mu2.batch_schedule.update(start_day: '2022-04-28', end_day: '2022-05-09', start_hour: 18)
+
+bnl2 = TournamentYear.find_by(api_id: 1461)
+bnl2.update(first_day: '2022-05-08', last_day: '2022-05-15')
+bnl2.batch_schedule.update(start_day: '2022-05-07', end_day: '2022-05-16', start_hour: 18)
+
+abn2 = TournamentYear.find_by(api_id: 1441)
+abn2.update(first_day: '2022-02-07', last_day: '2022-02-13')
+abn2.batch_schedule.update(start_day: '2022-02-06', end_day: '2022-02-14', start_hour: 18)
+
+dob2 = TournamentYear.find_by(api_id: 1450)
+dob2.update(first_day: '2022-02-21', last_day: '2022-02-26')
+dob2.batch_schedule.update(start_day: '2022-02-20', end_day: '2022-02-27', start_hour: 16)
+
+meki2 = TournamentYear.find_by(api_id: 1448)
+meki2.update(first_day: '2022-02-22', last_day: '2022-02-27')
+meki2.batch_schedule.update(start_day: '2022-02-21', end_day: '2022-02-28', start_hour: 1)
+
+val2 = TournamentYear.find_by(api_id: 1456)
+val2.update(first_day: '2022-04-18', last_day: '2022-04-25')
+val2.batch_schedule.update(start_day: '2022-04-17', end_day: '2022-04-26', start_hour: 18)
+
+
