@@ -10,31 +10,31 @@ $(document).on('turbolinks:load', function() {
             contents["Masters 1000"] = new Map();
             contents["ATP 500"] = new Map();
             let now_tournaments_name = "";
-            for(var key in response) {
+            for(var index in response) {
                 var contentAndColor = new Map();
-                var atp_category_name = response[key]["tournament"]["atp_category"]["name"]
-                var tournament_name = response[key]["tournament"]["name"];
-                var city_name = response[key]["tournament"]["city"]["name"];
-                var period = response[key]["period"];
+                var atp_category_name = response[index]["tournament"]["atp_category"]["name"]
+                var tournament_name = response[index]["tournament"]["name"];
+                var city_name = response[index]["tournament"]["city"]["name"];
+                var period = response[index]["period"];
                 var content =  `<div>`+
                                `<div>${tournament_name}</div>`+
                                `<div>開催都市 : ${city_name}</div>`+
                                `<div>開催期間 : ${period}</div>`;
-                contentAndColor.set("id", response[key]["tournament"]["id"])
-                if (response[key]["hold_flag"]) {
+                contentAndColor.set("id", response[index]["tournament"]["id"])
+                if (response[index]["hold_flag"]) {
                     contentAndColor.set("plotColor", "red");
                     now_tournaments_name += tournament_name + " ";
                 } else {
                     contentAndColor.set("plotColor", "blue");
                 }
-                if (response[key]["champion"] != null) {
-                    var champion_name = response[key]["champion"]["name"];
+                if (response[index]["champion"] != null) {
+                    var champion_name = response[index]["champion"]["name"];
                     content += `<div>優勝者 : ${champion_name}`+
                                `</div>`;
                 } else {
                     var main_players = ``;
-                    for(var id in response[key]["top_ten_remain_players"]) {
-                        var player_name = response[key]["top_ten_remain_players"][id]["name"];
+                    for(var id in response[index]["top_ten_remain_players"]) {
+                        var player_name = response[index]["top_ten_remain_players"][id]["name"];
                         main_players += `<span>${player_name}</span> `;
                     }
                     content +=  '<div>主な出場者:</div>'+
@@ -44,7 +44,7 @@ $(document).on('turbolinks:load', function() {
                 contentAndColor.set("content", content);
                 // contentAndColor.set("la", content);
      
-                contents[atp_category_name].set(response[key]["tournament"]["abbreviation"], contentAndColor);
+                contents[atp_category_name].set(response[index]["tournament"]["abbreviation"], contentAndColor);
             }
             let map_info = `<div id="now-tournament-info" class="text-center mb-5"></div>
                             <div class="map-container-GRAND-SLAM">
