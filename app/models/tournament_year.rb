@@ -11,7 +11,7 @@ class TournamentYear < ApplicationRecord
   scope :top_ten_remain_players_loading, -> { preload({ tournament: [:atp_category, :city ] }, :champion,  :top_ten_remain_players) }
 
   def period_for_show
-    self.first_day.strftime("%m/%d") + " ~ " + self.last_day.strftime("%m/%d")
+    self.first_day.strftime("%Y/%m/%d") + " ~ " + self.last_day.strftime("%Y/%m/%d")
   end
 
   def hold_now_flag
