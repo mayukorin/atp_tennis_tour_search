@@ -25,12 +25,13 @@ namespace :tennis do
             fetch_api_timing_flag = false
             current_hour = today.hour
             start_hour = batch_schedule.start_hour
-
+            add_one_day_hour_flag = false
             if start_hour > current_hour
                 current_hour += ONEDAYHOUR
+                add_one_day_hour_flag = true
             end
             
-            if batch_schedule.start_day == today_date_string.to_date
+            if (add_one_day_hour_flag && (today_date_string.to_date - batch_schedule.start_day).to_i == 1) || (!add_one_day_hour_flag && batch_schedule.start_day == today_date_string.to_date) 
                 # 大会初日の前日は，1 回だけ api に fetch
                 if current_hour - start_hour == 6
                     fetch_api_timing_flag = true
