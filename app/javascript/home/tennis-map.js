@@ -24,13 +24,13 @@ $(document).on('turbolinks:load', function() {
                 }
                 var tournament_name = response[key]["tournament"]["name"];
                 var city_name = response[key]["tournament"]["city"]["name"];
-                var period = response[key]["period"];
+                var period = response[key]["period_for_show"];
                 var content =  `<div>`+
                                `<div>${tournament_name}</div>`+
                                `<div>開催都市 : ${city_name}</div>`+
                                `<div>開催期間 : ${period}</div>`;
                 contentAndColor.set("id", response[key]["tournament"]["id"])
-                if (response[key]["hold_flag"]) {
+                if (response[key]["hold_now_flag"]) {
                     contentAndColor.set("plotColor", "red");
                     now_tournaments_name += tournament_name + " ";
                 } else {

@@ -3,13 +3,13 @@ class TournamentYearForMapSerializer < ActiveModel::Serializer
   belongs_to :champion, class_name: 'Player', :foreign_key => 'champion_id'
   # has_many :tournament_year_and_players, serializer: TournamentYearAndPlayerForMapSerializer
   has_many :top_ten_remain_players
-  attributes :period, :id, :hold_flag
+  attributes :period_for_show, :id, :hold_now_flag
   
-  def period
-    object.first_day.strftime("%m/%d") + " ~ " + object.last_day.strftime("%m/%d")
+  def period_for_show
+    object.period_for_show
   end
 
-  def hold_flag
-    Time.zone.now.between?(object.first_day, object.last_day)
+  def hold_now_flag
+    object.hold_now_flag
   end
 end
