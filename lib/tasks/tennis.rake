@@ -435,11 +435,15 @@ namespace :tennis do
     task :line_notify_tournament_start, [:tournament_year] => :environment do |task, args|
         @tournament_year = args.tournament_year
         User.all.each do |user|
+            access_token_of_line_notify = user.access_token_of_line_notify
+            if access_token_of_line_notify == ""
+                next
+            end
             tournament_tomorrow_start_message = @tournament_year.tournament.name + "が明日から開幕します．\n"
             tournament_tomorrow_start_message += "開催都市は，" + @tournament_year.tournament.city.name + "です！\n"
             tournament_tomorrow_start_message += @tournament_year.tournament.city.name + "のwebカメラはこちらからチェックできます！少しでも現地気分を味わってみてください ^^)\n" 
             tournament_tomorrow_start_message += @tournament_year.tournament.city.image_url
-            line_notify = LineNotify.new("xxxxxxxxxxxx")
+            line_notify = LineNotify.new(access_token_of_line_notify)
             options = {message: tournament_tomorrow_start_message}
             line_notify.ping(options)
         end
