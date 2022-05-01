@@ -367,5 +367,73 @@ namespace :tennis do
             end
         end
     end
+
+    desc "ユーザーのお気に入り選手の試合を前日に通知"
+    task line_notify_favorite_player_match_before_day: :environment do
+        today = Time.zone.now
+
+        User.all.each do |user|
+            line_notify_message = ""
+            user.favorite_players.each do |favorite_player|
+                player_match_day_message = favorite_player.name + "の試合が明日"
+                player_matches = PlayerMatch.joins(:match).where(player_id: favorite_player.id).where("matches.day >= ? AND matches.day < ?", today+60*60*24, today+60*60*25)
+                match_day_message = ""
+                player_matches.each do |player_match|
+                    match_day_message += player_match.match.day.strftime("%H:%M")
+                end
+                unless match_day_message == ""
+                    player_match_day_message += match_day_message +"からあります．\n"
+                    line_notify_message += player_match_day_message
+                end
+            end
+            unless line_notify_message == ""
+                # line notify で通知
+                puts line_notify_message
+            end
+        end
+    end
+
+    desc "ユーザーのお気に入り選手の試合を1時間前ほどから通知"
+    task line_notify_favorite_player_match_before_one_hour: :environment do
+        today = Time.zone.now
+
+        User.all.each do |user|
+            line_notify_message = ""
+            user.favorite_players.each do |favorite_player|
+                player_match_day_message = favorite_player.name + "の試合が"
+                player_matches = PlayerMatch.joins(:match).where(player_id: favorite_player.id).where("matches.day >= ? AND matches.day < ?", today, today+60*60*1)
+                match_day_message = ""
+                player_matches.each do |player_match|
+                    match_day_message += player_match.match.day.strftime("%H:%M")
+                end
+                unless match_day_message == ""
+                    player_match_day_message += match_day_message +"からはじまります．\n"
+                    line_notify_message += player_match_day_message
+                end
+            end
+            unless line_notify_message == ""
+                # line notify で通知
+                puts line_notify_message
+            end
+        end
+    end
+
+    desc "お試し"
+    task trial: :environment do 
+        @tournament_year = TournamentYear.find(2)
+        Rake::Task["tennis:line_notify_tournament_start"].invoke(@tournament_year)
+    end
+
+    desc "大会が明日から開催されることをユーザーに通知"
+    task :line_notify_tournament_start, [:tournament_year] => :environment do |task, args|
+        @tournament_year = args.tournament_year
+        User.all.each do |user|
+            tournament_tomorrow_start_message = @tournament_year.tournament.name + "が明日から開幕します．\n"
+            tournament_tomorrow_start_message += "開催都市は，" + @tournament_year.tournament.city.name + "です！\n"
+            tournament_tomorrow_start_message += @tournament_year.tournament.city.name + "のwebカメラはこちらからチェックできます！少しでも現地気分を味わってみてください ^^)\n" 
+            tournament_tomorrow_start_message += @tournament_year.tournament.city.image_url
+            puts tournament_tomorrow_start_message
+        end
+    end
 end
 
