@@ -3,10 +3,14 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   def new
     @user = User.new
+    puts @user.access_token_of_line_notify
+    return @user
   end
 
   def create
+    puts user_params[:access_token_of_line_notify]
     @user = User.new(user_params)
+    puts @user.access_token_of_line_notify
     if @user.save
       log_in @user
       flash[:success] = "ユーザ登録が完了しました"
@@ -32,7 +36,7 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :access_token_of_line_notify)
     end
 
     def logged_in_user

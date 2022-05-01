@@ -36,6 +36,16 @@
             <%= f.password_field :password_confirmation, class: "form-control" %>
         <% end %>
     </div>
+    <div class="mb-3">
+        <%= f.label :access_token_of_line_notify, "アクセストークン（Line通知に使用，任意）", class: "form-label text-success" %>
+        <% if @user.errors.include?(:access_token_of_line_notify) %>
+            <%= f.text_field :access_token_of_line_notify, class: "form-control  is-invalid" %>
+            <div class="error_message"><%= @user.errors.full_messages_for(:access_token_of_line_notify).first %></div>
+        <% else %>
+            <%= f.text_field :access_token_of_line_notify, class: "form-control" %>
+        <% end %>
+        
+    </div>
     <div class="mb-3 row justify-content-center">
         <%= f.submit yield(:button_text), class: "btn btn-primary btn-success col-4" %>
     </div>
