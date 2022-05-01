@@ -2,6 +2,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 require 'json'
+require 'line_notify'
 
 ONEDAYHOUR = 24
 
@@ -25,12 +26,13 @@ namespace :tennis do
             fetch_api_timing_flag = false
             current_hour = today.hour
             start_hour = batch_schedule.start_hour
-
+            add_one_day_hour_flag = false
             if start_hour > current_hour
                 current_hour += ONEDAYHOUR
+                add_one_day_hour_flag = true
             end
             
-            if batch_schedule.start_day == today_date_string.to_date
+            if (add_one_day_hour_flag && (today_date_string.to_date - batch_schedule.start_day).to_i == 1) || (!add_one_day_hour_flag && batch_schedule.start_day == today_date_string.to_date) 
                 # 大会初日の前日は，1 回だけ api に fetch
                 if current_hour - start_hour == 6
                     fetch_api_timing_flag = true
@@ -129,7 +131,7 @@ namespace :tennis do
                     end
                 end
     
-                @result_nil_matches = Match.eager_loading.where(win_player: nil, tournament_year: @tournament_year.id)
+                @result_nil_matches = Match.eager_loading.where(win_player_id: nil, tournament_year_id: @tournament_year.id)
     
                 @result_nil_matches.each do |result_nil_match|
                     home_player = result_nil_match.home_player
@@ -143,19 +145,19 @@ namespace :tennis do
                         # tournament_year_and_home_player.update(remain_flag: 't')
                         
     
-                    elsif Match.where(away_player_id: away_player.id, tournament_year_id: @tournament_year.id).where("match.day > ?", result_nil_match.day).exists?
+                    elsif Match.where(away_player_id: away_player.id, tournament_year_id: @tournament_year.id).where("day > ?", result_nil_match.day).exists?
                         result_nil_match.update(win_player_id: away_player.id)
                         tournament_year_and_home_player = TournamentYearAndPlayer.where(tournament_year_id: @tournament_year.id, player_id: home_player.id)
                         tournament_year_and_home_player.update(remain_flag: 'f')
                         # tournament_year_and_away_player.update(remain_flag: 't')
 
-                    elsif Match.where(match: {home_player: away_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
+                    elsif Match.where(home_player_id: away_player.id, tournament_year_id: @tournament_year.id).where("day > ?", result_nil_match.day).exists?
                         result_nil_match.update(win_player_id: away_player.id)
                         tournament_year_and_home_player = TournamentYearAndPlayer.where(tournament_year_id: @tournament_year.id, player_id: home_player.id)
                         tournament_year_and_home_player.update(remain_flag: 'f')
                         # tournament_year_and_away_player.update(remain_flag: 't')
                 
-                    elsif Match.where(match: {away_player: home_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
+                    elsif Match.where(away_player_id: home_player.id, tournament_year_id: @tournament_year.id).where("day > ?", result_nil_match.day).exists?
                         result_nil_match.update(win_player_id: home_player.id)
                         tournament_year_and_away_player = TournamentYearAndPlayer.where(tournament_year_id: @tournament_year.id, player_id: away_player.id)
                         tournament_year_and_away_player.update(remain_flag: 'f')
@@ -268,7 +270,7 @@ namespace :tennis do
             end
         end
 
-        @result_nil_matches = Match.eager_loading.where(win_player: nil, tournament_year: @tournament_year.id)
+        @result_nil_matches = Match.eager_loading.where(win_player_id: nil, tournament_year_id: @tournament_year.id)
 
         @result_nil_matches.each do |result_nil_match|
             home_player = result_nil_match.home_player
@@ -282,19 +284,19 @@ namespace :tennis do
                 # tournament_year_and_home_player.update(remain_flag: 't')
                 
 
-            elsif Match.where(away_player_id: away_player.id, tournament_year_id: @tournament_year.id).where("match.day > ?", result_nil_match.day).exists?
+            elsif Match.where(away_player_id: away_player.id, tournament_year_id: @tournament_year.id).where("day > ?", result_nil_match.day).exists?
                 result_nil_match.update(win_player_id: away_player.id)
                 tournament_year_and_home_player = TournamentYearAndPlayer.where(tournament_year_id: @tournament_year.id, player_id: home_player.id)
                 tournament_year_and_home_player.update(remain_flag: 'f')
                 # tournament_year_and_away_player.update(remain_flag: 't')
 
-            elsif Match.where(match: {home_player: away_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
+            elsif Match.where(home_player_id: away_player.id, tournament_year_id: @tournament_year.id).where("day > ?", result_nil_match.day).exists?
                 result_nil_match.update(win_player_id: away_player.id)
                 tournament_year_and_home_player = TournamentYearAndPlayer.where(tournament_year_id: @tournament_year.id, player_id: home_player.id)
                 tournament_year_and_home_player.update(remain_flag: 'f')
                 # tournament_year_and_away_player.update(remain_flag: 't')
         
-            elsif Match.where(match: {away_player: home_player.id, tournament_year: @tournament_year.id} ).where("match.day > ?", result_nil_match.day).exists?
+            elsif Match.where(away_player_id: home_player.id, tournament_year_id: @tournament_year.id).where("day > ?", result_nil_match.day).exists?
                 result_nil_match.update(win_player_id: home_player.id)
                 tournament_year_and_away_player = TournamentYearAndPlayer.where(tournament_year_id: @tournament_year.id, player_id: away_player.id)
                 tournament_year_and_away_player.update(remain_flag: 'f')
@@ -364,6 +366,82 @@ namespace :tennis do
             if response_body_json["result"]["total"] > 0
                 city.update!(image_url: response_body_json["result"]["webcams"][0]["image"]["current"]["preview"])
             end
+        end
+    end
+
+    desc "ユーザーのお気に入り選手の試合を前日に通知"
+    task line_notify_favorite_player_match_before_day: :environment do
+        today = Time.zone.now
+
+        User.all.each do |user|
+            line_notify_message = ""
+            user.favorite_players.each do |favorite_player|
+                player_match_day_message = favorite_player.name + "の試合が明日"
+                player_matches = PlayerMatch.joins(:match).where(player_id: favorite_player.id).where("matches.day >= ? AND matches.day < ?", today+60*60*24, today+60*60*25)
+                match_day_message = ""
+                player_matches.each do |player_match|
+                    match_day_message += player_match.match.day.strftime("%H:%M")
+                end
+                unless match_day_message == ""
+                    player_match_day_message += match_day_message +"からあります．\n"
+                    line_notify_message += player_match_day_message
+                end
+            end
+            unless line_notify_message == ""
+                # line notify で通知
+                puts line_notify_message
+                line_notify = LineNotify.new("xxxxxxxxx")
+                options = {message: line_notify_message}
+                line_notify.ping(options)
+            end
+        end
+    end
+
+    desc "ユーザーのお気に入り選手の試合を1時間前ほどから通知"
+    task line_notify_favorite_player_match_before_one_hour: :environment do
+        today = Time.zone.now
+
+        User.all.each do |user|
+            line_notify_message = ""
+            user.favorite_players.each do |favorite_player|
+                player_match_day_message = favorite_player.name + "の試合が"
+                player_matches = PlayerMatch.joins(:match).where(player_id: favorite_player.id).where("matches.day >= ? AND matches.day < ?", today, today+60*60*30)
+                match_day_message = ""
+                player_matches.each do |player_match|
+                    match_day_message += player_match.match.day.strftime("%H:%M") + " "
+                end
+                unless match_day_message == ""
+                    player_match_day_message += match_day_message +"からはじまります．\n"
+                    line_notify_message += player_match_day_message
+                end
+            end
+            unless line_notify_message == ""
+                # line notify で通知
+                puts line_notify_message
+                line_notify = LineNotify.new("xxxxxxxxx")
+                options = {message: line_notify_message}
+                line_notify.ping(options)
+            end
+        end
+    end
+
+    desc "お試し"
+    task trial: :environment do 
+        @tournament_year = TournamentYear.find(2)
+        Rake::Task["tennis:line_notify_tournament_start"].invoke(@tournament_year)
+    end
+
+    desc "大会が明日から開催されることをユーザーに通知"
+    task :line_notify_tournament_start, [:tournament_year] => :environment do |task, args|
+        @tournament_year = args.tournament_year
+        User.all.each do |user|
+            tournament_tomorrow_start_message = @tournament_year.tournament.name + "が明日から開幕します．\n"
+            tournament_tomorrow_start_message += "開催都市は，" + @tournament_year.tournament.city.name + "です！\n"
+            tournament_tomorrow_start_message += @tournament_year.tournament.city.name + "のwebカメラはこちらからチェックできます！少しでも現地気分を味わってみてください ^^)\n" 
+            tournament_tomorrow_start_message += @tournament_year.tournament.city.image_url
+            line_notify = LineNotify.new("xxxxxxxxxxxx")
+            options = {message: tournament_tomorrow_start_message}
+            line_notify.ping(options)
         end
     end
 end
