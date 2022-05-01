@@ -10,7 +10,5 @@ class Match < ApplicationRecord
   scope :eager_loading, -> { eager_load(:home_player, :away_player, :win_player, tournament_year: :tournament) } 
   scope :search_by_day_and_tournament_year, -> (all_day, tournament_year_id) { where(day: all_day, tournament_year: tournament_year_id) }
 
-  def date_only
-    self.date.strftime("%Y %m/%d")
-  end
+
 end
