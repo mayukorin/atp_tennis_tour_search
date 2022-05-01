@@ -104,6 +104,7 @@ GEM
       railties (>= 3.2.16)
     jsonapi-renderer (0.2.2)
     kgio (2.11.4)
+    line_notify (1.0.1)
     listen (3.6.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -239,6 +240,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   jbuilder (~> 2.7)
   jquery-ui-rails
+  line_notify
   listen (~> 3.3)
   pg (~> 1.1)
   puma (~> 5.0)

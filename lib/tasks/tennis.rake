@@ -2,6 +2,7 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 require 'json'
+require 'line_notify'
 
 ONEDAYHOUR = 24
 
@@ -389,6 +390,9 @@ namespace :tennis do
             unless line_notify_message == ""
                 # line notify で通知
                 puts line_notify_message
+                line_notify = LineNotify.new("xxxxxxxxx")
+                options = {message: line_notify_message}
+                line_notify.ping(options)
             end
         end
     end
@@ -401,10 +405,10 @@ namespace :tennis do
             line_notify_message = ""
             user.favorite_players.each do |favorite_player|
                 player_match_day_message = favorite_player.name + "の試合が"
-                player_matches = PlayerMatch.joins(:match).where(player_id: favorite_player.id).where("matches.day >= ? AND matches.day < ?", today, today+60*60*1)
+                player_matches = PlayerMatch.joins(:match).where(player_id: favorite_player.id).where("matches.day >= ? AND matches.day < ?", today, today+60*60*30)
                 match_day_message = ""
                 player_matches.each do |player_match|
-                    match_day_message += player_match.match.day.strftime("%H:%M")
+                    match_day_message += player_match.match.day.strftime("%H:%M") + " "
                 end
                 unless match_day_message == ""
                     player_match_day_message += match_day_message +"からはじまります．\n"
@@ -414,6 +418,9 @@ namespace :tennis do
             unless line_notify_message == ""
                 # line notify で通知
                 puts line_notify_message
+                line_notify = LineNotify.new("xxxxxxxxx")
+                options = {message: line_notify_message}
+                line_notify.ping(options)
             end
         end
     end
@@ -432,7 +439,9 @@ namespace :tennis do
             tournament_tomorrow_start_message += "開催都市は，" + @tournament_year.tournament.city.name + "です！\n"
             tournament_tomorrow_start_message += @tournament_year.tournament.city.name + "のwebカメラはこちらからチェックできます！少しでも現地気分を味わってみてください ^^)\n" 
             tournament_tomorrow_start_message += @tournament_year.tournament.city.image_url
-            puts tournament_tomorrow_start_message
+            line_notify = LineNotify.new("xxxxxxxxxxxx")
+            options = {message: tournament_tomorrow_start_message}
+            line_notify.ping(options)
         end
     end
 end
