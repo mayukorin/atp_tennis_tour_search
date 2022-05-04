@@ -19,10 +19,39 @@
         <div class="text-success text-center m-5">
             <h2>お気に入り選手の直近の試合</h2>
         </div>
-        <%= render partial:"players/player", collection: @favorite_players_and_recently_matches %>
+        <% if @favorite_players_and_recently_matches.size == 0 %>
+            <div class="text-center">お気に入り選手が登録されていません</div>
+        <% else %>
+            <%= render partial:"players/player", collection: @favorite_players_and_recently_matches %>
+        <% end %>
     </div>
 <% end %>
-
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-12 mb-4 p-4 text-center">
+            <h4 >お気に入り選手の<br>試合日程</h4>
+            <%= image_tag("heart3.png", class: "img-fluid explation_img") %>
+            <br>
+            お気に入り選手を登録すれば，試合日程をトップページからすぐ確認できます．
+            ライン連携をすれば，試合開始前に通知が届きます．試合終了時に通知はしないので，
+            結果は後からじっくり自分で確認したい人におすすめです！
+        </div>
+        <div class="col-12 mb-4 p-4 text-center">
+            <h4>ATPツアーを巡り<br>旅行気分に</h4>
+            <%= image_tag("earth.png", class: "img-fluid explation_img") %>
+            <br>
+            大会の詳細ページでは，現地のwebカメラ映像をチェックできます．
+            ライン連携をすれば，大会直前に現地のwebカメラ映像などが届きます．
+        </div>
+        <div class="col-12 mb-4 p-4 text-center">
+            <h4>過去の試合結果を<br>検索可能</h4>
+            <%= image_tag("search.png", class: "img-fluid explation_img") %>
+            <br>
+            大会や選手の過去の試合結果を検索できます．
+        </div>
+    </div>
+</div>
 <div class="row justify-content-center m-5">
     <div class="text-success text-center m-5">
         <h2>選手や大会名を入力</h2>
