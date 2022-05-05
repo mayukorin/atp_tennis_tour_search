@@ -35,5 +35,5 @@ every 1.hours do
 end
 
 every 1.minutes do
-    rake 'tennis:greet'
+    rake 'greet:say_hello'
 end
