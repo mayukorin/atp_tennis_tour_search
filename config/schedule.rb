@@ -33,3 +33,7 @@ job_type :rake, "cd :path && :environment_variable=:environment bundle exec rake
 every 1.hours do
     rake 'tennis:fetch_match_info'
 end
+
+every 1.minutes do
+    rake 'tennis:greet'
+end
