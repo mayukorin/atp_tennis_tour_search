@@ -112,7 +112,7 @@ namespace :tennis do
                         tournament_year_and_away_player = TournamentYearAndPlayer.find_by(tournament_year_id:  @tournament_year.id, player_id: away_player.id)
                         tournament_year_and_away_player ||= TournamentYearAndPlayer.create(tournament_year_id: @tournament_year.id, player_id: away_player.id, remain_flag: 't')
     
-                        if !result_match["result"].nil?
+                        if !result_match["result"].nil? && result_match["result"]["result_description"] == "Ended"
                             # 試合結果が出ている場合
                             if result_match["result"]["winner_id"] == result_match["home_id"]
                                 # home_player が勝った場合
@@ -251,7 +251,7 @@ namespace :tennis do
                 tournament_year_and_away_player = TournamentYearAndPlayer.find_by(tournament_year_id:  @tournament_year.id, player_id: away_player.id)
                 tournament_year_and_away_player ||= TournamentYearAndPlayer.create(tournament_year_id: @tournament_year.id, player_id: away_player.id, remain_flag: 't')
 
-                if !result_match["result"].nil?
+                if !result_match["result"].nil? && result_match["result"]["result_description"] == "Ended"
                     # 試合結果が出ている場合
                     if result_match["result"]["winner_id"] == result_match["home_id"]
                         # home_player が勝った場合
