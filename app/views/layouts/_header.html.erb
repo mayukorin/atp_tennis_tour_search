@@ -10,11 +10,11 @@
             <ul class="col-5 my-auto text-success header-link">
                 <li><%= link_to 'top', root_path %></li>
                 <% if logged_in? %>
-                    <li><%= link_to 'settings', edit_user_path(current_user) %>
+                    <li><%= link_to 'settings（ライン連携もこちらから）', edit_user_path(current_user) %>
                     <li><%= link_to 'logout', logout_path, method: :delete %></li>
                 <% else %>
                     <li><%= link_to 'login', login_path %></li>
-                    <li><%= link_to 'signup', new_user_path %></li>
+                    <li><%= link_to 'signup（ライン連携もこちらから）', new_user_path %></li>
                 <% end %>
             </ul>
         </div>
