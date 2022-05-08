@@ -1,6 +1,6 @@
 <%= form_with(model: @user, local: true, html: { novalidate: true}) do |f| %>
     <div class="mb-3">
-        <%= f.label :name, "ユーザ名", class: "form-label text-success" %>
+        <label class="form-label text-success">ユーザ名 <span class="badge bg-danger">必須</span></label>
         <% if @user.errors.include?(:name) %>
             <%= f.text_field :name, class: "form-control  is-invalid" %>
             <div class="error_message"><%= @user.errors.full_messages_for(:name).first %></div>
@@ -9,7 +9,7 @@
         <% end %>
     </div>
     <div class="mb-3">
-        <%= f.label :email, "メールアドレス", class: "form-label text-success" %>
+        <label class="form-label text-success">メールアドレス <span class="badge bg-danger">必須</span></label>
         <% if @user.errors.include?(:email) %>
             <%= f.email_field :email, class: "form-control  is-invalid" %>
             <div class="error_message"><%= @user.errors.full_messages_for(:email).first %></div>
@@ -19,7 +19,7 @@
         
     </div>
     <div class="mb-3">
-        <%= f.label :password, "パスワード", class: "form-label text-success" %>
+        <label class="form-label text-success">パスワード <span class="badge bg-danger">必須</span></label>
         <% if @user.errors.include?(:password) %>
             <%= f.password_field :password, class: "form-control  is-invalid" %>
             <div class="error_message"><%= @user.errors.full_messages_for(:password).first %></div>
@@ -28,7 +28,7 @@
         <% end %>
     </div>
     <div class="mb-3">
-        <%= f.label :password_confirmation, "パスワード（確認用）", class: "form-label text-success" %>
+        <label class="form-label text-success">パスワード（確認用）<span class="badge bg-danger">必須</span></label>
         <% if @user.errors.include?(:password_confirmation) %>
             <%= f.password_field :password_confirmation, class: "form-control  is-invalid" %>
             <div class="error_message"><%= @user.errors.full_messages_for(:password_confirmation).first %></div>
@@ -37,16 +37,17 @@
         <% end %>
     </div>
     <div class="mb-3">
-        <%= f.label :access_token_of_line_notify, "アクセストークン（Line通知に使用，任意）", class: "form-label text-success" %>
+        <label class="form-label text-success">Line Notify アクセストークン（ライン連携をするために入力してください）<span class="badge bg-secondary">任意</span></label>
         <% if @user.errors.include?(:access_token_of_line_notify) %>
             <%= f.text_field :access_token_of_line_notify, class: "form-control  is-invalid" %>
             <div class="error_message"><%= @user.errors.full_messages_for(:access_token_of_line_notify).first %></div>
         <% else %>
             <%= f.text_field :access_token_of_line_notify, class: "form-control" %>
         <% end %>
-        
     </div>
     <div class="mb-3 row justify-content-center">
         <%= f.submit yield(:button_text), class: "btn btn-primary btn-success col-4" %>
     </div>
+    <br>
+    <div class="text-success">※Line Notify アクセストークンの発行の仕方は，<a href="https://algorithm.joho.info/windows10/line-notify-access-token/">こちら</a> を参考にしてください</div>
 <% end %>

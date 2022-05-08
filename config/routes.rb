@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   # get '/tournament_years_day_show', to: 'tournament_years#day_show', as: 'tournament_year_day_show'
   resources :tournaments, only: [:show]
   resources :players, only: [:show]
-  get '/player_matches_index/:player_id', to: 'player_matches#index', as: 'player_matches_index'
+  get '/index_by_player_and_tournament_year/:player_id', to: 'player_matches#index_by_player_and_tournament_year', as: 'player_matches_index'
   resources :users, only: [:new, :create, :edit, :update]
   resources :favorites, only: [:create, :destroy]
   get '/login', to: 'sessions#new'

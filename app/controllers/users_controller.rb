@@ -8,12 +8,16 @@ class UsersController < ApplicationController
   end
 
   def create
-    puts user_params[:access_token_of_line_notify]
+
     @user = User.new(user_params)
     puts @user.access_token_of_line_notify
     if @user.save
       log_in @user
-      flash[:success] = "ユーザ登録が完了しました"
+      success_message = "ユーザ登録が完了しました．"
+      if user_params[:access_token_of_line_notify] != ""
+        success_message += "ライン連携も完了しました．"
+      end
+      flash[:success] = success_message
       redirect_to root_path
     else
       render 'new'
@@ -26,8 +30,13 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    previous_access_token_of_line_notify = @user.access_token_of_line_notify
     if @user.update(user_params)
-      flash[:success] = "ユーザ情報の編集が完了しました"
+      success_message = "ユーザ登録が完了しました．"
+      if previous_access_token_of_line_notify != @user.access_token_of_line_notify
+        success_message += "ライン連携も完了しました．"
+      end
+      flash[:success] = success_message
       redirect_to root_path
     else
       render 'edit'
