@@ -34,6 +34,6 @@ every 1.hours do
     rake 'tennis:fetch_match_info'
 end
 
-every 1.minutes do
-    rake 'greet:say_hello'
+every 1.week do
+    rake 'tennis:fetch_player_ranking_info'
 end
