@@ -369,7 +369,7 @@ tournament_years_2021.each do |tournament_year|
     end
 
 end
-=end
+
 
 # me2 = TournamentYear.find_by(api_id: 1437)
 # me2.create_batch_schedule(start_day: '2022-01-16', end_day: '2022-01-31', start_hour: 9)
@@ -416,3 +416,8 @@ val2.update(first_day: '2022-04-18', last_day: '2022-04-25')
 val2.batch_schedule.update(start_day: '2022-04-17', end_day: '2022-04-26', start_hour: 18)
 
 
+=end
+
+pa2 = TournamentYear.find_by(api_id: 1464)
+pa2.update(first_day: '2022-05-22', last_day: '2022-06-05')
+pa2.batch_schedule.update(start_day: '2022-05-21', end_day: '2022-06-6')

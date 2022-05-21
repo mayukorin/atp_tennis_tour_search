@@ -183,7 +183,7 @@ namespace :tennis do
 
         tbt_player_name_list = ['R64p', 'R32p', 'R16p', 'R4p', 'Qf', 'Wqf', 'Wsf']
         
-        api_id = 1456
+        api_id = 1464
                
         @tournament_year = TournamentYear.find_by(api_id: api_id)
         url = URI("https://tennis-live-data.p.rapidapi.com/matches-results/"+@tournament_year.api_id.to_s)
@@ -371,26 +371,29 @@ namespace :tennis do
 
     desc "ユーザーのお気に入り選手の試合を前日に通知"
     task line_notify_favorite_player_match_before_day: :environment do
-        today = Time.zone.now
+        today = Date.today
 
         User.all.each do |user|
-            line_notify_message = ""
+            access_token_of_line_notify = user.access_token_of_line_notify
+            if access_token_of_line_notify == ""
+                next
+            end
+            line_notify_message = "\n明日のお気に入り選手の試合\n"
             user.favorite_players.each do |favorite_player|
-                player_match_day_message = favorite_player.name + "の試合が明日"
-                player_matches = PlayerMatch.joins(:match).where(player_id: favorite_player.id).where("matches.day >= ? AND matches.day < ?", today+60*60*24, today+60*60*25)
-                match_day_message = ""
+                player_match_day_message = "・" + favorite_player.name + "\n"
+                player_matches = PlayerMatch.joins(:match).where(player_id: favorite_player.id).where("matches.day >= ? AND matches.day < ?", today+1, today+2)
+            
                 player_matches.each do |player_match|
-                    match_day_message += player_match.match.day.strftime("%H:%M")
+                    player_match_day_message += player_match.match.day.strftime("%H:%M") + " " + player_match.match.away_player.name + " vs " + player_match.match.home_player.name + "\n"
                 end
-                unless match_day_message == ""
-                    player_match_day_message += match_day_message +"からあります．\n"
+                unless player_match_day_message == "・" + favorite_player.name + "\n" 
                     line_notify_message += player_match_day_message
                 end
             end
-            unless line_notify_message == ""
+            unless line_notify_message == "\n明日のお気に入り選手の試合\n"
                 # line notify で通知
                 puts line_notify_message
-                line_notify = LineNotify.new("xxxxxxxxx")
+                line_notify = LineNotify.new(access_token_of_line_notify)
                 options = {message: line_notify_message}
                 line_notify.ping(options)
             end
@@ -400,25 +403,29 @@ namespace :tennis do
     desc "ユーザーのお気に入り選手の試合を1時間前ほどから通知"
     task line_notify_favorite_player_match_before_one_hour: :environment do
         today = Time.zone.now
-
+        # today = Time.zone.local(2022, 1, 25, 18, 0)
+        puts today
         User.all.each do |user|
-            line_notify_message = ""
+            access_token_of_line_notify = user.access_token_of_line_notify
+            if access_token_of_line_notify == ""
+                next
+            end
+            line_notify_message = "\nまもなく試合開始！\n"
             user.favorite_players.each do |favorite_player|
-                player_match_day_message = favorite_player.name + "の試合が"
-                player_matches = PlayerMatch.joins(:match).where(player_id: favorite_player.id).where("matches.day >= ? AND matches.day < ?", today, today+60*60*30)
-                match_day_message = ""
+                player_match_day_message = "・" + favorite_player.name + "\n"
+                player_matches = PlayerMatch.joins(:match).where(player_id: favorite_player.id).where("matches.day >= ? AND matches.day < ?", today, today+60*60)
+                
                 player_matches.each do |player_match|
-                    match_day_message += player_match.match.day.strftime("%H:%M") + " "
+                    player_match_day_message += player_match.match.day.strftime("%H:%M") + " " + player_match.match.away_player.name + " vs " + player_match.match.home_player.name + "\n"
                 end
-                unless match_day_message == ""
-                    player_match_day_message += match_day_message +"からはじまります．\n"
+                unless player_match_day_message == "・" + favorite_player.name + "\n" 
                     line_notify_message += player_match_day_message
                 end
             end
-            unless line_notify_message == ""
+            unless line_notify_message == "\nまもなく試合開始！\n"
                 # line notify で通知
-                puts line_notify_message
-                line_notify = LineNotify.new("xxxxxxxxx")
+                # puts line_notify_message
+                line_notify = LineNotify.new(access_token_of_line_notify)
                 options = {message: line_notify_message}
                 line_notify.ping(options)
             end
@@ -432,20 +439,35 @@ namespace :tennis do
     end
 
     desc "大会が明日から開催されることをユーザーに通知"
-    task :line_notify_tournament_start, [:tournament_year] => :environment do |task, args|
-        @tournament_year = args.tournament_year
+    task line_notify_tournament_start: :environment do 
+        # today = Date.today
+        today = Date.new(2022, 5, 21)
+        # @tournament_year = args.tournament_year
+        @tommorow_start_tournament_years = TournamentYear.where("first_day >= ? AND first_day < ?", today+1, today+2)
+        
         User.all.each do |user|
             access_token_of_line_notify = user.access_token_of_line_notify
+            puts access_token_of_line_notify
             if access_token_of_line_notify == ""
                 next
             end
-            tournament_tomorrow_start_message = @tournament_year.tournament.name + "が明日から開幕します．\n"
-            tournament_tomorrow_start_message += "開催都市は，" + @tournament_year.tournament.city.name + "です！\n"
-            tournament_tomorrow_start_message += @tournament_year.tournament.city.name + "のwebカメラはこちらからチェックできます！少しでも現地気分を味わってみてください ^^)\n" 
-            tournament_tomorrow_start_message += @tournament_year.tournament.city.image_url
-            line_notify = LineNotify.new(access_token_of_line_notify)
-            options = {message: tournament_tomorrow_start_message}
-            line_notify.ping(options)
+            tournament_year = nil
+            @tommorow_start_tournament_years.each do |tournament_year|
+
+                tournament_tomorrow_start_message = "\n明日から開催の大会\n"
+                tournament_tomorrow_start_message += "・" + tournament_year.tournament.name + "\n"
+                tournament_tomorrow_start_message += "開催都市：" + tournament_year.tournament.city.name + "\n"
+                tournament_tomorrow_start_message += "時差：7時間\n"
+                tournament_tomorrow_start_message += "現地のwebカメラ映像↓\n"
+
+                unless tournament_tomorrow_start_message == "\n明日から開催の大会\n"
+                    puts tournament_tomorrow_start_message
+                    line_notify = LineNotify.new(access_token_of_line_notify)
+                    options = {message: tournament_tomorrow_start_message, imageFullsize: tournament_year.tournament.city.image_url, imageThumbnail: tournament_year.tournament.city.image_url}
+                    # options = {message: tournament_tomorrow_start_message}
+                    line_notify.ping(options)
+                end
+            end
         end
     end
 end

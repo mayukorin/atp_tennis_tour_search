@@ -1,13 +1,32 @@
 <div class="white-card col-12 col-md-5 col-lg-4 bg-white mb-3 p-2  <%= "offset-md-1" if match_counter % 2 == 1%>" >
     <%= l match.day  %>
+    <%= match.id %>
     <div class="tournament_year_link"><%= link_to match.tournament_year.tournament.name, tournament_path(match.tournament_year.tournament) %></div>
     <div class="player-name">
         <span class="win <%= "lose" if !match.win_player.nil? && match.win_player.id == match.away_player.id %>">
             <%= link_to match.home_player.name, player_path(match.home_player) %>
+            <!--
+            <% if logged_in? %>
+                <% if current_user.favorite?(match.home_player) %>
+                <i class="fa-solid fa-star green_color"></i>
+                <% else %>
+                <i class="fa-regular fa-star green_color"></i>
+                <% end %>
+            <% end %>
+            -->
         </span>
             vs 
         <span class="win <%= "lose" if !match.win_player.nil? && match.win_player.id == match.home_player.id %>">
             <%= link_to match.away_player.name, player_path(match.away_player) %>
+            <!--
+            <% if logged_in? %>
+                <% if current_user.favorite?(match.away_player) %>
+                <i class="fa-solid fa-star green_color"></i>
+                <% else %>
+                <i class="fa-regular fa-star green_color"></i>
+                <% end %>
+            <% end %>
+            -->
         </span>
     </div>
     <%= link_to "スコア状況（Googleで検索）", match_detail_url_of_google(match) %>

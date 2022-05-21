@@ -30,10 +30,22 @@ ENV.each { |k, v| env(k, v) }
 
 job_type :rake, "cd :path && :environment_variable=:environment bundle exec rake :task --silent :output"
 
-every 1.hours do
+every 3.hours do
     rake 'tennis:fetch_match_info'
 end
 
 every 1.week do
     rake 'tennis:fetch_player_ranking_info'
+end
+
+every 1.day, :at => '10:40 pm' do
+    rake 'tennis:line_notify_tournament_start'
+end
+
+every 1.day,  :at => '11:00 pm' do
+    rake 'tennis:line_notify_favorite_player_match_before_day'
+end
+
+every 1.hours do
+    rake 'tennis:line_notify_favorite_player_match_before_one_hour'
 end
