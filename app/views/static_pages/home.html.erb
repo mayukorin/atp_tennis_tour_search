@@ -19,7 +19,7 @@
         <div class="text-success text-center m-5">
             <h2>お気に入り選手の直近の試合</h2>
         </div>
-        <% if @favorite_players_and_recently_matches.size == 0 %>
+        <% if @favorite_players_and_recently_matches.length == 0 %> <!-- クエリが発行されない -->
             <div class="text-center">お気に入り選手が登録されていません</div>
         <% else %>
             <%= render partial:"players/player", collection: @favorite_players_and_recently_matches %>
