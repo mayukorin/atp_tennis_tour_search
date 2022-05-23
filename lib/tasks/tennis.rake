@@ -200,6 +200,7 @@ namespace :tennis do
         result_matches = response_body_json["results"]["matches"]
         
         result_matches.each_with_index do |result_match, cnt|
+            
             if result_match["round_name"].include?("Qualification")
                 # 予選は登録しない
                 next
@@ -217,7 +218,7 @@ namespace :tennis do
             if tbt_match_flag == true
                 next
             end
-
+            
             day = Time.zone.parse(result_match["date"])
             
             if !day.to_date.before? @tournament_year.first_day
@@ -440,8 +441,8 @@ namespace :tennis do
 
     desc "大会が明日から開催されることをユーザーに通知"
     task line_notify_tournament_start: :environment do 
-        # today = Date.today
-        today = Date.new(2022, 5, 21)
+        today = Date.today
+        # today = Date.new(2022, 5, 21)
         # @tournament_year = args.tournament_year
         @tommorow_start_tournament_years = TournamentYear.where("first_day >= ? AND first_day < ?", today+1, today+2)
         
