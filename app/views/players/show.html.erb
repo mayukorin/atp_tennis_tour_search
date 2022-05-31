@@ -8,6 +8,10 @@
             <%= render 'favorite_form', player: @player%>
         </div>
     </div>
+<% else %>
+    <div class="text-success  m-5  row justify-content-center">
+        お気に入り選手を登録したい場合はログインしてください．
+    </div>
 <% end %>
 <% unless @tournament_year_and_players_collection.size == 0 %>
     <div>
