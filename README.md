@@ -1,78 +1,69 @@
-# 名前
+# アプリ名
  
 テニスの試合状況確認アプリ
- 
-テニスの ATP ツアーの試合状況などを確認できるサイトです
- 
- 
-# 特徴
- 
-- 世界地図から開催中の大会をすぐに確認できます
-- 選手ごとに，過去の試合結果を確認することができます
-- お気に入りの選手を登録して，すぐ試合結果を確認することができます
 
-# 開発理由
+# 概要
 
-テニスのお気に入り選手の試合状況をすぐ確認できるようにしたいと思い，作りました．
+ 
+- お気に入り選手を登録すると，その選手の試合前に LINE で通知が来る．
+- 選手ごとに，過去の試合結果を web ページで確認できる．
+- 大会ごとの web ページでは，現地付近のライブカメラ画像を見ることができる．
+- 大会開始前に，大会開始の通知と現地付近のライブカメラ画像が LINE で送られてくる
 
-# 開発期間
+# URL 
 
-2021/8 ~ 2021/10 (その後も修正中)
+https://atp-tour-search.tk/
+
 
 # デモ
- 
-- 世界地図から開催中の大会をすぐに確認
-https://user-images.githubusercontent.com/63027348/160748897-202fcf6e-1741-4377-8dcb-556a6d2fe42e.mp4
 
 - 選手ごとに，過去の試合結果を確認
 https://user-images.githubusercontent.com/63027348/160748658-420f8670-6ff3-4aa3-aeea-fb6a3de857b5.mp4
 
-- お気に入りの選手登録
-https://user-images.githubusercontent.com/63027348/160749223-af52bfed-215e-4425-b897-5435dd145ab5.mp4
+- お気に入り選手の試合前の LINE 通知
 
-# URL
-https://atp-tour-search.tk/
+<img src="https://user-images.githubusercontent.com/63027348/172530859-46d9d331-13e6-4710-9783-9c7248649425.jpg" width="250">
+
+- 大会ごとの web ページで，現地付近のライブカメラ画像の確認
+https://user-images.githubusercontent.com/63027348/172530570-7c04f6f6-5d7f-4a49-b14b-105db4cc66ff.mp4
+
+
+- 大会開始前の通知
+
+<img src="https://user-images.githubusercontent.com/63027348/172531122-63b20259-6304-4413-83f8-503e32bffeab.jpg" width="250">
+
+
+
+# ターゲット
+
+自分の母のような，ATP テニスの熱狂的なファン
+
+# 課題
+
+1. お気に入りの選手の試合日程を自分で調べるのは面倒．忘れていて見逃してしまうこともある．試合日程を通知してくれるアプリは既にあるが，錦織圭など日本人の選手しか対応していない．
+2. コロナでなかなか海外旅行に行けない
+
+# 上の課題を解決するための機能
+
+1. お気に入り選手の試合前に LINE で通知する機能
+日本人以外の選手にも対応．
+2. webページや LINE による通知で現地付近のライブカメラ映像を確認できる
+ATPツアーと共に海外旅行している気分になれる
+
+# 結果（アプリを使うことにより，課題は解決されたか）
+
+1. 母から「試合を見逃すことがなくなった．ありがとう」と言われた．
+2. 全仏オープン開始前の LINE 通知で現地のライブカメラ映像を見た母に，「いいね．旅行に行った気分になれる」と言われた．
 
 # 使用技術
 
-Ruby on Rails, Tennis Live Data API （試合情報取得に利用），AWS （デプロイ）
+Ruby/Ruby on Rails/Tennis Live Data API/webcams.Travel API/Line Notify/AWS/PostgreSQL
 
-# ER図
+
+# 技術的に工夫した点
+
+- Web ページの表示速度の改善のためにクエリの処理を工夫した点．（例えば，工夫前と比べてトップページの表示速度は 0.7 秒改善した）
+
+# ER 図
 
 ![drawSQL-export-2022-05-08_23_40](https://user-images.githubusercontent.com/63027348/167301526-6e61c79d-6b87-4fbf-aa6f-f3b83fb892b1.png)
-
- 
-<!--
-# Requirement
- 
-"hoge"を動かすのに必要なライブラリなどを列挙する
- 
-* huga 3.5.2
-* hogehuga 1.0.2
- 
-# Installation
- 
-Requirementで列挙したライブラリなどのインストール方法を説明する
- 
-```bash
-pip install huga_package
-```
- 
-# Usage
- 
-DEMOの実行方法など、"hoge"の基本的な使い方を説明する
- 
-```bash
-git clone https://github.com/hoge/~
-cd examples
-python demo.py
-```
- 
-# Note
- 
-注意点などがあれば書く
- 
-# Author
- 
-作成情報を列挙する
--->
