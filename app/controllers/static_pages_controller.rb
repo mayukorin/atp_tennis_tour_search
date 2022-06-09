@@ -15,10 +15,10 @@ class StaticPagesController < ApplicationController
       '''
       
 
-      @aaa = PlayerMatch.joins(:match).select("player_id, max(matches.day) as md").group(:player_id).to_sql
-      @latest_player_matches_and_matches_ids =  PlayerMatch.select("player_matches.id, player_matches.match_id").joins("INNER JOIN matches as bb ON player_matches.match_id=bb.id").joins("INNER JOIN (#{@aaa}) as aa ON player_matches.player_id=aa.player_id").where("aa.md = bb.day")
-      @bbb = PlayerMatch.joins(:match).select("player_id, max(matches.day) as md").where("matches.id not in (?)", @latest_player_matches_and_matches_ids.pluck("player_matches.match_id")).group(:player_id).to_sql
-      @second_latest_player_matches_ids =  PlayerMatch.joins("INNER JOIN matches as bb ON player_matches.match_id=bb.id").joins("INNER JOIN (#{@bbb}) as aa ON player_matches.player_id=aa.player_id").where("aa.md = bb.day").pluck("player_matches.id")
+      @player_ids_and_latest_match_days = PlayerMatch.joins(:match).select("player_id, max(matches.day) as md").group(:player_id).to_sql
+      @latest_player_matches_and_matches_ids =  PlayerMatch.select("player_matches.id, player_matches.match_id").joins("INNER JOIN matches as bb ON player_matches.match_id=bb.id").joins("INNER JOIN (#{@player_ids_and_latest_match_days}) as aa ON player_matches.player_id=aa.player_id").where("aa.md = bb.day")
+      @player_ids_and_second_latest_match_days = PlayerMatch.joins(:match).select("player_id, max(matches.day) as md").where("matches.id not in (?)", @latest_player_matches_and_matches_ids.pluck("player_matches.match_id")).group(:player_id).to_sql
+      @second_latest_player_matches_ids =  PlayerMatch.joins("INNER JOIN matches as bb ON player_matches.match_id=bb.id").joins("INNER JOIN (#{@player_ids_and_second_latest_match_days}) as aa ON player_matches.player_id=aa.player_id").where("aa.md = bb.day").pluck("player_matches.id")
       @favorite_players_and_recently_matches = current_user.favorite_players.eager_loading.where("player_matches.id in (?)", @latest_player_matches_and_matches_ids.pluck("player_matches.id")+@second_latest_player_matches_ids)
       
       
