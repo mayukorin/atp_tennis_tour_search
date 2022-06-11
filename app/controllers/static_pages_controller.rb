@@ -25,7 +25,7 @@ class StaticPagesController < ApplicationController
       
       
       '''
-      @bbbb.each do |b|
+      @bbbb.each do |b| 
         puts b.player_id
         puts b.md
       end
