@@ -416,8 +416,18 @@ val2.update(first_day: '2022-04-18', last_day: '2022-04-25')
 val2.batch_schedule.update(start_day: '2022-04-17', end_day: '2022-04-26', start_hour: 18)
 
 
-=end
 
 pa2 = TournamentYear.find_by(api_id: 1464)
 pa2.update(first_day: '2022-05-22', last_day: '2022-06-05')
 pa2.batch_schedule.update(start_day: '2022-05-21', end_day: '2022-06-6')
+
+=end
+win2 = TournamentYear.find_by(api_id: 1464)
+win2.update(first_day: '2022-06-27', last_day: '2022-07-10')
+win2.batch_schedule.update(start_day: '2022-06-26', end_day: '2022-07-11')
+
+=begin
+han = Tournament.find_by(name: 'ハンブルク・ヨーロピアン・オープン')
+han2 = han.tournament_years.create(:year => 2022, :first_day => '2022-07-18', :last_day => '2022-07-24', :now_flag => 't', :api_id => 1467???)
+han2.create_batch_schedule(start_day: '2022-07-17', end_day: '2022-07-25', start_hour: 18)
+=end
