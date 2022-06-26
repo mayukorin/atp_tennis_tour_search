@@ -422,7 +422,12 @@ pa2.update(first_day: '2022-05-22', last_day: '2022-06-05')
 pa2.batch_schedule.update(start_day: '2022-05-21', end_day: '2022-06-6')
 
 =end
-win2 = TournamentYear.find_by(api_id: 1464)
+
+pa2 = TournamentYear.find_by(api_id: 1464)
+pa2.update(first_day: '2022-05-22', last_day: '2022-06-05')
+pa2.batch_schedule.update(start_day: '2022-05-21', end_day: '2022-06-6')
+
+win2 = TournamentYear.find_by(api_id: 1471)
 win2.update(first_day: '2022-06-27', last_day: '2022-07-10')
 win2.batch_schedule.update(start_day: '2022-06-26', end_day: '2022-07-11')
 
