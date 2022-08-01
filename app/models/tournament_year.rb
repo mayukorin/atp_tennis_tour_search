@@ -17,4 +17,14 @@ class TournamentYear < ApplicationRecord
   def hold_now_flag
     Time.zone.now.between?(self.first_day, self.last_day)
   end
+
+  def get_formatted_days_and_days 
+    
+    @tournament_days_collection = {}
+    matches.pluck(:day).map do |date|
+      @tournament_days_collection[date.strftime("%Y/%m/%d").to_sym] = date
+    end
+    return @tournament_days_collection
+
+  end
 end
