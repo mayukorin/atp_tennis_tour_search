@@ -18,13 +18,16 @@ class TournamentYear < ApplicationRecord
     Time.zone.now.between?(self.first_day, self.last_day)
   end
 
-  def get_formatted_days_and_days 
+  def get_days_and_formatted_days
     
-    @tournament_days_collection = {}
-    matches.pluck(:day).map do |date|
-      @tournament_days_collection[date.strftime("%Y/%m/%d").to_sym] = date
-    end
-    return @tournament_days_collection
+    # できないっぽい
+    # https://qiita.com/akinov/items/c826f34b1f326f0adf7a
+    matches.select("to_char(matches.day, 'YYYY/MM/dd') as formatted_day, to_char(matches.day, 'YYYY/MM/dd') as formatted_key_day").group("to_char(matches.day, 'YYYY/MM/dd')")
 
+    @tournament_days_and_formatted_days = {}
+    matches.pluck(:day).map do |date|
+      @tournament_days_and_formatted_days[date.strftime("%Y/%m/%d").to_sym] = date
+    end
+    return @tournament_days_and_formatted_days
   end
 end

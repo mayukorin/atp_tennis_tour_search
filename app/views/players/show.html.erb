@@ -13,11 +13,11 @@
         お気に入り選手を登録したい場合はログインしてください．
     </div>
 <% end %>
-<% unless @tournament_year_and_players_collection.size == 0 %>
+<% unless @tournament_year_and_players.size == 0 %>
     <div>
         <%= render 'shared/match_select_form', 
             path: player_matches_index_path(@player.id), param: :tournament_year_and_player_id, 
-            data_array: @tournament_year_and_players_collection, 
+            data_array: @tournament_year_and_players, 
             value_key: :id,
             text_key: :tournament_name_and_year,
             selected_data: @selected_tournament_year_and_player, 
